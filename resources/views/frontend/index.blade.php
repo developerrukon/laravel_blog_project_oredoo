@@ -1,15 +1,15 @@
 @extends('layouts.frontendapp');
 @section('title', 'Home')
 @section('content')
-    
 
+    {{-- {{ $slider }} --}}
     <!-- blog-slider-->
     <section class="blog blog-home4 d-flex align-items-center justify-content-center">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="owl-carousel">
-                        <!--post1-->
+                        <!--slider start-->
                         <div class="blog-item" style="background-image: url('{{ asset('frontend/img/blog/bg1.jpg') }}')">
                             <div class="blog-banner">
                                 <div class="post-overly">
@@ -30,51 +30,7 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!--post2-->
-                        <div class="blog-item" style="background-image: url('{{ asset('frontend/img/blog/bg2.jpg') }}')">
-                            <div class="blog-banner">
-                                <div class="post-overly">
-                                    <div class="post-overly-content">
-                                        <div class="entry-cat">
-                                            <a href="blog-layout-1.html" class="category-style-2">Livestyle</a>
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="post-single.html">Styles come and go. Good design is a language,
-                                                not a style. </a>
-                                        </h2>
-                                        <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                            <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                            <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--post3-->
-                        <div class="blog-item" style="background-image: url('{{ asset('frontend/img/blog/bg3.jpg') }}')">
-                            <div class="blog-banner">
-                                <div class="post-overly">
-                                    <div class="post-overly-content">
-                                        <div class="entry-cat">
-                                            <a href="blog-layout-1.html" class="category-style-2">branding</a>
-                                        </div>
-                                        <h2 class="entry-title">
-                                            <a href="post-single.html">Ignoring online marketing is like opening a
-                                                business but not telling anyone </a>
-                                        </h2>
-                                        <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">Meriam Smith</a></li>
-                                            <li class="post-date"> <span class="line"></span> Fabuary 10 ,2022</li>
-                                            <li class="post-timeread"> <span class="line"></span> 15 mins read</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--/-->
+                        <!--slider end--?
                     </div>
                 </div>
             </div>

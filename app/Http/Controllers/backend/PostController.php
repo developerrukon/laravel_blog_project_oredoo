@@ -47,10 +47,11 @@ class PostController extends Controller
         $img = $request->file('image');
         $request->validate([
             'title' => 'required|max:200|unique:posts,title',
-            'description' => 'nullable|max:2000',
+            'description' => 'nullable',
             'categories' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2024',
-            'status' => 'required'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
+            'status' => 'required',
+            // 'is_slider' => 'nullable'
         ]);
         $image_name = null;
         if($img){
@@ -64,6 +65,7 @@ class PostController extends Controller
                     'description' => $request->description,
                     'image' => $image_name,
                     'status' => $request->status,
+                    // 'slider' => $request->is_slider,
                 ]);
                 $post->categories()->attach($request->categories);
                 return redirect(route('backend.post.index'))->with('success', 'Post Create Successful.!');
@@ -110,10 +112,11 @@ class PostController extends Controller
     $img = $request->file('image');
     $request->validate([
         'title' => 'required | unique:posts,title,'.$post->id,
-        'description' => 'nullable | max:2000',
+        'description' => 'nullable',
         'categories' => 'required ',
-        'image' => 'nullable | mimes:png,jpg,jpeg,svg|max:2000',
-        'status' => 'required'
+        'image' => 'nullable | mimes:png,jpg,jpeg,svg|max:5000',
+        'status' => 'required',
+        // 'is_slider' => 'nullable'
     ]);
 
     if($img){
@@ -135,6 +138,7 @@ class PostController extends Controller
         'description' => $request->description,
         'image' => $image_name,
         'status' => $request->status,
+        // 'slider' => $request->is_slider,
     ]);
     $post->categories()->sync($request->categories);
     return redirect(route('backend.post.index'))->with('success', 'Post Update Successful!');
@@ -148,8 +152,8 @@ class PostController extends Controller
      */
     public function destroy($post)
     {
-        $post = Post::find($post);
+        $post =Post::where('id',$post)->first();
         $post->delete();
-        return back()->with('success', "Post Delete Successful!");
+        return back()->with(['success'=> 'Successfully deleted!!']);
     }
 }

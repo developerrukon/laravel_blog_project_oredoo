@@ -89,6 +89,12 @@
                                         png.</small>
 
                                 </div>
+                                <!--slider show upload-->
+                                <div class="form-group">
+                                    <label class="form-label">
+                                    <input type="checkbox" name="is_slider" />Slider Show
+                                    </label>
+                                </div>
                                 <!--submit button-->
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Create Post<i class="material-icons">add</i></button>

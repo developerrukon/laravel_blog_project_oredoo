@@ -87,26 +87,34 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-          $request->validate([
-            'name' => 'required|max:100',
-            'parent' => 'nullable|',
-            'description' => 'nullable|max:500',
-            'image' => 'nullable|mimes:png,jpg,jpeg|max:1000',
+        $img = $request->file('image');
+        $request->validate([
+        'name' => 'required|max:100',
+        'parent' => 'nullable|',
+        'description' => 'nullable|max:500',
+        'image' => 'nullable|mimes:png,jpg,jpeg|max:1000',
         ]);
         $image_name = null;
-        if($request->file('image')){
+        if($img){
+            $image_name = $request->name.'_'.Str::random(6).'.'.$img->extension();
+            if(file_exists(public_path('storage/category/'.$category->image))){
+                Storage::delete('category/'.$category->image);
+            }
             $image_name = $request->name.'_'.Str::uuid().'.'.$request->file('image')->extension();
             // Storage::putFileAs('category', $request->file('image'), $image_name);
             Image::make($request->file('image'))->crop(200,200)->save(public_path('storage/category/'.$image_name));
+
+        }else{
+            $image_name = $category->image;
         }
         $category->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'parent_id' => $request->parent,
             'description' => $request->description,
-            // 'image' => $image_name,
+            'image' => $image_name,
         ]);
-        return back()->with('success', 'Category Update Successful.!');
+        return redirect(route('backend.category.index'))->with('success', 'Category Update Successful.!');
     }
 
     /**

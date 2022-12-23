@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
-            $table->boolean('slider')->default(true);
+            $table->boolean('slider')->default(false);
             $table->string('post_view')->default(0);
             $table->string('status')->default('publish');
             $table->timestamps();

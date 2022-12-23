@@ -69,6 +69,10 @@
                                 @enderror
                                 <small class="form-text text-muted">please.!upload 1mb image and iamge type jpg,jpeg or
                                     png.</small>
+                                    <div>
+                                        <img src="{{ asset('storage/category/'.$category->image) }}" alt="" width="80">
+                                    </div>
+
 
                             </div>
                             <!--submit button-->

@@ -83,12 +83,11 @@
                                                         class="btn btn-outline-primary">View</a>
                                                     <a href="{{ route('backend.post.edit', $post->id) }}"
                                                         class="btn btn-outline-success my-1 mx-1">Edit</a>
-                                                        <form class="d-inline" method="POST" action="{{ route('backend.post.destroy', $post->id ) }}">
+                                                        <form class="d-inline" action="{{ route('backend.post.destroy', $post->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="button" class="my-1 mx-1 btn btn-outline-danger delete">Delete</button>
+                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger delete">Delete</button>
                                                         </form>
-
                                                 </td>
 
                                             </tr>
