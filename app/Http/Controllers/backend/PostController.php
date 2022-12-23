@@ -49,7 +49,7 @@ class PostController extends Controller
             'title' => 'required|max:200|unique:posts,title',
             'description' => 'nullable|max:2000',
             'categories' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg,svg|max:2000',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2024',
             'status' => 'required'
         ]);
         $image_name = null;
