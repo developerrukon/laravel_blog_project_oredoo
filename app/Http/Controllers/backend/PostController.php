@@ -152,8 +152,8 @@ class PostController extends Controller
      */
     public function destroy($post)
     {
-        $post =Post::where('id',$post)->first();
+        $post =Post::where('id',$post)->firstOrFail();
         $post->delete();
-        return back()->with(['success'=> 'Successfully deleted!!']);
+        return redirect()->route('backend.post.index')->with(['success'=> 'Successfully deleted!!']);
     }
 }

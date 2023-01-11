@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrapFive();
         //category query
 
-        $categories = Category::where('status', 1)->select('name','slug','description','image')->take(4)->get();
+        $categories = Category::where('status', 1)->select('name','slug','description','image')->take(2)->get();
         view()->share('categories', $categories);
     }
 }

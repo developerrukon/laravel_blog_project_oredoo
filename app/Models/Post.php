@@ -15,11 +15,11 @@ class Post extends Model
         $this->attributes['title'] = $title;
         $this->attributes['slug'] = Str::slug($title);
     }
-    //post user
+    // post user
     public function user(){
         return $this->belongsTo(User::class);
     }
-    //one to one
+    //many to many
     public function categories(){
        return $this->belongsToMany(Category::class);
     }

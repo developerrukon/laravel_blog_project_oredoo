@@ -5,7 +5,9 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\RolePermissionController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\frontend\FrontendController;
+use App\Http\Controllers\frontend\FrontendPostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use League\CommonMark\Extension\SmartPunct\DashParser;
@@ -14,6 +16,11 @@ use Spatie\Permission\Contracts\Role;
     Auth::routes();
 // frontend route
     Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+    Route::get('/Category/{slug}', [FrontendPostController::class, 'archive'])->name('frontend.category.archive');
+    Route::get('/Post/{slug}', [FrontendPostController::class, 'singlePost'])->name('frontend.post.singlePost');
+    Route::controller(CommentController::class)->group(function(){
+        Route::post('/comments', 'store')->name('comment.store');
+    });
 
 //backend route
     Route::middleware('auth')->prefix('admin')->name('backend.')->group(function(){

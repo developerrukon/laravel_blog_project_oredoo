@@ -86,7 +86,7 @@
                                                         <form class="d-inline" action="{{ route('backend.post.destroy', $post->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger delete">Delete</button>
+                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Delete</button>
                                                         </form>
                                                 </td>
 
@@ -133,21 +133,21 @@
 <script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
 <script>
         //alert
-        $('.delete').on('click', function() {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $(this).parent().submit();
-                }
-            })
-        });
+        // $('.delete').on('click', function(){
+        //     Swal.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonColor: '#3085d6',
+        //     cancelButtonColor: '#d33',
+        //     confirmButtonText: 'Yes, delete it!'
+        //     }).then((result) => {
+        //     if (result.isConfirmed) {
+        //         $(this).parent().submit();
+        //     }
+        //     })
+        //     });
     </script>
 
 @endsection

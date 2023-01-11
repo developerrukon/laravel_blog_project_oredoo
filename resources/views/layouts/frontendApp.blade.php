@@ -12,7 +12,6 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') - {{ config('app.name', 'Oredoo') }}</title>
-
     <!-- CSS Plugins -->
     <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.css') }}">
@@ -22,6 +21,7 @@
     <!-- main style -->
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -36,7 +36,7 @@
             <div class="header-area ">
                 <!--logo-->
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="{{ route('frontend.index') }}">
                         <img src="{{ asset('frontend/img/logo/logo-dark.png') }}" alt="" class="logo-dark">
                         <img src="{{ asset('frontend/img/logo/logo-white.png') }}" alt="" class="logo-white">
                     </a>
@@ -47,15 +47,15 @@
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav ">
                                 <li class="nav-item ">
-                                    <a class="nav-link active" href=""> Home </a>
+                                    <a class="nav-link active" href="{{ route('frontend.index') }}"> Home </a>
                                 </li>
-                                {{-- @foreach ($categories as $categorie)
+                                @foreach ($categories as $categorie)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="\">{{ $categorie->name }} </a>
+                                    <a class="nav-link" href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
                                 </li>
-                                @endforeach --}}
+                                @endforeach
                                 <li class="nav-item ">
-                                    <a class="nav-link" href="index.html"> Contact </a>
+                                    <a class="nav-link" href=""> Contact </a>
                                 </li>
                             </ul>
                         </div>
@@ -82,19 +82,20 @@
                     </div>
                     <!--button-subscribe-->
                     @guest
-                    <div class="botton-sub">
-                        <a href="{{ route('login') }}" class="btn-subscribe mx-2">Sign In</a>
-                    </div>
-                    <div class="botton-sub">
-                        <a href="{{ route('register') }}" class="btn-subscribe">Sign Up</a>
-                    </div>
+                        <div class="botton-sub">
+                            <a href="{{ route('login') }}" class="btn-subscribe mx-2">Sign In</a>
+                        </div>
+                        <div class="botton-sub">
+                            <a href="{{ route('register') }}" class="btn-subscribe">Sign Up</a>
+                        </div>
                     @else
-                    <a class="btn-subscribe" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
+                        <a class="btn-subscribe" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     @endguest
 
                     <!--navbar-toggler-->
@@ -106,13 +107,13 @@
             </div>
         </div>
     </header>
-<!-- content section start-->
+    <!-- content section start-->
 
-@yield('content')
+    @yield('content')
 
 
-<!-- content section end-->
-<!--footer-->
+    <!-- content section end-->
+    <!--footer-->
     <div class="footer">
         <div class="footer-area">
             <div class="footer-area-content">
@@ -209,6 +210,7 @@
 
 
 
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('frontend/js/popper.min.js') }}"></script>
@@ -225,7 +227,9 @@
 
     <!-- JS main  -->
     <script src="{{ asset('frontend/js/main.js') }}"></script>
+    @yield('script')
 
 
 </body>
+
 </html>
