@@ -15,9 +15,13 @@ use Spatie\Permission\Contracts\Role;
 
     Auth::routes();
 // frontend route
-    Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
-    Route::get('/Category/{slug}', [FrontendPostController::class, 'archive'])->name('frontend.category.archive');
-    Route::get('/Post/{slug}', [FrontendPostController::class, 'singlePost'])->name('frontend.post.singlePost');
+
+    Route::controller(FrontendPostController::class)->name('frontend.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/Category/{slug}', 'archive')->name('category.archive');
+        Route::get('/Post/{slug}', 'singlePost')->name('post.singlePost');
+    });
+//comment route
     Route::controller(CommentController::class)->group(function(){
         Route::post('/comments', 'store')->name('comment.store');
     });
