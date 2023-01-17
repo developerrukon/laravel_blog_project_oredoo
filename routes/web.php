@@ -1,25 +1,28 @@
 <?php
 
-use App\Http\Controllers\backend\CategoryController;
-use App\Http\Controllers\backend\DashboardController;
-use App\Http\Controllers\backend\PostController;
-use App\Http\Controllers\backend\RolePermissionController;
-use App\Http\Controllers\backend\UserController;
-use App\Http\Controllers\Frontend\CommentController;
-use App\Http\Controllers\frontend\FrontendController;
-use App\Http\Controllers\frontend\FrontendPostController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use League\CommonMark\Extension\SmartPunct\DashParser;
 use Spatie\Permission\Contracts\Role;
+use App\Http\Controllers\HomeController;
+use Spatie\Permission\Models\Permission;
+use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\Frontend\CommentController;
+use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\frontend\FrontendController;
+use League\CommonMark\Extension\SmartPunct\DashParser;
+use App\Http\Controllers\frontend\FrontendPostController;
+use App\Http\Controllers\backend\RolePermissionController;
 
     Auth::routes();
+
 // frontend route
 
-    Route::controller(FrontendPostController::class)->name('frontend.')->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/Category/{slug}', 'archive')->name('category.archive');
-        Route::get('/Post/{slug}', 'singlePost')->name('post.singlePost');
+    Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
+    Route::controller(FrontendPostController::class)->group(function(){
+        Route::get('/category/{slug}', 'archive')->name('frontend.category.archive');
+        Route::get('/post/{slug}', 'singlePost')->name('frontend.post.singlePost');
     });
 //comment route
     Route::controller(CommentController::class)->group(function(){
@@ -28,7 +31,7 @@ use Spatie\Permission\Contracts\Role;
 
 //backend route
     Route::middleware('auth')->prefix('admin')->name('backend.')->group(function(){
-        Route::get('', [DashboardController::class, 'index'])->name('index');
+        Route::get('/', [DashboardController::class, 'index'])->name('index');
         //categories routes
         Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function(){
             Route::get('/', 'index')->name('index');
@@ -49,13 +52,13 @@ use Spatie\Permission\Contracts\Role;
             Route::get('/edit/{post}', 'edit')->name('edit');
             Route::put('/update/{post}', 'update')->name('update');
             Route::delete('/delete/{post}', 'destroy')->name('destroy');
-            Route::get('/restore/{id}', 'restore')->name('restore');
-            Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
+            Route::get('/restore/{post}', 'restore')->name('restore');
+            Route::delete('/permanent-delete/{post}', 'permanentDelete')->name('permanent.delete');
             Route::get('/show/{post}', 'show')->name('show');
         });
         // role route permission
         Route::controller(RolePermissionController::class)->group(function(){
-            Route::get('/role', ['index'])->name('role.index');
+            Route::get('/role', 'index')->name('role.index');
             Route::get('/create/role', ['create'])->name('role.create');
             Route::post('/store/role', ['store'])->name('role.store');
             //optional route
@@ -63,4 +66,6 @@ use Spatie\Permission\Contracts\Role;
         });
         //backend user route
         Route::get('/users', [UserController::class, 'index'])->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('users.store');
     });

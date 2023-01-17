@@ -21,7 +21,7 @@
                                         <img width="40"src="{{ asset('storage/post/' . $post->user->image) }}"
                                             alt="{{ $post->user->name }}">
                                     @else
-                                        <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}"
+                                        <img src="{{ Avatar::create($post->user->name)->setDimension(30)->setFontSize(15)->toBase64() }}"
                                             alt="">
                                     @endif
                                 </li>

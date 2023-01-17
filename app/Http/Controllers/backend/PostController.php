@@ -150,10 +150,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($post)
-    {
-        $post =Post::where('id',$post)->firstOrFail();
+    public function destroy(Post $post)
+    {;
+        $post->categories()->detach();
         $post->delete();
-        return redirect()->route('backend.post.index')->with(['success'=> 'Successfully deleted!!']);
+        return back()->with('success', 'Delete Post Successful.!');
     }
 }

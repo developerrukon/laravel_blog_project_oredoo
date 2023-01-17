@@ -40,7 +40,7 @@
                                     @if ($post->user->image)
                                     <img width="40"src="{{ asset('storage/post/' .$post->user->image) }}" alt="{{ $post->user->name }}">
                                     @else
-                                    <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="">
+                                    <img src="{{ Avatar::create($post->user->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="">
                                     @endif
                                 </li>
                                 <li class="post-author"> <a href="author.html">{{ $post->user->name }}</a></li>

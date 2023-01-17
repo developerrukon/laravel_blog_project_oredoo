@@ -197,7 +197,7 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-menu-item ">
-                                            <a class="sidebar-menu-button" href="">
+                                            <a class="sidebar-menu-button" href="{{ route('backend.users.create') }}">
                                                 <span class="sidebar-menu-text">Create User</span>
                                             </a>
                                         </li>

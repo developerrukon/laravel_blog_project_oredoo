@@ -10,7 +10,7 @@
                     <li class="breadcrumb-item active" aria-current="page">All Users</li>
                 </ol>
             </nav>
-            <h1 class="m-0">All Users</h1>
+            <h2 class="m-0">All Users</h2>
         </div>
     </div>
 </div>
@@ -19,7 +19,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h2>All Users</h2>
+                <h3>All Users</h3>
             </div>
             <div class="card-body">
                <table class="table">
@@ -54,9 +54,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-primary">View</a>
-                                    <a href="" class="btn btn-success">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="" class="btn btn-outline-primary">View</a>
+                                    <a href="" class="btn btn-outline-success">Edit</a>
+                                    <a href="" class="btn btn-outline-danger">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

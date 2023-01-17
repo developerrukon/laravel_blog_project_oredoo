@@ -16,10 +16,10 @@ class PostSeeder extends Seeder
      */
     public function run()
     {
-        // Post::factory(200)->create();
-        Post::factory(300)->create()->each(function($post){
-            $category = Category::get()->random()->id;
-            $post->categories()->attach($category);
-        });
+        // // Post::factory(200)->create();
+        // Post::factory(300)->create()->each(function($post){
+        //     $category = Category::get()->random()->id;
+        //     $post->categories()->attach($category);
+        // });
     }
 }
