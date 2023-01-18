@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Spatie\Permission\Contracts\Role;
-use App\Http\Controllers\HomeController;
-use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\CategoryController;
@@ -57,15 +54,18 @@ use App\Http\Controllers\backend\RolePermissionController;
             Route::get('/show/{post}', 'show')->name('show');
         });
         // role route permission
-        Route::controller(RolePermissionController::class)->group(function(){
-            Route::get('/role', 'index')->name('role.index');
-            Route::get('/create/role', ['create'])->name('role.create');
-            Route::post('/store/role', ['store'])->name('role.store');
+        Route::controller(RolePermissionController::class)->prefix('roles')->name('role.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
             //optional route
-            Route::post('/create/permission', ['storePermission'])->name('permission.store');
+            Route::post('/create/permission', 'storePermission')->name('permission.store');
         });
         //backend user route
-        Route::get('/users', [UserController::class, 'index'])->name('users.index');
-        Route::get('/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/store', [UserController::class, 'store'])->name('users.store');
+        Route::controller(UserController::class)->prefix('users')->name('users.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/store', 'store')->name('store');
+        });
+
     });

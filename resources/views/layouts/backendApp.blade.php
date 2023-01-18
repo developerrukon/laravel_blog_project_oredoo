@@ -221,7 +221,7 @@
                                             </a>
                                         </li>
                                         <li
-                                            class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active open' : '' }}">
+                                            class="sidebar-menu-item ">
                                             <a class="sidebar-menu-button" href="{{ route('backend.role.create') }}">
                                                 <span class="sidebar-menu-text">Create Role</span>
                                             </a>

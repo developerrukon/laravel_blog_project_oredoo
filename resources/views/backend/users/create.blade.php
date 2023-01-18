@@ -1,5 +1,5 @@
 @extends('layouts.backendApp')
-@section('title', "All Users")
+@section('title', "Create Role")
 @section('contact')
 <div class="container-fluid page__heading-container">
     <div class="page__heading d-flex align-items-end">

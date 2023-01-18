@@ -23,7 +23,7 @@ class RolePermissionSeeder extends Seeder
         $roleUser = Role::create(['name' => 'user']);
         //permission list and array
 
-        $permission = [
+        $permissions = [
             //Dashboard
             'dashboard.view',
             //blog permission
@@ -51,9 +51,9 @@ class RolePermissionSeeder extends Seeder
         ];
         //create $ assign permission
 
-        for ($i=0; $i < count($permission); $i++) {
+        for ($i=0; $i < count($permissions); $i++) {
             //create permission
-            $permission = Permission::create(['name' => $permission[$i]]);
+            $permission = Permission::create(['name' => $permissions[$i]]);
             $roleSuperAdmin->givePermissionTo($permission);
             $permission->assignRole($roleSuperAdmin);
         }

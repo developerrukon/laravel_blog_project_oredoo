@@ -16,7 +16,7 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-lg-12">
             <div class="card">
                 <div class="card-header">
                     <h2>Create Role</h2>
@@ -43,9 +43,8 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary">View</a>
-                                    <a class="btn btn-success">Edit</a>
-                                    <a class="btn btn-danger">Delete</a>
+                                    <a href="" class="btn btn-outline-success m-1">Edit</a>
+                                    <a href="" class="btn btn-outline-danger">Delete</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -14,7 +14,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    {{-- <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
@@ -32,10 +32,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
-        <div class="col-lg-8">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h2>Create Role</h2>
@@ -47,20 +47,41 @@
                             <label>Role Name</label>
                             <input type="text" class="form-control" name="name">
                         </div>
-                        <div class="form-group">
+                        <div class="form-check">
+                            <label class="bg-light m">
+                            <input type="checkbox" value="" id="checkAll">
+                                All Permissions
+                            </label>
+                            <hr/>
+
+                        </div>
                             @foreach ($permissions as $permission)
                                 <label class="col-sm-2 bg-light py-2 mx-2 border">
                                     {{ $permission->name }}
-                                    <input type="checkbox" name="permission[]" value="{{ $permission->id }}"/>
+                                    <input type="checkbox" name="permission[]" value="{{ $permission->id }}" />
                                 </label>
                             @endforeach
-
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+
+@endsection
+@section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>
+    $('#checkAll').on('change', function(){
+    if($(this).attr('checked')){
+        $('input[type=checkbox]').attr('checked',true);
+    }
+    else{
+        $('input[type=checkbox]').removeAttr('checked');
+    }
+});
+</script>
+
 @endsection

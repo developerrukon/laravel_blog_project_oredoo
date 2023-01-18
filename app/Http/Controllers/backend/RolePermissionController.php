@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -15,8 +16,9 @@ class RolePermissionController extends Controller
         return view('roles.index', compact('roles'));
     }
 
-//roles create
-    public function create(){
+//roles  permission create
+    public function create()
+    {
         $permissions = Permission::orderBy('id', 'desc')->get(['id', 'name']);
         return view('roles.create', compact('permissions'));
     }
