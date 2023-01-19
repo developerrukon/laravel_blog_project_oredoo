@@ -47,7 +47,7 @@
                                     <td>{{ $role->name }}</td>
                                     <td>
                                         @foreach ($role->permissions as $permission)
-                                            <span class="badge bg-info text-light">{{ $permission->name }}</span>
+                                            <span class="badge bg-info mr-1">{{ $permission->name }}</span>
                                         @endforeach
                                     </td>
                                     <td>{{ $role->created_at->diffForHumans() }}</td>

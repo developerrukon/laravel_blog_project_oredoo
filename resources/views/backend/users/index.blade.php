@@ -46,12 +46,19 @@
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>role</td>
+                                <td>
+                                    @foreach ($user->roles as $role)
+                                        <span class="badge badge-info mr-1">{{ $role->name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-primary">View</a>
-                                    <a href="" class="btn btn-outline-success">Edit</a>
-                                    <a href="" class="btn btn-outline-danger">Delete</a>
+                                    <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">Edit</a>
+                                    <form class="d-inline" method="POST" action="{{ route('backend.users.destroy', $user->id) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                          <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                    </form>
                                 </td>
                                 </tr>
                             @endforeach

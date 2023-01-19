@@ -8,10 +8,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ __('Create User') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('Update User') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">{{ __('Create User') }}</h1>
+            <h1 class="m-0">{{ __('Update User') }}</h1>
         </div>
     </div>
 </div>
@@ -19,17 +19,18 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Create User') }}</div>
+            <div class="card-header">{{ __('Update User') }}={{ $user->name }}</div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('backend.users.store') }}">
+                <form action="{{ route('backend.users.update', $user->id) }}" method="POST">
+                    @method('PUT')
                     @csrf
                         {{--  input name  --}}
                     <div class="row mb-3">
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required/>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -43,7 +44,7 @@
                         <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                         <div class="col-md-6">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email">
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -57,7 +58,7 @@
                         <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" >
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +72,7 @@
                         <label for="password_confirmation" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
 
                         <div class="col-md-6">
-                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
 
                             @error('password_confirmation')
                             <span class="invalid-feedback" role="alert">
@@ -87,10 +88,9 @@
                         <div class="col-md-6">
                             <select name='roles[]' class="form-control search" value="{{ old('roles') }}" multiple>
                                 @foreach ($roles as $role)
-                                    <option value="{{ $role->role }}"> {{ $role->name }}</option>
+                                <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+
                                 @endforeach
-
-
                             </select>
                             @error('roles')
                             <span class="invalid-feedback" role="alert">
@@ -103,7 +103,7 @@
                     <div class="row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Create User') }}
+                                {{ __('Update User') }}
                             </button>
                         </div>
                     </div>
