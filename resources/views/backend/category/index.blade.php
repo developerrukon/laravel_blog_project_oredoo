@@ -248,12 +248,10 @@
     </div>
 @endsection
 @section('css')
-<link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.min.css') }} "/>
 <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
 
     @endsection
 @section('js')
-    <script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('backend/js/select2.min.js') }}"></script>
     <script>
         $(document).ready(function() {

@@ -16,6 +16,7 @@
     <link type="text/css" href="{{ asset('backend/css/vendor-material-icons.css') }}" rel="stylesheet">
     <!-- Font Awesome FREE Icons -->
     <link type="text/css" href="{{ asset('bacend/css/vendor-fontawesome-free.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.min.css') }} "/>
     @yield('css')
 </head>
 
@@ -310,6 +311,7 @@
     <script src="{{ asset('backend/js/sidebar-mini.js') }}"></script>
     <script src="{{ asset('backend/js/app.js') }}"></script>
     <!-- App Settings (safe to remove) -->
+    <script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('backend/js/app-settings.js') }}"></script>
     @yield('js')
     @include('flashmessage')

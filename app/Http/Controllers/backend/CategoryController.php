@@ -88,8 +88,9 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $img = $request->file('image');
+        
         $request->validate([
-        'name' => 'required|max:100',
+        'name' => 'required | max:100| unique:posts,name,'.$category->id,
         'parent' => 'nullable|',
         'description' => 'nullable|max:500',
         'image' => 'nullable|mimes:png,jpg,jpeg|max:1000',

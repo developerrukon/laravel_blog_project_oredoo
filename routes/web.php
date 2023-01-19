@@ -58,7 +58,9 @@ use App\Http\Controllers\backend\RolePermissionController;
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
             Route::post('/store', 'store')->name('store');
-            Route::get('/edit{role}', 'edit')->name('edit');
+            Route::get('/edit/{id}', 'edit')->name('edit');
+            Route::put('/update/{id}', 'update')->name('update');
+            Route::delete('/delete/{id}', 'destroy')->name('destroy');
             //optional route
             Route::post('/create/permission', 'storePermission')->name('permission.store');
         });

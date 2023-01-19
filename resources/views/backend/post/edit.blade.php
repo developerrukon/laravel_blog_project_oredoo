@@ -113,13 +113,11 @@
 
 @endsection
 @section('css')
-    <link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.min.css') }} "/>
     <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css"/>
 
 @endsection
 @section('js')
-    <script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('backend/js/select2.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
 

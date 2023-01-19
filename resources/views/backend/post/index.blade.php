@@ -127,27 +127,3 @@
 
     </div>
 @endsection
-@section('css')
-<link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.min.css') }} "/>@endsection
-@section('js')
-<script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
-<script>
-        //alert
-        // $('.delete').on('click', function(){
-        //     Swal.fire({
-        //     title: 'Are you sure?',
-        //     text: "You won't be able to revert this!",
-        //     icon: 'warning',
-        //     showCancelButton: true,
-        //     confirmButtonColor: '#3085d6',
-        //     cancelButtonColor: '#d33',
-        //     confirmButtonText: 'Yes, delete it!'
-        //     }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         $(this).parent().submit();
-        //     }
-        //     })
-        //     });
-    </script>
-
-@endsection
