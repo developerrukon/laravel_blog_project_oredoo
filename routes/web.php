@@ -14,7 +14,7 @@ use App\Http\Controllers\backend\RolePermissionController;
 
     Auth::routes();
 
-// frontend route
+// =======frontend route=======
 
     Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
     Route::controller(FrontendPostController::class)->group(function(){
@@ -26,7 +26,7 @@ use App\Http\Controllers\backend\RolePermissionController;
         Route::post('/comments', 'store')->name('comment.store');
     });
 
-//backend route
+//======backend route======
     Route::middleware('auth')->prefix('admin')->name('backend.')->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('index');
         //categories routes
@@ -73,5 +73,7 @@ use App\Http\Controllers\backend\RolePermissionController;
             Route::put('/update/{id}', 'update')->name('update');
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
         });
+        
+
 
     });
