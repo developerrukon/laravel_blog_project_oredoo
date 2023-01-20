@@ -10,45 +10,40 @@
                         <li class="breadcrumb-item active" aria-current="page">Create role</li>
                     </ol>
                 </nav>
-                <h1 class="m-0">{{ __('Create Role') }}</h1>
+                <h1 class="m-0">{{ __('Create Role & Permission') }}</h1>
             </div>
         </div>
     </div>
-    {{-- <div class="row">
+    <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <h2>Permission</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('backend.permission.store') }}" method="POST">
+                    <form action="{{ route('backend.role.permission.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label>Permission Name</label>
-                            <input type="text" class="form-control" name="name">
+                            <input type="text" class="form-control" name="permission">
                         </div>
+                        @error('permission')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
                     <h2>Create Role</h2>
-                {{--  alert message  --}}
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 </div>
                 <div class="card-body">
                     <form action="{{ route('backend.role.store') }}" method="POST">
@@ -56,6 +51,12 @@
                         <div class="form-group">
                             <label>Role Name</label>
                             <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+
                         </div>
                         <div class="form-check">
                             <label class="bg-light m">

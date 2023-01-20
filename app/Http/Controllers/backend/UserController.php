@@ -26,9 +26,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'name'=>'required|string|max:50',
+            'email'=>'required|email|unique:users',
+            'password'=>'nullable|string|min:8|confirmed',
         ]);
         $user = User::create([
             'name' => $request->name,
@@ -57,9 +57,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$id],
-        'password' => ['nullable', 'string', 'min:8', 'confirmed']
+            'name'=>'required|string|max:50',
+            'email'=>'required|email| max:unique:users,email,'.$id,
+            'password'=>'nullable|string|min:8|confirmed',
         ]);
         $user->name = $request->name;
         $user->email = $request->email;
@@ -74,6 +74,13 @@ class UserController extends Controller
         }
 
     }
+        //====update user========
+        public function show($id)
+        {
+            $user = User::find($id);
+            return view('backend.users.show', compact('user'));
+
+        }
     //==== delete users========
         public function destroy($id)
         {

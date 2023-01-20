@@ -82,10 +82,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($post)
     {
-        $post->with('categories');
-        return view('backend.post.show', compact('post', 'categories'));
+         $post = Post::find($post);
+
+        return view('backend.post.show', compact('post'));
     }
 
     /**

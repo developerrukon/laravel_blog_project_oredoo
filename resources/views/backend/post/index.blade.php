@@ -44,7 +44,6 @@
                                             <th>Title</th>
                                             <th>Slug</th>
                                             <th>Category</th>
-                                            <th>Description</th>
                                             <th>Slider</th>
                                             <th>Post View</th>
                                             <th>Status</th>
@@ -73,7 +72,6 @@
                                                         <span class="badge bg-info">{{ $categorie->name }}</span>
                                                     @endforeach
                                                 </td>
-                                                <td>{{ Str::limit($post->description, 50, '...') }}</td>
                                                 <td>{{ $post->slider }}</td>
                                                 <td>{{ $post->post_view }}</td>
                                                 <td>{{ $post->status }}</td>

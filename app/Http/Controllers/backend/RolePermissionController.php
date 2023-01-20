@@ -45,6 +45,24 @@ class RolePermissionController extends Controller
 
 
     }
+    // ========store role=======
+    public function storePermission(Request $request){
+        //validate role
+        $request->validate([
+            'name' => ' |max:100|unique:permissions'
+           ]);
+           //create role
+           $permission = Permission::create([
+            'name' => $request->permission,
+           ]);
+           if($permission){
+            return back()->with('success', 'Permission Create Successful.!');
+           }else{
+            return back()->with('error', 'Permission Create fail!');
+           }
+
+
+    }
     //=======edit role=========
 
     public function edit($id)

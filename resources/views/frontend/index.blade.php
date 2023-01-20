@@ -14,14 +14,14 @@
                                     <div class="post-overly-content">
                                        <div class="entry-cat">
                                         @foreach ($slider->categories as $categorie)
-                                        <a href="3" class="category-style-2">{{ $categorie->name }}</a>
+                                        <a href="" class="category-style-2">{{ $categorie->name }}</a>
                                          @endforeach
                                         </div>
                                         <h2 class="entry-title">
                                             <a href="post-single.html">{{ Str::limit($slider->title, 70, '...') }}</a>
                                         </h2>
                                         <ul class="entry-meta">
-                                            <li class="post-author"> <a href="author.html">{{ $slider->user->name }}</a></li>
+                                            <li class="post-author"> <a href=" " >{{ $slider->user->name }}</a></li>
                                             <li class="post-date"> <span class="line"></span>{{ $slider->created_at->diffForHumans() }}</li>
                                             <li class="post-timeread"> <span class="line"></span> {{ $slider->post_view }} mins read</li>
                                         </ul>
@@ -88,7 +88,7 @@
                                 <ul class="entry-meta">
                                     <li class="entry-cat">
                                         @foreach ($post->categories as $categorie)
-                                        <a href="blog-layout-1.html" class="category-style-1">{{ $categorie->name }}</a>
+                                        <a href="" class="category-style-1">{{ $categorie->name }}</a>
                                         @endforeach
                                     </li>
                                     <li class="post-date"> <span class="line"></span>{{ $post->created_at->diffForHumans()}}</li>
@@ -159,20 +159,6 @@
                                 </ul>
                             </div>
 
-                            <!--newslatter-->
-                            <div class="widget widget-newsletter">
-                                <h5>Subscribe To Our Newsletter</h5>
-                                <p>No spam, notifications only about new products, updates.</p>
-                                <form action="#" class="newslettre-form">
-                                    <div class="form-flex">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email Adress"
-                                                required="required">
-                                        </div>
-                                        <button class="btn-custom" type="submit">Subscribe now</button>
-                                    </div>
-                                </form>
-                            </div>
 
                             <!--stay connected-->
                             <div class="widget ">

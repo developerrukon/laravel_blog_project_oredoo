@@ -88,7 +88,14 @@
                                     <span class="mr-1 d-flex-inline">
                                         <span class="text-light">{{ auth()->user()->name }}</span>
                                     </span>
-                                    <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="">
+                                    @if (auth()->user()->image == true)
+                                    <img  class="rounded-circle" width="40" height="40" src="{{ asset('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}">
+
+                                    @else
+                                    <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="{{ auth()->user()->name }}">
+
+                                    @endif
+
                                 </a>
                                 <div id="account_menu" class="dropdown-menu dropdown-menu-right">
                                     <div class="dropdown-item-text dropdown-item-text--lh">
@@ -103,9 +110,9 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item active" href="{{ route('backend.index') }}"><i
                                             class="material-icons">dvr</i> Dashboard</a>
-                                    <a class="dropdown-item" href="profile.html"><i
+                                    <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
                                             class="material-icons">account_circle</i> My profile</a>
-                                    <a class="dropdown-item" href="edit-account.html"><i
+                                    <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
                                             class="material-icons">edit</i> Edit account</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -176,7 +183,7 @@
                                             </a>
                                         </li>
                                         <li class="sidebar-menu-item ">
-                                            <a class="sidebar-menu-button" href="">
+                                            <a class="sidebar-menu-button" href="{{ route('backend.tag.index') }}">
                                                 <span class="sidebar-menu-text">Tags</span>
                                             </a>
                                         </li>
@@ -197,7 +204,7 @@
                                                 <span class="sidebar-menu-text">All Users</span>
                                             </a>
                                         </li>
-                                        <li class="sidebar-menu-item ">
+                                        <li class="sidebar-menu-item {{ Route::is('backend.users.create') ? 'active' : '' }} ">
                                             <a class="sidebar-menu-button" href="{{ route('backend.users.create') }}">
                                                 <span class="sidebar-menu-text">Create User</span>
                                             </a>
@@ -222,7 +229,7 @@
                                             </a>
                                         </li>
                                         <li
-                                            class="sidebar-menu-item ">
+                                            class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active open' : '' }}">
                                             <a class="sidebar-menu-button" href="{{ route('backend.role.create') }}">
                                                 <span class="sidebar-menu-text">Create Role</span>
                                             </a>
@@ -235,7 +242,13 @@
                                 <a href="profile.html"
                                     class="flex d-flex align-items-center text-underline-0 text-body">
                                     <span class="avatar avatar-sm mr-2">
-                                        <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="">
+                                        @if (auth()->user()->image == true)
+                                        <img  class="rounded-circle" width="40" height="40" src="{{ asset('storage/users/'.auth()->user()->image) }}" alt="{{ auth()->user()->name }}">
+
+                                        @else
+                                        <img src="{{ Avatar::create(auth()->user()->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="{{ auth()->user()->name }}">
+
+                                        @endif
                                     </span>
                                     <span class="flex d-flex flex-column">
                                         <strong>{{ auth()->user()->name }}</strong>
@@ -257,8 +270,10 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item active"
                                             href="{{ route('backend.index') }}">Dashboard</a>
-                                        <a class="dropdown-item" href="profile.html">My profile</a>
-                                        <a class="dropdown-item" href="edit-account.html">Edit account</a>
+                                            <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
+                                                class="material-icons">account_circle</i> My profile</a>
+                                        <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
+                                                class="material-icons">edit</i> Edit account</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

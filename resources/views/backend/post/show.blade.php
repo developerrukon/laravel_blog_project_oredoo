@@ -31,7 +31,7 @@
                                 <th>Image</th>
                                 <th>:</th>
                                 <td>
-                                    <img width="60" src="{{ asset('storage/category/' . $post->image) }}" alt="{{ $post->title }}">
+                                    <img width="80" src="{{ asset('storage/post/' . $post->image) }}" alt="{{ $post->title }}">
                                 </td>
                             </tr>
                             <tr>
@@ -39,25 +39,20 @@
                                 <th>:</th>
                                 <td>{{ $post->title }}</td>
                             </tr>
-
-                            <tr>
-                                <th>Title</th>
-                                <th>:</th>
-                                <th>{{ $post->category->name }}</th>
-
-                            </tr>
                             <tr>
                                 <th>Description</th>
                                 <th>:</th>
-                                <td>{{ Str::limit($post->description, 50, '...') }}</td>
+                                <td>
+                                    {!! $post->description !!}
+                                </td>
                             </tr>
                             <tr>
                                 <td>Category</td>
                                 <td>:</td>
                                 <td>
-                                    @foreach ($categories as $category)
+                                    {{--  @foreach ($categories as $category)
                                     <span>{{ $category->name }},</span>
-                                    @endforeach
+                                    @endforeach  --}}
                                 </td>
 
                             </tr>
@@ -90,6 +85,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

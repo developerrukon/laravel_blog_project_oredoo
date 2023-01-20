@@ -165,7 +165,7 @@
                                 <div class="comments-form">
                                     <h4>{{ __('Leave a Reply') }}</h4>
                                     <!--form-->
-                                    <form class="form " action="{{ route('comment.store') }}" method="POST"
+                                    <form class="form " action="{{ route('frontend.comment.store') }}" method="POST"
                                         id="main_contact_form">
                                         @csrf
                                         <h5>{{ __('Comment') }}</h5>
@@ -204,7 +204,7 @@
                                 @forelse ($comments as $comment)
                                     <li class="comment-item pt-0">
                                         @if ($post->user->image)
-                                            <img width="40"src="{{ asset('storage/post/' . $post->user->image) }}"
+                                            <img class="rounded-circle" width="40"src="{{ asset('storage/users/' . $post->user->image) }}"
                                                 alt="{{ $post->user->name }}">
                                         @else
                                             <img src="{{ Avatar::create($comment->user->name)->setShape('square')->setDimension(30)->setFontSize(15)->toBase64() }}"
@@ -234,8 +234,7 @@
                                             @foreach ($comment->replys as $reply)
                                             <li class="comment-item ml-4 pt-0">
                                                 @if ($post->user->image)
-                                                    <img width="40"src="{{ asset('storage/post/' . $post->user->image) }}"
-                                                        alt="{{ $post->user->name }}">
+                                                    <img class="rounded-circle"src="{{ asset('storage/users/'.$reply->user->image) }}"alt="{{ $post->user->name }}">
                                                 @else
                                                     <img src="{{ Avatar::create($reply->user->name)->setShape('square')->setDimension(30)->setFontSize(15)->toBase64() }}"
                                                         alt="">

@@ -47,15 +47,18 @@
                         <div class="collapse navbar-collapse" id="main_nav">
                             <ul class="navbar-nav ">
                                 <li class="nav-item ">
-                                    <a class="nav-link active" href="{{ route('frontend.index') }}"> Home </a>
+                                    <a class="nav-link {{ Route::is('frontend.index') ? 'active' : '' }}" href="{{ route('frontend.index') }}"> Home </a>
                                 </li>
                                 @foreach ($categories as $categorie)
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
+                                    <a class="nav-link"  href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
                                 </li>
                                 @endforeach
                                 <li class="nav-item ">
-                                    <a class="nav-link" href=""> Contact </a>
+                                    <a class="nav-link {{ Route::is('frontend.author') ? 'active' : '' }}" href="{{ route('frontend.author') }}"> Author </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link {{ Route::is('frontend.contact') ? 'active' : '' }}"  href="{{ route('frontend.contact') }}"> Contact </a>
                                 </li>
                             </ul>
                         </div>
@@ -75,12 +78,11 @@
                             </span>
                         </label>
                     </div>
-
                     <!--search-icon-->
                     <div class="search-icon">
                         <i class="las la-search"></i>
                     </div>
-                    <!--button-subscribe-->
+
                     @guest
                         <div class="botton-sub">
                             <a href="{{ route('login') }}" class="btn-subscribe mx-2">Sign In</a>
@@ -89,13 +91,23 @@
                             <a href="{{ route('register') }}" class="btn-subscribe">Sign Up</a>
                         </div>
                     @else
-                        <a class="btn-subscribe" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{ auth()->user()->name }}
+                        </button>
+                        {{--  dropdown menu  --}}
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="{{ route('backend.login.user.show') }}">Profile</a>
+                          <a class="dropdown-item" href="{{ route('logout') }}"
+                          onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                          {{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
+                        </div>
+                      </div>
+
                     @endguest
 
                     <!--navbar-toggler-->
@@ -138,17 +150,6 @@
                                     <p>Sign up for free and be the first to get notified about new posts.</p>
                                 </div>
 
-                                <form action="#" class="newslettre-form">
-                                    <div class="form-flex">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control" placeholder="Your Email Adress"
-                                                required="required">
-                                        </div>
-                                        <button class="submit-btn" type="submit">
-                                            <i class="fas fa-paper-plane"></i>
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                         <!--/-->
@@ -172,7 +173,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="copyright">
-                                <p>© 2022, AssiaGroupe, All Rights Reserved.</p>
+                                <p>© 2022, Copyright by developer | Rukon</p>
                             </div>
                         </div>
                     </div>
@@ -198,7 +199,7 @@
                         <button type="button" class="close">
                             <i class="far fa-times"></i>
                         </button>
-                        <form class="search-form" action="https://oredoo.assiagroupe.net/Oredoo/search.html">
+                        <form class="search-form" action="" method="GET">
                             <input type="search" value="" placeholder="What are you looking for?">
                             <button type="submit" class="search-btn"> search</button>
                         </form>
@@ -207,9 +208,6 @@
             </div>
         </div>
     </div>
-
-
-
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>

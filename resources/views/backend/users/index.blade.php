@@ -33,8 +33,11 @@
                         <thead class="bg-light text-capitalize">
                             <tr>
                                 <th>Id</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
                                 <th>Role</th>
                                 <th>Create_At</th>
                                 <th>Action</th>
@@ -44,8 +47,18 @@
                             @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
+                                <td>
+                                    @if ($user->image)
+                                    <img width="30" class="rounded-circle" src="{{ asset('storage/users/'.$user->image) }}" alt="{{ $user->image }}">
+                                    @else
+                                    <img src="{{ Avatar::create($user->image)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="{{ $user->image }}">
+
+                                    @endif
+                                </td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ Str::limit($user->address, 20, '...') }}</td>
                                 <td>
                                     @foreach ($user->roles as $role)
                                         <span class="badge badge-info mr-1">{{ $role->name }}</span>
@@ -53,6 +66,7 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
+                                    <a href="{{ route('backend.users.show', $user->id) }}" class="btn btn-outline-info">View</a>
                                     <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">Edit</a>
                                     <form class="d-inline" method="POST" action="{{ route('backend.users.destroy', $user->id) }}">
                                         @csrf
