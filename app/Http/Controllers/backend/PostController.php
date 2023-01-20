@@ -51,7 +51,7 @@ class PostController extends Controller
             'categories' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
             'status' => 'nullable',
-            // 'is_slider' => 'nullable'
+            'is_slider' => 'nullable'
         ]);
         $image_name = null;
         if($img){

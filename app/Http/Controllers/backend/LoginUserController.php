@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -20,8 +21,9 @@ class LoginUserController extends Controller
      */
     public function show()
     {
-        
-        return view('backend.users.loginUser');
+        $userId = auth()->user()->id;
+        $posts = Post::where('user_id', $userId)->get();
+        return view('backend.users.loginUser', compact('posts'));
     }
 
     /**
