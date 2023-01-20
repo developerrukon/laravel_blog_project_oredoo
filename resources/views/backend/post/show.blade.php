@@ -31,7 +31,7 @@
                                 <th>Image</th>
                                 <th>:</th>
                                 <td>
-                                    <img width="80" src="{{ asset('storage/post/' . $post->image) }}" alt="{{ $post->title }}">
+                                    <img width="200" src="{{ asset('storage/post/' . $post->image) }}" alt="{{ $post->title }}">
                                 </td>
                             </tr>
                             <tr>
@@ -50,9 +50,9 @@
                                 <td>Category</td>
                                 <td>:</td>
                                 <td>
-                                    {{--  @foreach ($categories as $category)
-                                    <span>{{ $category->name }},</span>
-                                    @endforeach  --}}
+                                    @foreach ($post->categories as $category)
+                                    <span class="badge badge-info">{{ $category->name }},</span>
+                                    @endforeach
                                 </td>
 
                             </tr>
@@ -64,16 +64,19 @@
                             <tr>
                                 <th>Update-date</th>
                                 <th>:</th>
-                                <td>{{ $post->update_at }}</td>
+                                <td>{{ $post->created_at->diffForHumans() }}</td>
                             </tr>
-
+                            <tr>
+                                <th>Update-date</th>
+                                <th>:</th>
+                                <td>{{ $post->updated_at->diffForHumans() }}</td>
+                            </tr>
                             <tr>
                                 <td>Action</td>
                                 <td>:</td>
                                 <td>
-                                    <a href="{{ route('backend.post.show', $post->id) }}" class="btn btn-primary">View</a>
                                     <a href="{{ route('backend.post.edit', $post->id) }}"
-                                        class="btn btn-success my-1 mx-1">Edit</a>
+                                        class="btn btn-info my-1 mx-1">Edit</a>
                                 </td>
 
                             </tr>

@@ -80,15 +80,13 @@
     <a href="{{ route('backend.post.show', $post->id) }}">
         <div class="card">
             @if ($post->image)
-            <img width="60"
-                src="{{ asset('storage/category/' . $post->image) }}"
-                alt="{{ $post->title }}">
+            <img width="100%" src="{{ asset('storage/post/' . $post->image) }}"  alt="{{ $post->title }}">
             @else
 
             @endif
             <div class="card-body">
             <h5 class="card-title">{{ $post->title }}</h5>
-            <p class="card-text">{{ Str::limit($post->description, 100, '...') }}</p>
+            <p class="card-text">{!! Str::limit($post->description, 100, '...') !!}</p>
             <a href="" class="text-dark ">Read more</a>
             <p class="card-text "><small class="text-muted">Last updated {{ $post->updated_at->diffForHumans() }}</small></p>
             </div>

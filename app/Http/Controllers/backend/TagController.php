@@ -15,9 +15,9 @@ class TagController extends Controller
    }
    // add tags
    public function store(Request $request){
-    // $request->validate([
-    //     'name'=>'required|string|max:50|unique:tag:',
-    // ]);
+    $request->validate([
+        'name' => 'required|tag_name'|'unique:admins'
+    ]);
 
     $tag = Tag::create([
         'tag_name' => $request->name,

@@ -17,9 +17,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //categories
         $categories = Category::with(['subCatagories' => function($query){
             $query->withCount('posts');
         }])->withCount('posts')->where('status',1)->whereNull('parent_id')->orderBy('id','desc')->paginate(30);
+        //trash categories
         $trashCategories = Category::onlyTrashed()->orderBy('id','desc')->select('id','name','slug','description','image','status')->paginate(30);
         return view('backend.category.index', compact('categories', 'trashCategories'));
     }
@@ -33,16 +35,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 
+        $image = $request->file('image');
         $request->validate([
-            'name' => 'required|max:100|unique:categorys ',
-            'parent' => 'nullable|',
+            'name' => 'required|unique:categories',
             'description' => 'nullable|max:500',
-            'image' => 'nullable|mimes:png,jpg,jpeg|max:5000',
+            'image' => 'required|mimes:png,jpg,jpeg|max:5000',
         ]);
-        $image_name = null;
         if($request->file('image')){
-            $image_name = $request->name.'_'.Str::uuid().'.'.$request->file('image')->extension();
-            Image::make($request->file('image'))->crop(200,200)->save(public_path('storage/category/'.$image_name));
+            $image_name = $request->name.'_'.Str::uuid().'.'.$image->extension();
+            Image::make($image)->crop(200,200)->save(public_path('storage/category/'.$image_name));
         }
         Category::create([
             'name' => $request->name,

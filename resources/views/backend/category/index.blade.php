@@ -192,7 +192,7 @@
                             <div class="form-group mb-1">
                                 <label class="form-label">Catagory Name:<span class="text-danger">*</span></label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="enter name"
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="category name"
                                     value="{{ old('name') }}" />
                             </div>
                             @error('name')

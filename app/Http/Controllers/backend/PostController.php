@@ -50,29 +50,29 @@ class PostController extends Controller
             'description' => 'nullable',
             'categories' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'status' => 'required',
+            'status' => 'nullable',
             // 'is_slider' => 'nullable'
         ]);
         $image_name = null;
         if($img){
             $image_name = Str::random(6).'.'.$img->extension();
             $upload = Image::make($img)->crop(1100,600)->save(public_path('storage/post/'.$image_name), 90);
-            if($upload){
-                $post = Post::create([
-                    'user_id' => Auth::user()->id,
-                    'title' => $request->title,
-                    'slug' => Str::slug($request->title),
-                    'description' => $request->description,
-                    'image' => $image_name,
-                    'status' => $request->status,
-                    // 'slider' => $request->is_slider,
-                ]);
-                $post->categories()->attach($request->categories);
-                return redirect(route('backend.post.index'))->with('success', 'Post Create Successful.!');
+        }
+        if($upload){
+            $post = Post::create([
+                'user_id' => Auth::user()->id,
+                'title' => $request->title,
+                'slug' => Str::slug($request->title),
+                'description' => $request->description,
+                'image' => $image_name,
+                'status' => $request->status,
+                // 'slider' => $request->is_slider,
+            ]);
+            $post->categories()->attach($request->categories);
+            return redirect(route('backend.post.index'))->with('success', 'Post Create Successful.!');
 
-            }else{
-                return back()->with('error', "Image Not Uploaded!");
-            }
+        }else{
+            return back()->with('error', "Image Not Uploaded!");
         }
     }
 
@@ -84,8 +84,8 @@ class PostController extends Controller
      */
     public function show($post)
     {
-         $post = Post::find($post);
 
+        $post = Post::where('id', $post)->firstOrFail();
         return view('backend.post.show', compact('post'));
     }
 
