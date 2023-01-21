@@ -1,11 +1,11 @@
 @extends('layouts.backendApp')
-@section('title', "Active Users")
+@section('title', "Trash Users")
 @section('css')
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
-<link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
+
 @endsection
 @section('contact')
 <div class="container-fluid page__heading-container">
@@ -14,10 +14,10 @@
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{ __('Active Users') }}</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('Trash Users') }}</li>
                 </ol>
             </nav>
-            <h2 class="m-0">{{ __('Active Users') }}</h2>
+            <h2 class="m-0">{{ __('Trash Users') }}</h2>
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title">{{ __('Total Users : ') }}{{ $user_count }}</h3>
+                <h3 class="header-title">{{ __('Totals Users : ') }}{{ $user_count }}</h3>
                 <div class="data-tables">
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
@@ -51,7 +51,7 @@
                                     @if ($user->image)
                                     <img width="30" class="rounded-circle" src="{{ asset('storage/users/'.$user->image) }}" alt="{{ $user->image }}">
                                     @else
-                                    <img src="{{ Avatar::create($user->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="{{ auth()->user()->name }}">
+                                    <img src="{{ Avatar::create($user->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="{{ $user->image }}">
 
                                     @endif
                                 </td>
@@ -66,12 +66,11 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ route('backend.users.show', $user->id) }}" class="btn btn-outline-info">View</a>
-                                    <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">Edit</a>
-                                    <form class="d-inline" method="POST" action="{{ route('backend.users.destroy', $user->id) }}">
+                                    <a href="{{ route('backend.users.restore', $user->id) }}" class="btn btn-outline-success">Restore</a>
+                                    <form class="d-inline" method="POST" action="{{ route('backend.users.permanent.delete', $user->id ) }}">
                                         @csrf
                                         @method('DELETE')
-                                          <input type="submit" class="btn btn-outline-danger" value="Delete">
+                                        <button type="submit" class="my-1 mx-1 btn btn-outline-danger permanent_delete">Permanent Delete</button>
                                     </form>
                                 </td>
                                 </tr>
@@ -84,31 +83,38 @@
     </div>
 </div>
 @endsection
-
+@section('css')
+<link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
+@endsection
 @section('js')
-<script src="{{ asset('backend/js/select2.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script>
+<script src="{{ asset('backend/js/select2.min.js') }}"></script>
 <script>
+    $(document).ready(function() {
+        //secrch category
+        $('.search').select2();
+        //switch alert
 
-        //alert message
-        $('.permanent_delete').on('click', function(){
-            Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-            if (result.isConfirmed) {
-                $(this).parent().submit();
-            }
-            })
+    });
+    //alert message
+    $('permanent_delete').on('click', function(){
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            $(this).parent().submit();
+        }
+        })
         });
         //datatable
         if ($('#dataTable').length) {

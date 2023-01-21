@@ -20,6 +20,7 @@
         <div class="col-sm-8">
             <div class="card">
                 <div class="card-body">
+                    {{--  toggle button  start--}}
                     <nav>
                         <div class="nav nav-tabs mb-2" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#active"
@@ -30,7 +31,7 @@
                                 type="button">Trash</button>
                         </div>
                     </nav>
-
+                    {{--  toggle button  start--}}
                     <div class="tab-content" id="nav-tabContent">
                         <!--active category start-->
                         <div class="tab-pane  show active" id="active">
@@ -250,7 +251,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
 
-    @endsection
+ @endsection
 @section('js')
     <script src="{{ asset('backend/js/select2.min.js') }}"></script>
     <script>

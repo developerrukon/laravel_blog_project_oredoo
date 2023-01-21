@@ -209,6 +209,11 @@
                                                 <span class="sidebar-menu-text">Create User</span>
                                             </a>
                                         </li>
+                                        <li class="sidebar-menu-item {{ Route::is('backend.users.trash') ? 'active' : '' }} ">
+                                            <a class="sidebar-menu-button" href="{{ route('backend.users.trash') }}">
+                                                <span class="sidebar-menu-text">Trash User</span>
+                                            </a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <!-- all users end-->

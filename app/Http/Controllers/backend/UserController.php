@@ -6,7 +6,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -14,7 +16,11 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();
-        return view('backend.users.index', compact('users'));
+        $user_count = count($users);
+        return view('backend.users.index', [
+            'users' => $users,
+            'user_count' => $user_count,
+        ]);
     }
 //====create user========
     public function create()
@@ -74,14 +80,27 @@ class UserController extends Controller
         }
 
     }
-        //====update user========
+
+    //====update user========
         public function show($id)
         {
             $user = User::find($id);
             return view('backend.users.show', compact('user'));
 
         }
-    //==== delete users========
+
+    //====trash user========
+    public function trash()
+    {
+        $users = User::onlyTrashed()->orderBy('id', 'desc')->get();
+        $user_count = count($users);
+        return view('backend.users.trash',[
+            'users' => $users,
+            'user_count' => $user_count,
+        ]);
+
+    }
+    //==== destory users========
         public function destroy($id)
         {
             $user = User::find($id);
@@ -93,5 +112,27 @@ class UserController extends Controller
             }
 
         }
+    //==== restore========
+    public function restore($id)
+    {
+        $data =  User::withTrashed()->find($id);
+        $data->restore();
+
+        return back()->with('success', "User Restore Successful!");
+
+     }
+    //==== permanentDelete users========
+    public function permanentDelete($id)
+    {
+
+        $data = User::onlyTrashed()->find($id);
+        if($data->image){
+            Storage::delete('user/'.$data->image);
+        };
+        $data->posts->delete();
+        $data->forceDelete();
+        return back()->with('success', "User Permanent Delete Successful!");
+
+    }
 
 }

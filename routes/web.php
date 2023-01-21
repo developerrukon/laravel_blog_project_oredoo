@@ -88,6 +88,9 @@ use App\Http\Controllers\backend\TegController;
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::get('/show/{id}', 'show')->name('show');
+            Route::get('/trash', 'trash')->name('trash');
+            Route::get('/restore/{id}', 'restore')->name('restore');
+            Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
         });
             //login user
