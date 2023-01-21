@@ -22,13 +22,13 @@
           <div class="card mb-4">
             <div class="card-body text-center">
                 @if (auth()->user()->image == true)
-                <img src="{{ asset('storage/users/'.auth()->user()->image) }}" alt="avatar"
+                <img src="{{ asset('storage/users/'.auth()->user()->image) }}" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
 
                 @else
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                <img src="{{ Avatar::create(auth()->user()->name)->setDimension(150)->setFontSize(35)->toBase64() }}" alt="{{ auth()->user()->name }}">
 
                 @endif
-                class="rounded-circle img-fluid" style="width: 150px;">
+
               <h5 class="my-3">{{ auth()->user()->name }}</h5>
               <p class="text-muted mb-1">{{ auth()->user()->email }}</p>
               <div class="d-flex justify-content-center mb-2">
@@ -36,9 +36,9 @@
                 <a href="{{ route('backend.login.user.edit') }}" type="button" class="btn btn-primary">
                     @if (Route::is('backend.login.user.edit') == true)
                     <a href="{{ route('backend.login.user.edit') }}" type="button" class="btn btn-primary">Edit Profile</a>
-                    Edit Profile
+                    Update Profile
                     @else
-                    Udate Profile
+                    Edit Profile
                     @endif
 
                 </a>

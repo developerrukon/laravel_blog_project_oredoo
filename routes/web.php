@@ -13,7 +13,6 @@ use League\CommonMark\Extension\SmartPunct\DashParser;
 use App\Http\Controllers\frontend\FrontendPostController;
 use App\Http\Controllers\backend\RolePermissionController;
 use App\Http\Controllers\backend\TagController;
-use App\Http\Controllers\backend\TegController;
 
     Auth::routes();
 

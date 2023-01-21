@@ -27,7 +27,7 @@
         <div class="col-12 mt-5">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="header-title">{{ __('All Users') }}</h3>
+                    <h3 class="header-title">{{ __('All Role & permission') }}</h3>
                     <div class="data-tables">
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">

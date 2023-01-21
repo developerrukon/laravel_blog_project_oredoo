@@ -57,14 +57,14 @@ class LoginUserController extends Controller
             'phone'=>'nullable|string|max:11',
             'address'=>'nullable|string|max:150',
             'password'=>'nullable|string|min:8|confirmed',
-            'image' => 'nullable| mimes:png,jpg,jpeg | max:500'
+            'image' => 'nullable| mimes:png,jpg,jpeg | max:700'
         ]);
         if($img){
             $image_name = $request->name.'_'.Str::random(6).'.'.$img->extension();
             if(file_exists(public_path('storage/users/'.$image))){
                 Storage::delete('users/'.$image);
             }
-            Image::make($request->file('image'))->crop(200,250)->save(public_path('storage/users/'.$image_name));
+            Image::make($request->file('image'))->crop(450,450)->save(public_path('storage/users/'.$image_name));
 
         }else{
             $image_name = $image;

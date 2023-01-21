@@ -59,9 +59,10 @@
 
                         </div>
                         <div class="form-check">
-                            <label class="bg-light m">
+                            <h3>Permission Select</h3>
+                            <label class="ol-sm-2 bg-light py-2 px-3 mx-2 border">
                                 <input type="checkbox" value="" id="checkAll">
-                                {{ __('All Permissions') }}
+                                {{ __('All') }}
                             </label>
                             <hr />
 

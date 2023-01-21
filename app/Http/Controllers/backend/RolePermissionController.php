@@ -38,7 +38,7 @@ class RolePermissionController extends Controller
            $permissions = $request->input('permissions');
            if(!empty($role)){
             $role->syncPermissions($permissions);
-            return redirect(route('backend.role.index'))->with('success', 'Role Create Successful.!');
+            return back()->with('success', 'Role Create Successful.!');
            }else{
             return back()->with('error', 'Role Create fail!');
            }
@@ -49,7 +49,7 @@ class RolePermissionController extends Controller
     public function storePermission(Request $request){
         //validate role
         $request->validate([
-            'name' => ' |max:100|unique:permissions'
+            'name' => 'required |max:100|unique:permissions'
            ]);
            //create role
            $permission = Permission::create([
