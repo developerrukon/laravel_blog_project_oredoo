@@ -42,21 +42,21 @@
                                             <th>Id</th>
                                             <th>Image</th>
                                             <th>Title</th>
-                                            <th>Slug</th>
+                                            <th>Author</th>
                                             <th>Category</th>
-                                            <th>Slider</th>
                                             <th>Post View</th>
+                                            <th>Tags</th>
                                             <th>Status</th>
                                             <th>Create-date</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no = 1; ?>
-                                        @forelse ($posts as $post)
+                                        @forelse ($posts as  $sl => $post)
                                             <tr>
 
-                                                <td>{{ $no }}</td>
+                                                <td>{{ $sl }}</td>
+                                                {{--  image  --}}
                                                 <td>
                                                     @if ($post->image)
                                                         <img width="60"src="{{ asset('storage/post/' .$post->image) }}" alt="{{ $post->title }}">
@@ -66,30 +66,59 @@
                                                     @endif
                                                 </td>
                                                 <td>{{ Str::limit($post->title, 30, '...') }}</td>
-                                                <td>{{ Str::limit($post->slug, 30, '...') }}</td>
+                                                {{--  author name  --}}
+                                                <td>{{ $post->user->name }}</td>
+                                                {{--  post category  --}}
                                                 <td>
                                                     @foreach ($post->categories as $categorie)
                                                         <span class="badge bg-info">{{ $categorie->name }}</span>
                                                     @endforeach
                                                 </td>
-                                                <td>{{ $post->slider }}</td>
+                                                {{--  post view  --}}
                                                 <td>{{ $post->post_view }}</td>
-                                                <td>{{ $post->status }}</td>
-                                                <td>{{ $post->created_at->diffForHumans() }}</td>
+                                                {{--  post tags  --}}
                                                 <td>
-                                                    <a href="{{ route('backend.post.show', $post->id) }}"
-                                                        class="btn btn-outline-primary">View</a>
-                                                    <a href="{{ route('backend.post.edit', $post->id) }}"
-                                                        class="btn btn-outline-success my-1 mx-1">Edit</a>
-                                                        <form class="d-inline" action="{{ route('backend.post.destroy', $post->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Delete</button>
-                                                        </form>
+                                                    @php
+                                                        $post_tags = explode(',',$post->tags);
+
+                                                    @endphp
+                                                    @foreach ($post_tags as $tag_id)
+                                                        @php
+                                                            $tag_table = App\Models\Tag::where('id', $tag_id)->get();
+                                                        @endphp
+                                                        @foreach ($tag_table as $tag)
+                                                        <span class="badge bg-info">{{ $tag->tag_name }}</span>
+
+                                                        @endforeach
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $post->status }}</td>
+                                                {{--  post status  --}}
+                                                <td>{{ $post->created_at->diffForHumans() }}</td>
+                                                {{--  post action  --}}
+                                                <td>
+
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a href="{{ route('backend.post.show', $post->id) }}"
+                                                                class="btn btn-outline-primary">View</a>
+                                                            <a href="{{ route('backend.post.edit', $post->id) }}"
+                                                                class="btn btn-outline-success my-1 mx-1">Edit</a>
+                                                                <form class="d-inline" action="{{ route('backend.post.destroy', $post->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Delete</button>
+                                                                </form>
+                                                        </div>
+                                                      </div>
+
                                                 </td>
 
                                             </tr>
-                                            <?php $no++; ?>
+
                                         @empty
                                             <tr>
                                                 <td colspan="5">Data Not Found!</td>
@@ -113,7 +142,105 @@
                         <div class="tab-pane " id="trash">
 
                             <div class="pagination justify-content-center">
+                                <table class="table table-bordered  table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Image</th>
+                                            <th>Title</th>
+                                            <th>Author</th>
+                                            <th>Post View</th>
+                                            <th>Tags</th>
+                                            <th>Status</th>
+                                            <th>Create-date</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($allTrashPost as  $sl => $trashPost)
+                                            <tr>
 
+                                                <td>{{ $sl }}</td>
+                                                {{--  image  --}}
+                                                <td>
+                                                    @if ($trashPost->image)
+                                                        <img width="60"src="{{ asset('storage/post/' .$trashPost->image) }}" alt="{{ $trashPost->title }}">
+                                                    @else
+                                                        <img src="{{ Avatar::create($trashPost->title)->setDimension(50)->setFontSize(18)->toBase64() }}"
+                                                            alt="{{ $trashPost->title }}">
+                                                    @endif
+                                                </td>
+                                                {{--  title  --}}
+                                                <td>{{ Str::limit($trashPost->title, 30, '...') }}</td>
+                                                <td>{{ $trashPost->user->name }}</td>
+
+                                                {{--  tag  --}}
+                                                <td>
+                                                    @php
+                                                        $post_tags = explode(',',$post->tags);
+
+                                                    @endphp
+                                                    @foreach ($post_tags as $tag_id)
+                                                        @php
+                                                            $tag_table = App\Models\Tag::where('id', $tag_id)->get();
+                                                        @endphp
+                                                        @foreach ($tag_table as $tag)
+                                                        <span class="badge bg-info">{{ $tag->tag_name }}</span>
+
+                                                        @endforeach
+                                                    @endforeach
+                                                </td>
+                                                {{--  post view  --}}
+                                                <td>{{ $trashPost->post_view }}</td>
+                                                    {{--  post tags  --}}
+                                                <td>
+                                                    @php
+                                                        $post_tags = explode(',',$post->tags);
+
+                                                    @endphp
+                                                    @foreach ($post_tags as $tag_id)
+                                                        @php
+                                                            $tag_table = App\Models\Tag::where('id', $tag_id)->get();
+                                                        @endphp
+                                                        @foreach ($tag_table as $tag)
+                                                        <span class="badge bg-info">{{ $tag->tag_name }}</span>
+
+                                                        @endforeach
+                                                    @endforeach
+                                                </td>
+                                                {{--  post status  --}}
+                                                <td>{{ $trashPost->status }}</td>
+                                                {{--  post delete  --}}
+                                                <td>{{ $trashPost->deleted_at->diffForHumans() }}</td>
+                                                {{--  post action  --}}
+                                                <td>
+
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a href="{{ route('backend.post.restore', $trashPost->id)}}" class="btn btn-outline-warning">Restore</a>
+                                                            <form class="d-inline" action="{{ route('backend.post.permanent.delete', $trashPost->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Permanent Delete</button>
+                                                            </form>
+                                                        </div>
+                                                      </div>
+
+                                                </td>
+
+                                            </tr>
+
+                                        @empty
+                                            <tr>
+                                                <td colspan="5">Data Not Found!</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+
+                                </table>
                             </div>
                         </div>
                         <!--trash Post end-->

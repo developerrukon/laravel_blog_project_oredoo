@@ -15,19 +15,22 @@ class TagController extends Controller
    }
    // add tags
    public function store(Request $request){
-    $request->validate([
-        'name' => 'required|tag_name'|'unique:admins'
-    ]);
 
-    $tag = Tag::create([
-        'tag_name' => $request->name,
-    ]);
-    if($tag){
-        return back()->with('success', 'Tag Create Successful!');
-    }{
-        return back()->with('error', "Tag Not Created!");
-    }
-   }
+        // validate tag
+        $request->validate([
+            'tag_name' => 'required|unique:tags'
+        ]);
+
+        $tag = Tag::create([
+            'tag_name'=>$request->tag_name,
+        ]);
+        if($tag){
+            return back()->with('success', "Tag Create Successful!");
+
+        }
+
+
+}
       // delete tags
       public function destroy($tag){
         $tag = Tag::find($tag);

@@ -10,9 +10,10 @@ use App\Http\Controllers\Controller;
 
 class FrontendPostController extends Controller
 {
+
     public function archive($slug){
         $catPost = Category::where('slug', $slug)->firstOrFail();
-        $catPost -> setRelation('posts', $catPost->posts()->paginate(4));
+        $catPost -> setRelation('posts', $catPost->posts()->paginate(9));
         return view('frontend.archive', compact('catPost'));
     }
     public function singlePost($slug){

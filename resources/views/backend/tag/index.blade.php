@@ -61,11 +61,11 @@
                         <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Tag Name') }}</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"/>
+                            <input id="tag_name" type="text" class="form-control" name="tag_name" value="{{ old('tag_name') }}"/>
 
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
+                            @error('tag_name')
+                                <span >
+                                    <strong class="text-danger">{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>

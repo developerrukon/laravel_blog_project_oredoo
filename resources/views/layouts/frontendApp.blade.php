@@ -49,9 +49,9 @@
                                 <li class="nav-item ">
                                     <a class="nav-link {{ Route::is('frontend.index') ? 'active' : '' }}" href="{{ route('frontend.index') }}"> Home </a>
                                 </li>
-                                @foreach ($categories as $categorie)
+                                @foreach ($categories as $key => $categorie)
                                 <li class="nav-item">
-                                    <a class="nav-link"  href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
+                                    <a class="nav-link {{ ($categorie->id == $key) ? 'active' : ''}}"  href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
                                 </li>
                                 @endforeach
                                 <li class="nav-item ">

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -26,9 +25,7 @@ class RolePermissionController extends Controller
     public function store(Request $request){
         //validate role
         $request->validate([
-            'name' => 'required |max:100|unique:roles'
-           ],[
-            'name.required' => 'Please give a role name!'
+            'name' => 'required|unique:roles'
            ]);
            //create role
            $role = Role::create([
@@ -38,29 +35,27 @@ class RolePermissionController extends Controller
            $permissions = $request->input('permissions');
            if(!empty($role)){
             $role->syncPermissions($permissions);
-            return back()->with('success', 'Role Create Successful.!');
+            return redirect(route('backend.role.index'))->with('success', 'Role Create Successful.!');
            }else{
             return back()->with('error', 'Role Create fail!');
            }
 
 
     }
-    // ========store role=======
+    // ========store permission=======
     public function storePermission(Request $request){
-        //validate role
+        // validate permission
         $request->validate([
-            'name' => 'required |max:100|unique:permissions'
+            'name' => 'required|unique:permissions'
            ]);
-           //create role
-           $permission = Permission::create([
-            'name' => $request->permission,
-           ]);
-           if($permission){
-            return back()->with('success', 'Permission Create Successful.!');
-           }else{
-            return back()->with('error', 'Permission Create fail!');
-           }
 
+        $permission = Permission::create([
+            'name'=>$request->name,
+        ]);
+        if($permission){
+            return back()->with('success', "Permission Create Successful!");
+
+        }
 
     }
     //=======edit role=========
@@ -76,8 +71,6 @@ class RolePermissionController extends Controller
         //validate role
         $request->validate([
             'name' => 'required | unique:roles,name,'.$id,
-           ],[
-            'name.required' => 'Please give a role name!'
            ]);
            //role find
            $role = Role::findById($id);

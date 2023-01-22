@@ -25,24 +25,27 @@
                         @csrf
                         <div class="form-group">
                             <label>Permission Name</label>
-                            <input type="text" class="form-control" name="permission">
+                            <input type="text" class="form-control" name="name" placeholder="permission name">
+
+                            @error('name')
+                            <span>
+                                <strong class="text-danger">{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
-                        @error('permission')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
+
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
+{{--  role and permission  --}}
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
+
                     <h2>Create Role</h2>
                 </div>
                 <div class="card-body">
@@ -50,17 +53,15 @@
                         @csrf
                         <div class="form-group">
                             <label>Role Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                            <input type="text" class="form-control" name="name" placeholder="role name" value="{{ old('role_name') }}">
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
+                            <span>
+                                <strong class="text-danger">{{ $message }}</strong>
                             </span>
                             @enderror
-
                         </div>
                         <div class="form-check">
-                            <h3>Permission Select</h3>
-                            <label class="ol-sm-2 bg-light py-2 px-3 mx-2 border">
+                            <label class="bg-light m">
                                 <input type="checkbox" value="" id="checkAll">
                                 {{ __('All') }}
                             </label>
@@ -70,11 +71,11 @@
                         @foreach ($permissions as $permission)
                             <label class="col-sm-2 bg-light py-2 mx-2 border">
                                 {{ $permission->name }}
-                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}" />
+                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"/>
                             </label>
                         @endforeach
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                         </div>
                     </form>
                 </div>

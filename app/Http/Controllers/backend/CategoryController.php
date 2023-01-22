@@ -17,6 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         //categories
         $categories = Category::with(['subCatagories' => function($query){
             $query->withCount('posts');
@@ -45,14 +46,19 @@ class CategoryController extends Controller
             $image_name = $request->name.'_'.Str::uuid().'.'.$image->extension();
             Image::make($image)->crop(200,200)->save(public_path('storage/category/'.$image_name));
         }
-        Category::create([
+        $category = Category::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'parent_id' => $request->parent,
             'description' => $request->description,
             'image' => $image_name,
         ]);
-        return back()->with('success', 'Category Created Successful.!');
+        if($category){
+            return back()->with('success', 'Category Created Successful.!');
+        }else{
+            return back()->with('success', 'Category Created Successful.!');
+        }
+
     }
 
     /**

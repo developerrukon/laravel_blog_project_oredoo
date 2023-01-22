@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
@@ -12,17 +13,19 @@ use App\Http\Controllers\Controller;
 class FrontendController extends Controller
 {
     public function index(){
+
+        ///sliders category
         $categories = Category::all();
+        $sliders = Post::with('categories', 'user')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
+        ///sub category with post count
+        $categorys = Category::with('posts')->withCount('posts')->orderBy('id', 'desc')->where('status', true)->get()->take(10);
+        //post with category and user
+        $posts = Post::with('categories', 'user')->orderBy('id', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->paginate(8);
+        //popular post with category
+        $popularPosts = Post::with('categories')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
+        $tags = Tag::all();
 
-        $sliders = Post::with('categories', 'user')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('slider', true)->get()->take(4);
-
-        $categorys = Category::with('posts')->orderBy('id', 'desc')->where('status', 1)->get()->take(10);
-
-        $posts = Post::with('categories', 'user')->orderBy('id', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('slider', 'publish')->paginate(6);
-
-        $popularPosts = Post::with('categories')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('slider', 'publish')->get()->take(5);
-
-        return view('frontend.index', compact('sliders', 'categorys','posts', 'popularPosts'));
+        return view('frontend.index', compact('sliders', 'categorys','posts', 'popularPosts', 'tags'));
     }
     public function author(){
         // $author_posts = Post::where('user_id', $id)->get();

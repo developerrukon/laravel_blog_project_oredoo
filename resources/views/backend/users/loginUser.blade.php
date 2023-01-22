@@ -11,9 +11,10 @@
             <ol class="breadcrumb mb-0">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item"><a href="#">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+              <li class="breadcrumb-item active" aria-current="page">My Profile</li>
             </ol>
           </nav>
+          <h3 class="my-4">My Profile</h3>
         </div>
       </div>
 

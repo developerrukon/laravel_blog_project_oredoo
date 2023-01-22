@@ -41,7 +41,24 @@
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.! description max 2000 character</small>
+                                    <small class="form-text text-muted">please.! description max 20k character</small>
+                                </div>
+                                <div class="form-group">
+                                    @php
+                                        $explode_tag = explode(',',$post->tags);
+                                    @endphp
+                                    @foreach ($tags as $tag)
+                                    <label class="col-sm-2 bg-light py-2 mx-2 border">
+
+                                        <input   type="checkbox"
+                                        @foreach ($explode_tag as $tag_id)
+                                            {{ $tag_id==$tag->id? 'checked': '' }}
+                                        @endforeach
+
+                                        name="tags[]" value="{{ $tag->id }}"/>
+                                        {{ $tag->tag_name }}
+                                    </label>
+                                    @endforeach
                                 </div>
                         </div>
                     </div>
@@ -86,18 +103,11 @@
                                     @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.!upload 5mb image and iamge type jpg,jpeg or
-                                        png.</small>
+                                    <small class="form-text text-muted">please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg</small>
                                     <div>
                                         <img src="{{ asset('storage/post/'.$post->image) }}" alt="" width="80">
                                     </div>
 
-                                </div>
-                                 <!--slider show upload-->
-                                 <div class="form-group">
-                                    <label class="form-label">
-                                    <input type="checkbox" name="is_slider" {{ $post->slider == true ? "checked" : "" }} />Slider Show
-                                    </label>
                                 </div>
                                 <!--submit button-->
                                 <div class="form-group">

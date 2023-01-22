@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\backend;
 
+use App\Models\Tag;
 use App\Models\Post;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Cache\TagSet;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Unique;
-use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -21,8 +23,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('categories')->orderBy('id', 'desc')->select('id', 'title', 'slug','image', 'description', 'slider', 'post_view', 'status', 'created_at')->paginate(20);
-        return view('backend.post.index', compact('posts'));
+        $posts = Post::with('categories', 'user')->orderBy('id', 'desc')->paginate(15);
+        $allTrashPost = Post::onlyTrashed('categories')->orderBy('id', 'desc')->paginate(15);
+        return view('backend.post.index', compact('posts', 'allTrashPost'));
     }
 
     /**
@@ -33,7 +36,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('backend.post.create', compact('categories'));
+
+        $tags = Tag::all();
+        return view('backend.post.create', compact('categories', 'tags'));
     }
 
     /**
@@ -44,32 +49,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $img = $request->file('image');
         $request->validate([
-            'title' => 'required|max:200|unique:posts,title',
-            'description' => 'nullable',
+            'title' => 'required| max:500|unique:posts,title',
+            'description' => 'nullable|max:20000',
             'categories' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5000',
-            'status' => 'nullable',
-            'is_slider' => 'nullable'
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:2024',
+            'tags' => 'required',
         ]);
-        $image_name = null;
         if($img){
             $image_name = Str::random(6).'.'.$img->extension();
-            $upload = Image::make($img)->crop(1100,600)->save(public_path('storage/post/'.$image_name), 90);
+            $img_upload = Image::make($img)->crop(1100,600)->save(public_path('storage/post/'.$image_name), 90);
         }
-        if($upload){
+        $tag_id = implode(',', $request->tags);
+        if($img_upload){
             $post = Post::create([
                 'user_id' => Auth::user()->id,
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
+                'tags' => $tag_id,
                 'description' => $request->description,
                 'image' => $image_name,
                 'status' => $request->status,
-                // 'slider' => $request->is_slider,
             ]);
-            $post->categories()->attach($request->categories);
-            return redirect(route('backend.post.index'))->with('success', 'Post Create Successful.!');
+            if($post){
+                $post->categories()->attach($request->categories);
+                return back()->with('success', 'Post Create Successful.!');
+            }
+
 
         }else{
             return back()->with('error', "Image Not Uploaded!");
@@ -98,7 +106,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('backend.post.edit', compact('post', 'categories'));
+        $tags = Tag::all();
+        return view('backend.post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -113,11 +122,10 @@ class PostController extends Controller
     $img = $request->file('image');
     $request->validate([
         'title' => 'required | unique:posts,title,'.$post->id,
-        'description' => 'nullable',
-        'categories' => 'required ',
-        'image' => 'nullable | mimes:png,jpg,jpeg,svg|max:5000',
-        'status' => 'required',
-        // 'is_slider' => 'nullable'
+        'description' => 'nullable|max:20000',
+        'categories' => 'required',
+        'image' => 'nullable|mimes:jpeg,png,jpg,gif,svg|max:2024',
+        'tags' => 'required',
     ]);
 
     if($img){
@@ -131,11 +139,12 @@ class PostController extends Controller
     }else{
         $image_name = $post->image;
     }
-
+    $tag_id = implode(',', $request->tags);
     $post->update([
         'user_id' => Auth::user()->id,
         'title' => $request->title,
         'slug' => Str::slug($request->title),
+        'tags' => $tag_id,
         'description' => $request->description,
         'image' => $image_name,
         'status' => $request->status,
@@ -152,9 +161,25 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
-    {;
+    {
         $post->categories()->detach();
         $post->delete();
         return back()->with('success', 'Delete Post Successful.!');
+    }
+    public function restore(Post $post)
+    {;
+        $post = Post::onlyTrashed()->categories()->attach()->find($post);
+        $post->restore();
+        return back()->with('success', 'Post Restore Successful.!');
+    }
+    public function permanentDelete(Post $post)
+    {
+        return 'permanent delete';
+        // $data = Post::onlyTrashed()->findOrFail($post);
+        // if($data->image){
+        //     Storage::delete('posts/'.$data->image);
+        // };
+        // $data->forceDelete();
+        // return back()->with('success', 'Delete Category Successful.!');
     }
 }

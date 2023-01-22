@@ -139,7 +139,6 @@
                                 <ul class="widget-popular-posts">
                                      <!--post start-->
                                      @foreach ($popularPosts as $key => $popularPost)
-                                    {{ $popularPost->id }}
                                     <li class="small-post">
                                         <div class="small-post-image">
                                             <a href="post-single.html">
@@ -199,42 +198,12 @@
                                 </div>
                                 <div class="widget-tags">
                                     <ul class="list-inline">
+
+                                        @foreach ( $tags as $tag)
                                         <li>
-                                            <a href="#">Travel</a>
+                                            <a href="#">{{ $tag->tag_name }}</a>
                                         </li>
-                                        <li>
-                                            <a href="#">Nature</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">tips</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">forest</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">beach</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">fashion</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">livestyle</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">healty</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">food</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">interior</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">branding</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">web</a>
-                                        </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>

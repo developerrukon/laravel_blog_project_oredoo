@@ -9,4 +9,9 @@ class Tag extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+     }
+
+
 }

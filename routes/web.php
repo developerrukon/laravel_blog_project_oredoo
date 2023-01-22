@@ -13,7 +13,6 @@ use League\CommonMark\Extension\SmartPunct\DashParser;
 use App\Http\Controllers\frontend\FrontendPostController;
 use App\Http\Controllers\backend\RolePermissionController;
 use App\Http\Controllers\backend\TagController;
-
     Auth::routes();
 
 // =======frontend route=======
@@ -21,6 +20,7 @@ use App\Http\Controllers\backend\TagController;
     Route::controller(FrontendController::class)->name('frontend.')->group(function(){
         //frontend controller
         Route::get('/',  'index')->name('index');
+        Route::get('/slider-view', 'slider')->name('slider');
         Route::get('/contact',  'contact')->name('contact');
         Route::get('/search',  'search')->name('search');
         Route::get('/author',  'author')->name('author');
@@ -58,8 +58,8 @@ use App\Http\Controllers\backend\TagController;
             Route::get('/edit/{post}', 'edit')->name('edit');
             Route::put('/update/{post}', 'update')->name('update');
             Route::delete('/delete/{post}', 'destroy')->name('destroy');
-            Route::get('/restore/{post}', 'restore')->name('restore');
-            Route::delete('/permanent-delete/{post}', 'permanentDelete')->name('permanent.delete');
+            Route::get('/restore/{id}', 'restore')->name('restore');
+            Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::get('/show/{post}', 'show')->name('show');
         });
         //tag routes

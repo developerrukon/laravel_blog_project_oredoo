@@ -27,9 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrapFive();
-        //category query
-
-        $categories = Category::where('status', 1)->select('name','slug','description','image')->take(2)->get();
+        $categories = Category::latest('created_at')->select('name','slug','image')->take(5)->get();
         view()->share('categories', $categories);
     }
 }

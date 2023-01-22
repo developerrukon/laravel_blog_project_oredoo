@@ -28,14 +28,14 @@
                                 <td>{{ $post->id }}</td>
                             </tr>
                             <tr>
-                                <th>Image</th>
+                                <th>Post Image</th>
                                 <th>:</th>
                                 <td>
                                     <img width="200" src="{{ asset('storage/post/' . $post->image) }}" alt="{{ $post->title }}">
                                 </td>
                             </tr>
                             <tr>
-                                <th>Title</th>
+                                <th>Post Title</th>
                                 <th>:</th>
                                 <td>{{ $post->title }}</td>
                             </tr>
@@ -47,7 +47,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>Category</td>
+                                <td>Post Category</td>
                                 <td>:</td>
                                 <td>
                                     @foreach ($post->categories as $category)
@@ -57,9 +57,34 @@
 
                             </tr>
                             <tr>
-                                <th>Status</th>
+                                <td>Tags</td>
+                                <td>:</td>
+                                <td>
+                                    @php
+                                     $post_tags = explode(',',$post->tags);
+
+                                    @endphp
+                                    @foreach ($post_tags as $tag_id)
+                                        @php
+                                            $tag_table = App\Models\Tag::where('id', $tag_id)->get();
+                                        @endphp
+                                        @foreach ($tag_table as $tag)
+                                        <span class="badge bg-info">{{ $tag->tag_name }}</span>
+
+                                        @endforeach
+                                    @endforeach
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <th>Post Status</th>
                                 <th>:</th>
                                 <td>{{ $post->status }}</td>
+                            </tr>
+                            <tr>
+                                <th>Post View</th>
+                                <th>:</th>
+                                <td>{{ $post->post_view }}</td>
                             </tr>
                             <tr>
                                 <th>Update-date</th>
@@ -70,6 +95,13 @@
                                 <th>Update-date</th>
                                 <th>:</th>
                                 <td>{{ $post->updated_at->diffForHumans() }}</td>
+
+                            </tr>
+                            <tr>
+                                <th>Author</th>
+                                <th>:</th>
+                                <td>{{ $post->user->name }}</td>
+
                             </tr>
                             <tr>
                                 <td>Action</td>

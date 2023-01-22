@@ -42,7 +42,6 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Description</th>
                                         <th>Count</th>
                                         <th>Action</th>
                                     </tr>
@@ -59,11 +58,8 @@
                                                 <img src="{{ Avatar::create($categorie->name)->setDimension(50)->setFontSize(18)->toBase64() }}" alt="{{ $categorie->name }}">
                                                @endif
                                             </td>
-                                            <td>
-                                                {{ Str::limit($categorie->slug, 30, '...') }}
-                                            </td>
+                                            <td>{{ $categorie->name }}</td>
                                             <td>{{ Str::limit($categorie->slug, 30, '...') }}</td>
-                                            <td>{{ Str::limit($categorie->description, 20, '...') }}</td>
                                             <td>{{ $categorie->posts_count }}</td>
                                             <td>
                                                 <a href="{{ route('backend.category.show', $categorie->id) }}" class="btn btn-outline-primary">View</a>
@@ -92,7 +88,6 @@
                                                 {{ $subCategory->name }}
                                             </td>
                                             <td>{{ $subCategory->slug }}</td>
-                                            <td>{{ Str::limit($subCategory->description, 20, '...') }}</td>
                                             <td>{{ $subCategory->posts_count }}</td>
                                             <td>
                                                 <a href="{{ route('backend.category.show', $subCategory->id) }}" class="btn btn-outline-primary">View</a>
@@ -132,7 +127,6 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Description</th>
                                         <th>Count</th>
                                         <th>Action</th>
                                     </tr>
@@ -151,7 +145,6 @@
                                             </td>
                                             <td>{{ $trashCategorie->name }}</td>
                                             <td>{{ $trashCategorie->slug }}</td>
-                                            <td>{{ Str::limit($trashCategorie->description, 20, '...') }}</td>
                                             <td>0</td>
                                             <td>
                                                 <a href="{{ route('backend.category.restore', $trashCategorie->id) }}" class="my-1 mx-1 btn btn-outline-success">Restore</a>

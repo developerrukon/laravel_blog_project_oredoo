@@ -12,7 +12,6 @@
             <h1 class="m-0">Post Create</h1>
         </div>
     </div>
-
     <form action="{{ route('backend.post.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -27,6 +26,8 @@
                                 <div class="form-group mb-1">
                                     <label class="form-label">Post Title<span class="text-danger">*</span></label>
                                     <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="enter name" value="{{ old('title') }}" />
+                                    <small class="form-text text-muted">please.! title max 500 character</small>
+
                                 </div>
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
@@ -35,14 +36,23 @@
                                 <!--description input-->
                                 <div class="form-group">
                                     <label class="form-label">Post Body:</label>
-                                    <textarea name="description" id='summernote' class="form-control"></textarea>
+                                    <textarea name="description" id='summernote' class="form-control">{{ old('description') }}</textarea>
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.! description max 2000 character</small>
+                                    <small class="form-text text-muted">please.! description max 20k character</small>
                                     @error('description')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="form-group">
+                                    @foreach ($tags as $tag)
+                                    <label class="col-sm-2 bg-light py-2 mx-2 border">
+
+                                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}"/>
+                                        {{ $tag->tag_name }}
+                                    </label>
+                                    @endforeach
                                 </div>
                         </div>
                     </div>
@@ -55,7 +65,7 @@
                                 <!--Choose select-->
                                 <div class="form-group mt-2">
                                 <label class="form-label">Category Select:</label>
-                                <select name='categories[]' class="form-control categories" value="{{ old('categories') }}" multiple='multiple'>
+                                <select name='categories[]' class="form-control categories" multiple='multiple'>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"> {{ $categorie->name }}</option>
                                     @endforeach
@@ -85,15 +95,8 @@
                                     @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.!upload 5mb image and iamge type jpg,jpeg or
-                                        png.</small>
+                                    <small class="form-text text-muted">please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg</small>
 
-                                </div>
-                                <!--slider show upload-->
-                                <div class="form-group">
-                                    <label class="form-label">
-                                    <input type="checkbox" name="is_slider" />Slider Show
-                                    </label>
                                 </div>
                                 <!--submit button-->
                                 <div class="form-group">
@@ -121,20 +124,9 @@
     $(document).ready(function() {
         $('.categories').select2();
     });
-    $('#summernote').summernote({
-        tabsize: 2,
-        height: 200,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-          ['table', ['table']],
-          ['insert', ['link']],
-          ['view', ['fullscreen', 'codeview', 'help']]
-        ]
+    $(document).ready(function() {
+        $('#summernote').summernote();
       });
-
     </script>
 
 @endsection
