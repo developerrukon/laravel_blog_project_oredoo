@@ -7,22 +7,22 @@
                 <div class="col-lg-12">
                     <div class="owl-carousel">
                         <!--slider start-->
-                        @foreach ($sliders as $slider)
+                        @foreach ($post_sliders as $slider)
                         <div class="blog-item" style="background-image: url('{{ asset('storage/post/'.$slider->image) }}')">
                             <div class="blog-banner">
                                 <div class="post-overly">
                                     <div class="post-overly-content">
                                        <div class="entry-cat">
                                         @foreach ($slider->categories as $categorie)
-                                        <a href="" class="category-style-2">{{ $categorie->name }}</a>
+                                        <a href="{" class="category-style-2">{{ $categorie->name }}</a>
                                          @endforeach
                                         </div>
                                         <h2 class="entry-title">
-                                            <a href="post-single.html">{{ Str::limit($slider->title, 70, '...') }}</a>
+                                            <a href="{{ route('frontend.post.singlePost', $slider->slug) }}">{{ Str::limit($slider->title, 70, '...') }}</a>
                                         </h2>
                                         <ul class="entry-meta">
-                                            <li class="post-author"> <a href=" " >{{ $slider->user->name }}</a></li>
-                                            <li class="post-date"> <span class="line"></span>{{ $slider->created_at->diffForHumans() }}</li>
+                                            <li class="post-author"> <a href="{{ route('frontend.author.post', $slider->user_id) }}">{{ $slider->user->name }}</a></li>
+                                            <li class="post-date"> <span class="line"></span>{{ $slider->created_at->format('d/m/Y')}}</li>
                                             <li class="post-timeread"> <span class="line"></span> {{ $slider->post_view }} mins read</li>
                                         </ul>
                                     </div>
@@ -81,8 +81,7 @@
                         <div class="post-list post-list-style4">
                             <div class="post-list-image">
                                 <a href="{{ route('frontend.post.singlePost', $post->slug) }}">
-                                    <img src="{{ asset('storage/post/'.$post->image) }}" alt="{{ $post->image }}">
-                                </a>
+                                    <img src="{{ asset('storage/post/' . $post->image) }}"  alt="{{ $post->title }}">                                </a>
                             </div>
                             <div class="post-list-content">
                                 <ul class="entry-meta">
@@ -91,10 +90,10 @@
                                         <a href="" class="category-style-1">{{ $categorie->name }}</a>
                                         @endforeach
                                     </li>
-                                    <li class="post-date"> <span class="line"></span>{{ $post->created_at->diffForHumans()}}</li>
+                                    <li class="post-date"> <span class="line"></span>{{ $post->created_at->format('d/m/Y')}}</li>
                                 </ul>
                                 <h5 class="entry-title">
-                                    <a href="{{ route('frontend.post.singlePost', $post->slug) }}">{{ Str::limit($post->title, 40, '...') }}</a>
+                                    <a href="{{ route('frontend.post.singlePost', $post->slug) }}">{{ Str::limit($post->title, 60, '...') }}</a>
                                 </h5>
 
                                 <div class="post-btn">
@@ -148,9 +147,9 @@
                                         </div>
                                         <div class="small-post-content">
                                             <p>
-                                                <a href="@">{{ $popularPost->title }}</a>
+                                                <a href="@">{{ Str::limit($popularPost->title, 40, '...') }}</a>
                                             </p>
-                                            <small> <span class="slash"></span>{{ $popularPost->created_at->diffForHumans() }}</small>
+                                            <small> <span class="slash"></span>{{ $popularPost->created_at->format('d/m/Y') }}</small>
                                         </div>
                                     </li>
                                     @endforeach
@@ -201,7 +200,7 @@
 
                                         @foreach ( $tags as $tag)
                                         <li>
-                                            <a href="#">{{ $tag->tag_name }}</a>
+                                            <a href="">{{ $tag->tag_name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>

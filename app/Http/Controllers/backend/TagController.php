@@ -10,7 +10,7 @@ class TagController extends Controller
 {
     //all tags
    public function index(){
-    $tags = Tag::all();
+    $tags = Tag::paginate(10);
     return view('backend.tag.index', compact('tags'));
    }
    // add tags

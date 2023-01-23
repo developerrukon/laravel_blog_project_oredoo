@@ -42,7 +42,7 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Count</th>
+                                        <th>Post Count</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -127,7 +127,7 @@
                                         <th>Image</th>
                                         <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Count</th>
+                                        <th>Post Count</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

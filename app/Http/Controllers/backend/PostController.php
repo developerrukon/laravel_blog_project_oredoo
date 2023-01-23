@@ -162,7 +162,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        $post->categories()->detach();
+        $post->categories();
         $post->delete();
         return back()->with('success', 'Delete Post Successful.!');
     }

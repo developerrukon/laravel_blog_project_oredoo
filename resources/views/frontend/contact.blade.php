@@ -1,7 +1,7 @@
 @extends('layouts.frontendapp')
 @section('title', 'Contact')
 @section('content')
-<!--section-heading-->
+{{--  <!--section-heading-->
 <div class="section-heading " >
     <div class="container-fluid">
          <div class="section-heading-2">
@@ -60,5 +60,5 @@
             </div>
         </div>
     </div>
-</section>
+</section>  --}}
 @endsection

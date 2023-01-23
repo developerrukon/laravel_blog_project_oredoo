@@ -11,7 +11,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Tags') }}</li>
                 </ol>
             </nav>
-            <h class="m-0">{{ __('Tags') }}</h>
+            <h3 class="m-0">{{ __('All Tags') }}</h3>
         </div>
     </div>
 </div>
@@ -20,32 +20,85 @@
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                <h2>{{ __('All Tag') }}</h2>
+                <h4>{{ __('Totals Tag: ') }}{{ count($tags) }}</h4>
 
             </div>
 
             <div class="card-body">
-                <table class="table table-striped">
-                        <tr>
-                            <th>Sl</th>
-                            <th>Tag Name</th>
-                            <th>Action</th>
-                        </tr>
-                        @foreach ($tags as $sl => $tag )
-                        <tr>
-                            <td>{{ $sl+1 }}</th>
-                            <td>{{ $tag->tag_name }}</th>
-                            <td>
-                            <form action="{{ route('backend.tag.destroy', $tag->id) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="submit" class="btn btn-outline-danger">Delete</button>
-                            </form>
-                            </th>
-                        </tr>
-                        @endforeach
+                                    {{--  toggle button  start--}}
+                                    <nav>
+                                        <div class="nav nav-tabs mb-2" id="nav-tab" role="tablist">
+                                            <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#active"
+                                                type="button">Active</button>
+                                            <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#deactive"
+                                                type="button">Deactive</button>
+                                            <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#trash"
+                                                type="button">Trash</button>
+                                        </div>
+                                    </nav>
+                                    {{--  toggle button  start--}}
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <!--active category start-->
+                                        <div class="tab-pane  show active" id="active">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Sl</th>
+                                                    <th>Tag Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                @foreach ($tags as $sl => $tag )
+                                                <tr>
+                                                    <td>{{ $sl+1 }}</th>
+                                                    <td>{{ $tag->tag_name }}</th>
+                                                    <td>
+                                                    <form action="{{ route('backend.tag.destroy', $tag->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                    </form>
+                                                    </th>
+                                                </tr>
+                                                @endforeach
 
-                </table>
+                                        </table>
+                                            <div class="pagination justify-content-center">
+                                                {{ $tags->links() }}
+                                            </div>
+                                        </div>
+                                        <!--active category end-->
+                                        <!--deactive category start-->
+                                        <!--deactive category end-->
+                                        <!--trash category start-->
+                                        <div class="tab-pane " id="trash">
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>Sl</th>
+                                                    <th>Tag Name</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                                @foreach ($tags as $sl => $tag )
+                                                <tr>
+                                                    <td>{{ $sl+1 }}</th>
+                                                    <td>{{ $tag->tag_name }}</th>
+                                                    <td>
+                                                    <form action="{{ route('backend.tag.destroy', $tag->id) }}" method="POST">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                    </form>
+                                                    </th>
+                                                </tr>
+                                                @endforeach
+
+                                        </table>
+
+                                        <div class="pagination justify-content-center">
+                                                {{ $tags->links() }}
+                                            </div>
+                                        </div>
+                                        <!--trash category end-->
+                                    </div>
+
             </div>
         </div>
     </div>

@@ -18,22 +18,23 @@ use App\Http\Controllers\backend\TagController;
 // =======frontend route=======
 
     Route::controller(FrontendController::class)->name('frontend.')->group(function(){
-        //frontend controller
-        Route::get('/',  'index')->name('index');
-        Route::get('/slider-view', 'slider')->name('slider');
-        Route::get('/contact',  'contact')->name('contact');
-        Route::get('/search',  'search')->name('search');
-        Route::get('/author',  'author')->name('author');
-        //post controller
-        Route::controller(FrontendPostController::class)->group(function(){
-            Route::get('/category/{slug}', 'archive')->name('category.archive');
-            Route::get('/post/{slug}', 'singlePost')->name('post.singlePost');
-        });
-        //comment route
-        Route::controller(CommentController::class)->group(function(){
-            Route::post('/comments', 'store')->name('comment.store');
-        });
+    //frontend controller
+    Route::get('/',  'index')->name('index');
+    Route::get('/slider-view', 'slider')->name('slider');
+    Route::get('/search',  'search')->name('search');
+    Route::get('/author-post/{id}',  'author')->name('author.post');
+    Route::get('/author-list',  'author_list')->name('author.list');
+    Route::get('/contact',  'contact')->name('contact');
+    //post controller
+    Route::controller(FrontendPostController::class)->group(function(){
+        Route::get('/category/{slug}', 'archive')->name('category.archive');
+        Route::get('/post/{slug}', 'singlePost')->name('post.singlePost');
     });
+    //comment route
+    Route::controller(CommentController::class)->group(function(){
+        Route::post('/comments', 'store')->name('comment.store');
+    });
+});
 
 //======backend route======
     Route::middleware('auth')->prefix('admin')->name('backend.')->group(function(){

@@ -55,7 +55,7 @@
                                 </li>
                                 @endforeach
                                 <li class="nav-item ">
-                                    <a class="nav-link {{ Route::is('frontend.author') ? 'active' : '' }}" href="{{ route('frontend.author') }}"> Author </a>
+                                    <a class="nav-link {{ Route::is('frontend.author.list')? 'active' : '' }}" href="{{ route('frontend.author.list') }}" > Author </a>
                                 </li>
                                 <li class="nav-item ">
                                     <a class="nav-link {{ Route::is('frontend.contact') ? 'active' : '' }}"  href="{{ route('frontend.contact') }}"> Contact </a>

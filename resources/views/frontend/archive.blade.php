@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <div class="section-heading-2-title">
                             <h1>{{ $catPost->name }}</h1>
-                            <p class="links"><a href="index.html">Home <i class="las la-angle-right"></i></a> Blog</p>
+                            <p class="links"><a href="{{ route('frondend.index') }}">Home <i class="las la-angle-right"></i></a> {{ $catPost->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -38,12 +38,12 @@
                             <ul class="entry-meta">
                                 <li class="post-author-img">
                                     @if ($post->user->image)
-                                    <img width="40"src="{{ asset('storage/post/' .$post->user->image) }}" alt="{{ $post->user->name }}">
+                                    <img width="40"src="{{ asset('storage/users/'.$post->user->image) }}" alt="{{ $post->user->name }}">
                                     @else
                                     <img src="{{ Avatar::create($post->user->name)->setDimension(30)->setFontSize(15)->toBase64() }}" alt="">
                                     @endif
                                 </li>
-                                <li class="post-author"> <a href="author.html">{{ $post->user->name }}</a></li>
+                                <li class="post-author"> <a href="{{ route('frontend.author.post', $post->user_id) }}">{{ $post->user->name }}</a></li>
                                 <li class="entry-cat">
                                     @foreach ($post->categories as $categorie)
                                     <a href="{{ route('frontend.category.archive',$categorie->slug) }}" class="category-style-1 "> <span

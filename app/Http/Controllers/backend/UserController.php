@@ -41,12 +41,13 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
         if($request->roles){
             $user->assignRole($request->roles);
         }
         if($user){
-            return redirect(route('backend.users.index'))->with('success', 'User Create Successful!');
-        }{
+            return back()->with('success', 'User Create Successful!');
+        }else{
             return back()->with('error', "User Not Created!");
         }
 
@@ -85,6 +86,7 @@ class UserController extends Controller
         public function show($id)
         {
             $user = User::find($id);
+
             return view('backend.users.show', compact('user'));
 
         }

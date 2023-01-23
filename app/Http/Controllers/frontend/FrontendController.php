@@ -12,11 +12,12 @@ use App\Http\Controllers\Controller;
 
 class FrontendController extends Controller
 {
+    // ---------home page--------
     public function index(){
 
         ///sliders category
         $categories = Category::all();
-        $sliders = Post::with('categories', 'user')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
+        $post_sliders = Post::with('categories', 'user')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
         ///sub category with post count
         $categorys = Category::with('posts')->withCount('posts')->orderBy('id', 'desc')->where('status', true)->get()->take(10);
         //post with category and user
@@ -25,17 +26,34 @@ class FrontendController extends Controller
         $popularPosts = Post::with('categories')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
         $tags = Tag::all();
 
-        return view('frontend.index', compact('sliders', 'categorys','posts', 'popularPosts', 'tags'));
+        return view('frontend.index', compact('post_sliders', 'categorys','posts', 'popularPosts', 'tags'));
     }
-    public function author(){
-        // $author_posts = Post::where('user_id', $id)->get();
-        // $author = User::find($id);
-        // return view('frontend.author', compact('author_posts', 'author'));
+//------- author post ---------
+    public function author($id){
+        $user_posts = Post::where('user_id', $id)->get();
+        $author_info = User::find($id);
+        $categorys = Category::get()->take(9);
+        $tags = Tag::all();
+        $popularPosts = Post::with('categories')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
+        return view('frontend.author',[
+            'user_posts' => $user_posts,
+            'author_info' => $author_info,
+            'popularPosts' => $popularPosts,
+            'categorys' => $categorys,
+            'tags' => $tags,
+        ] );
     }
-
+    // ------all users-----
+    public function author_list(){
+        $author_list = Post::select('user_id')->groupBy('user_id')->selectRaw('user_id, sum(user_id) as sum ')->get();
+        return view('frontend.author_list', compact('author_list'));
+    }
+    //-------contact-------
     public function contact(){
+
         return view('frontend.contact');
     }
+
 
 
 
