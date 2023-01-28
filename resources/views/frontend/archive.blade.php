@@ -9,7 +9,7 @@
                     <div class="col-lg-12">
                         <div class="section-heading-2-title">
                             <h1>{{ $catPost->name }}</h1>
-                            <p class="links"><a href="{{ route('frondend.index') }}">Home <i class="las la-angle-right"></i></a> {{ $catPost->name }}</p>
+                            <p class="links"><a href="{{ route('frontend.index') }}">Home <i class="las la-angle-right"></i></a> {{ $catPost->name }}</p>
                         </div>
                     </div>
                 </div>

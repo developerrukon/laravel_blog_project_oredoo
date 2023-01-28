@@ -13,6 +13,9 @@ use League\CommonMark\Extension\SmartPunct\DashParser;
 use App\Http\Controllers\frontend\FrontendPostController;
 use App\Http\Controllers\backend\RolePermissionController;
 use App\Http\Controllers\backend\TagController;
+use App\Http\Controllers\frontend\GithubController;
+use App\Http\Controllers\frontend\GoogleController;
+
     Auth::routes();
 
 // =======frontend route=======
@@ -34,7 +37,19 @@ use App\Http\Controllers\backend\TagController;
     Route::controller(CommentController::class)->group(function(){
         Route::post('/comments', 'store')->name('comment.store');
     });
+    //github route
+    Route::controller(GithubController::class)->name('github.')->group(function(){
+        Route::get('/github/redirect', 'redirect_provider')->name('redirect');
+        Route::get('/github/callback',  'provider_to_application')->name('callback');
+    });
+    //github route
+    Route::controller(GoogleController::class)->name('google.')->group(function(){
+        Route::get('/google/redirect', 'redirect_provider')->name('redirect');
+        Route::get('/google/callback',  'provider_to_application')->name('callback');
+    });
+
 });
+
 
 //======backend route======
     Route::middleware('auth')->prefix('admin')->name('backend.')->group(function(){
@@ -94,7 +109,7 @@ use App\Http\Controllers\backend\TagController;
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
         });
             //login user
-            Route::controller(LoginUserController::class)->prefix('login')->name('login.')->group(function(){
+        Route::controller(LoginUserController::class)->prefix('login')->name('login.')->group(function(){
             Route::get('/user-edit', 'edit')->name('user.edit');
             Route::put('/user-update', 'update')->name('user.update');
             Route::get('/user-show', 'show')->name('user.show');

@@ -1,4 +1,4 @@
-@extends('layouts.backendApp')
+@extends('layouts.backendMaster')
 @section('title', 'Post-Create')
 @section('contact')
     <div class="page__heading d-flex align-items-end">

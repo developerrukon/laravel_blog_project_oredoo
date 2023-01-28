@@ -1,4 +1,4 @@
-@extends('layouts.backendApp')
+@extends('layouts.backendMaster')
 @section('title', 'Post Edit')
 @section('contact')
     <div class="page__heading d-flex align-items-end">

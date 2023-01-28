@@ -1,4 +1,4 @@
-@extends('layouts.backendApp')
+@extends('layouts.backendMaster')
 @section('title', 'Post')
 @section('contact')
     <div class="container-fluid page__heading-container">
