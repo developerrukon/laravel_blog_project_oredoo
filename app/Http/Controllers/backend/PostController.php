@@ -62,6 +62,7 @@ class PostController extends Controller
             $image_name = Str::random(6).'.'.$img->extension();
             $img_upload = Image::make($img)->crop(1100,600)->save(public_path('storage/post/'.$image_name), 90);
         }
+
         $tag_id = implode(',', $request->tags);
         if($img_upload){
             $post = Post::create([

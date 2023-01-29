@@ -60,22 +60,23 @@
                             <div class="tags">
                                 <p>Tags:</p>
                                 <ul class="list-inline">
-                                    <li>
-                                        <a href="blog-layout-2.html">brading</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-layout-2.html">marketing</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-layout-3.html">tips</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-layout-4.html">design</a>
-                                    </li>
-                                    <li>
-                                        <a href="blog-layout-5.html">business
-                                        </a>
-                                    </li>
+                                    @php
+                                    $post_tags = explode(',',$post->tags);
+
+                                   @endphp
+                                   @foreach ($post_tags as $tag_id)
+                                       @php
+                                           $tag_table = App\Models\Tag::where('id', $tag_id)->get();
+                                       @endphp
+                                       @foreach ($tag_table as $tag)
+                                       <li>
+                                        <a href="blog-layout-2.html">{{ $tag->tag_name }}</a>
+                                        </li>
+
+                                       @endforeach
+                                   @endforeach
+
+
                                 </ul>
                             </div>
                             <div class="social-media">

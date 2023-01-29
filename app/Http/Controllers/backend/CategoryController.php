@@ -97,7 +97,7 @@ class CategoryController extends Controller
         $img = $request->file('image');
 
         $request->validate([
-        'name' => 'required | max:100| unique:categorys,name,'.$category->id,
+        'name' => 'required | max:100| unique:categories,name,'.$category->id,
         'parent' => 'nullable|',
         'description' => 'nullable|max:500',
         'image' => 'nullable|mimes:png,jpg,jpeg|max:1000',
@@ -109,7 +109,6 @@ class CategoryController extends Controller
                 Storage::delete('category/'.$category->image);
             }
             $image_name = $request->name.'_'.Str::uuid().'.'.$request->file('image')->extension();
-            // Storage::putFileAs('category', $request->file('image'), $image_name);
             Image::make($request->file('image'))->crop(200,200)->save(public_path('storage/category/'.$image_name));
 
         }else{

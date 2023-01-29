@@ -25,18 +25,17 @@
                                 <!--name input-->
                                 <div class="form-group mb-1">
                                     <label class="form-label">Post Title<span class="text-danger">*</span></label>
-                                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="enter name" value="{{ old('title') }}" />
+                                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="post title" value="{{ old('title') }}" />
                                     <small class="form-text text-muted">please.! title max 500 character</small>
 
                                 </div>
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">please.! name max 200 character</small>
                                 <!--description input-->
                                 <div class="form-group">
                                     <label class="form-label">Post Body:</label>
-                                    <textarea name="description" id='summernote' class="form-control">{{ old('description') }}</textarea>
+                                    <textarea name="description" id='summernote' class="form-control" placeholder="description">{{ old('description') }}</textarea>
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror

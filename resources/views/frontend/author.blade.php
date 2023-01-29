@@ -72,14 +72,8 @@
                     <!--post1-->
                     <div class="post-list post-list-style4 pt-0">
                         <div class="post-list-image">
-                            <a href="{{ route('frontend.post.singlePost', $post->slug) }}">                          </a>
-                                @if (auth()->user()->image == true)
+                            <a href="{{ route('frontend.post.singlePost', $post->slug) }}">
                                 <img src="{{ asset('storage/post/' . $post->image) }}"  alt="{{ $post->title }}">
-
-                                @else
-                                <img src="{{ Avatar::create($post->image)->setDimension(150)->setFontSize(35)->toBase64() }}" alt="{{ $post->title }}">
-
-                                @endif
                             </a>
                         </div>
                         <div class="post-list-content">

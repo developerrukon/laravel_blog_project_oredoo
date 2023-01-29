@@ -33,8 +33,8 @@
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">please.! name max 200 character</small>
-                                <!--description input-->
+                                <small class="form-text text-muted">please! name max 200 character</small>
+                                <!-- description input -->
                                 <div class="form-group">
                                     <label class="form-label">Post Body:</label>
                                     <textarea name="description" id='summernote' class="form-control">{{ $post->description }}</textarea>
