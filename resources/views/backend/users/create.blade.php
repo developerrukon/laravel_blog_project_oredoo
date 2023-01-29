@@ -11,7 +11,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Create User') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">{{ __('Create User') }}</h1>
+            <h3 class="m-0">{{ __('Create User') }}</h3>
         </div>
     </div>
 </div>

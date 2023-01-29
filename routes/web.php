@@ -9,9 +9,9 @@ use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\LoginUserController;
 use App\Http\Controllers\frontend\FrontendController;
-use League\CommonMark\Extension\SmartPunct\DashParser;
 use App\Http\Controllers\frontend\FrontendPostController;
 use App\Http\Controllers\backend\RolePermissionController;
+use App\Http\Controllers\backend\SettingController;
 use App\Http\Controllers\backend\TagController;
 use App\Http\Controllers\frontend\GithubController;
 use App\Http\Controllers\frontend\GoogleController;
@@ -113,6 +113,12 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/user-edit', 'edit')->name('user.edit');
             Route::put('/user-update', 'update')->name('user.update');
             Route::get('/user-show', 'show')->name('user.show');
+        });
+
+        //login user
+        Route::controller(SettingController::class)->prefix('setting')->name('setting.')->group(function(){
+            Route::get('/edit', 'edit')->name('edit');
+            Route::put('/update', 'update')->name('update');
         });
 
 
