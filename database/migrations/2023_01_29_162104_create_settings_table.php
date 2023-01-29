@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('instagram')->nullable();
             $table->string('Youtube')->nullable();
             $table->string('email')->nullable();
-            $table->string('copright')->nullable();
+            $table->string('copyright')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class SettingsTableSeeder extends Seeder
     {
         Setting::create([
             'website_name' => 'oredoo',
-            'copright' => '© 2022, Copyright by developer | Rukon',
+            'copyright' => '© 2022, Copyright by developer',
         ]);
     }
 }
