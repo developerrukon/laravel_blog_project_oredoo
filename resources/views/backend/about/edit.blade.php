@@ -12,24 +12,28 @@
             <h2 class="m-0">{{ __('About') }}</h2>
         </div>
     </div>
-    <div class="d-flex justify-content-center">
-        <div class="row">
-            <div class="col-sm-12">
+
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header">
                         <h4>{{ __("About Us") }}</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route("backend.setting.update") }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route("backend.about.update") }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
 
                             <!-- Email input -->
                             <div class="form-group">
                                 <label class="form-label" for="form4Example1">{{ __('About Image') }}</label>
-                                <input type="file" name="website_logo" id="form4Example2" class="w-100"/>
+                                <input type="file" name="image" id="form4Example2" class="w-100"/>
+                                <small class="form-text text-muted">please!upload max 2mb & iamge type jpg, jpeg, png, or svg</small>
+                                @error('image')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                                 <div class="mt-1">
-                                    <img width="80" src="" alt="">
+                                    <img width="80" src="{{ asset('storage/about/'.$about->image) }}" alt="{{ $about->image }}">
                                 </div>
                             </div>
 
@@ -51,8 +55,6 @@
             </div>
 
         </div>
-    </div>
-
 
 @endsection
 @section('css')

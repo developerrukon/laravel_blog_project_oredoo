@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="small-post-content">
                                             <p>
-                                                <a href="@">{{ Str::limit($popularPost->title, 40, '...') }}</a>
+                                                <a href="{{ route('frontend.post.singlePost', $post->slug) }}">{{ Str::limit($popularPost->title, 40, '...') }}</a>
                                             </p>
                                             <small> <span class="slash"></span>{{ $popularPost->created_at->format('d/m/Y') }}</small>
                                         </div>
@@ -166,25 +166,39 @@
 
                                 <div class="widget-stay-connected">
                                     <div class="list">
+                                        @if ($setting->facebook)
+                                        <a target="_blank" href="{{$setting->facebook}}">
                                         <div class="item color-facebook">
-                                            <a href="#"><i class="fab fa-facebook"></i></a>
-                                            <p>Facebook</p>
-                                        </div>
 
+                                            <p><i class="fab fa-facebook"></i> Facebook</p>
+                                        </div>
+                                        </a>
+                                        @endif
+                                        @if ($setting->instagram)
+                                        <a target="_blank" href="{{$setting->instagram}}">
                                         <div class="item color-instagram">
-                                            <a href="#"><i class="fab fa-instagram"></i></a>
-                                            <p>instagram</p>
-                                        </div>
 
+                                            <p><i class="fab fa-instagram"></i> Instagram</p>
+                                        </div>
+                                        </a>
+                                        @endif
+                                        @if ($setting->twitter)
+                                        <a target="_blank" href="{{$setting->twitter}}">
                                         <div class="item color-twitter">
-                                            <a href="#"><i class="fab fa-twitter"></i></a>
-                                            <p>twitter</p>
-                                        </div>
 
-                                        <div class="item color-youtube">
-                                            <a href="#"><i class="fab fa-youtube"></i></a>
-                                            <p>Youtube</p>
+                                            <p> <i class="fab fa-twitter"></i> Twitter</p>
                                         </div>
+                                        </a>
+                                        @endif
+
+                                        @if ($setting->youtube)
+                                        <a target="_blank" href="{{$setting->youtube}}">
+                                        <div class="item color-youtube">
+
+                                            <p><i class="fab fa-youtube"></i> Youtube</p>
+                                        </div>
+                                         </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

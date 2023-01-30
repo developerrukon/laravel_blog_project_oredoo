@@ -15,8 +15,8 @@
     <div class="d-flex justify-content-center">
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card bg-info">
+                    <div class="card-header bg-info">
                         <h4>Settings</h4>
                     </div>
                     <div class="card-body">
@@ -58,19 +58,25 @@
                             </div>
                             <!-- footer input -->
                             <div class="form-group">
-                                <label class="form-label" for="form4Example1">Footer Text</label>
-                                <input type="text"  name="copyright" placeholder="copyright" id="form4Example2" class="form-control" value="{{ $settings->copyright }}"/>
+                            <label class="form-label" for="form4Example1">Copyright</label>
+                            <input type="text"  name="copyright" placeholder="copyright" id="form4Example2" class="form-control" value="{{ $settings->copyright }}"/>
                             </div>
-
-                            <!-- Email input -->
+                            <!-- site logo white input -->
                             <div class="form-group">
-                                <label class="form-label" for="form4Example1">Site Logo</label>
-                                <input type="file" name="website_logo" id="form4Example2" class="w-100"/>
-                                <div class="mt-1">
-                                    <img width="80" src="{{ asset('storage/settings/'.$settings->website_logo) }}" alt="">
-                                </div>
+                                <label class="form-label" for="form4Example1">Site Logo white</label>
+                                <input type="file" name="website_logo_white" id="form4Example2" class="w-100"/>
                             </div>
-
+                            <div class="form-group">
+                                <img width="80" src="{{ asset('storage/settings/' .$settings->website_logo_white) }}" alt="">
+                            </div>
+                            <!-- site logo dark input -->
+                            <div class="form-group">
+                                <label class="form-label" for="form4Example1">Site Logo dark</label>
+                                <input type="file" name="website_logo_dark" id="form4Example2" class="w-100"/>
+                            </div>
+                            <div class="form-group">
+                                <img width="80" src="{{ asset('storage/settings/'.$settings->website_logo_dark) }}" alt="">
+                            </div>
                             <!-- Message input -->
                             <div class="form-group">
                                 <label class="form-label" for="form4Example3">Site Description</label>

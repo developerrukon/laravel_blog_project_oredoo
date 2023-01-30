@@ -9,6 +9,7 @@ use App\Models\Category;
 use Laravel\Ui\Presets\Vue;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\About;
 
 class FrontendController extends Controller
 {
@@ -50,7 +51,8 @@ class FrontendController extends Controller
     }
     //-------about us------
     public function about(){
-        return view('frontend.about');
+        $about = About::first();
+        return view('frontend.about', compact('about'));
     }
     //-------contact-------
     public function contact(){

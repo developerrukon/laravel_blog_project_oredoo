@@ -4,8 +4,8 @@
             <!--logo-->
             <div class="logo">
                 <a href="{{ route('frontend.index') }}">
-                    <img src="{{ asset('frontend/img/logo/logo-dark.png') }}" alt="" class="logo-dark">
-                    <img src="{{ asset('frontend/img/logo/logo-white.png') }}" alt="" class="logo-white">
+                    <img src="{{ asset('frontend/img/logo/'.$setting->website_logo_dark) }}" alt="" class="logo-dark">
+                    <img src="{{ asset('frontend/img/logo/' .$setting->website_logo_white) }}" alt="" class="logo-white">
                 </a>
             </div>
             <div class="header-navbar">

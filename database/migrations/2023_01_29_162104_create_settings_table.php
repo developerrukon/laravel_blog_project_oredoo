@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('website_name');
-            $table->string('website_logo');
+            $table->string('website_logo_white');
+            $table->string('website_logo_dark');
             $table->string('favicon')->nullable();
             $table->longText('description')->nullable();
             $table->string('facebook')->nullable();
