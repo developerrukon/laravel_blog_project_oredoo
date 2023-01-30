@@ -18,11 +18,14 @@
                             </li>
                             @foreach ($categories as $key => $categorie)
                             <li class="nav-item">
-                                <a class="nav-link {{ ($categorie->id == $key) ? 'active' : ''}}"  href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
+                                <a class="nav-link"  href="{{ route('frontend.category.archive',$categorie->slug) }}">{{ $categorie->name }} </a>
                             </li>
                             @endforeach
                             <li class="nav-item ">
                                 <a class="nav-link {{ Route::is('frontend.author.list')? 'active' : '' }}" href="{{ route('frontend.author.list') }}" > Author </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link {{ Route::is('frontend.about') ? 'active' : '' }}"  href="{{ route('frontend.about') }}"> About </a>
                             </li>
                             <li class="nav-item ">
                                 <a class="nav-link {{ Route::is('frontend.contact') ? 'active' : '' }}"  href="{{ route('frontend.contact') }}"> Contact </a>

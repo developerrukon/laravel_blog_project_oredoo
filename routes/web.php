@@ -27,6 +27,7 @@ use App\Http\Controllers\frontend\GoogleController;
     Route::get('/search',  'search')->name('search');
     Route::get('/author-post/{id}',  'author')->name('author.post');
     Route::get('/author-list',  'author_list')->name('author.list');
+    Route::get('/about-us',  'about')->name('about');
     Route::get('/contact',  'contact')->name('contact');
     //post controller
     Route::controller(FrontendPostController::class)->group(function(){

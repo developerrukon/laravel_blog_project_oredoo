@@ -48,6 +48,10 @@ class FrontendController extends Controller
         $author_list = Post::select('user_id')->groupBy('user_id')->selectRaw('user_id, sum(user_id) as sum ')->get();
         return view('frontend.author_list', compact('author_list'));
     }
+    //-------about us------
+    public function about(){
+        return view('frontend.about');
+    }
     //-------contact-------
     public function contact(){
 

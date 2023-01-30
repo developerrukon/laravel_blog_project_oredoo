@@ -7,10 +7,10 @@
                         <div class="menu">
                             <h6>Menu</h6>
                             <ul>
-                                <li><a href="#">Homepage</a></li>
-                                <li><a href="#">about us</a></li>
-                                <li><a href="#">contact us</a></li>
-                                <li><a href="#">privarcy</a></li>
+                                <li><a href="{{ route('frontend.index') }}">Homepage</a></li>
+                                <li><a href="{{ route('frontend.about') }}">about us</a></li>
+                                <li><a href="{{ route('frontend.contact') }}">contact us</a></li>
+                                <li><a href="">privarcy</a></li>
                             </ul>
                         </div>
                     </div>
@@ -29,10 +29,10 @@
                         <div class="menu">
                             <h6>Follow us</h6>
                             <ul>
-                                <li><a href="#">facebook</a></li>
-                                <li><a href="#">instagram</a></li>
-                                <li><a href="#">youtube</a></li>
-                                <li><a href="#">twitter</a></li>
+                                @if($setting->facebook)<li><a target="_blank" href="{{ $setting->facebook }}">facebook</a></li>@endif
+                                @if($setting->instagram)<li><a target="_blank" href="{{ $setting->instagram }}">instagram</a></li>@endif
+                                @if($setting->youtube)<li><a target="_blank" href="{{ $setting->youtube }}">youtube</a></li>@endif
+                                @if($setting->twitter)<li><a target="_blank" href="{{ $setting->twitter }}">twitter</a></li>@endif
                             </ul>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright">
-                            <p>© 2022, Copyright by developer | Rukon</p>
+                            <p>{{ $setting->copyright }} | <a style="color:rgba(255, 0, 4, 0.925)" target="_blank" href="{{ $setting->facebook }}">Rukon</a></p>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.frontendMaster')
 @section('title', 'Contact')
 @section('content')
-{{--  <!--section-heading-->
+ <!--section-heading-->
 <div class="section-heading " >
     <div class="container-fluid">
          <div class="section-heading-2">
@@ -24,7 +24,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="contact-image">
-                        <img src="assets/img/other/contact.jpg" alt="">
+                        <img src="{{ asset('frontend/img/other/contact.jpg') }}" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -60,5 +60,5 @@
             </div>
         </div>
     </div>
-</section>  --}}
+</section>
 @endsection
