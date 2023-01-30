@@ -18,8 +18,8 @@
                     <div class="col-md-6">
                         <div class="newslettre">
                             <div class="newslettre-info">
-                                <h3>Subscribe To OurNewsletter</h3>
-                                <p>Sign up for free and be the first to get notified about new posts.</p>
+                                <h3>About Us</h3>
+                                <p>{{ $setting->description }}.</p>
                             </div>
 
                         </div>

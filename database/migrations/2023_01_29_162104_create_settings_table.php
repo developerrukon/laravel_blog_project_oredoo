@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('website_name');
             $table->string('website_logo');
             $table->string('favicon')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();

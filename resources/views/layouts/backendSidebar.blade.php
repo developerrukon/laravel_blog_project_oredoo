@@ -76,12 +76,12 @@
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="role_permission">
-                        <li class="sidebar-menu-item {{ Route::is('backend.role.index') ? 'active open' : '' }}">
+                        <li class="sidebar-menu-item {{ Route::is('backend.role.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.index') }}">
                                 <span class="sidebar-menu-text">All Roles</span>
                             </a>
                         </li>
-                        <li class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active open' : '' }}">
+                        <li class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.create') }}">
                                 <span class="sidebar-menu-text">Create Role</span>
                             </a>
@@ -89,6 +89,23 @@
                     </ul>
                 </li>
                 <!-- users permission section end-->
+
+                <!-- about start-->
+                <li class="sidebar-menu-item ">
+                    <a class="sidebar-menu-button" href="{{ route('backend.about.edit') }}">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">insert_comment</i>
+                        <span> About Us</span>
+                    </a>
+                </li>
+                <!-- about end-->
+                <!-- contact start-->
+                <li class="sidebar-menu-item">
+                    <a class="sidebar-menu-button" href="{{ route('backend.about.edit') }}">
+                        <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">perm_phone_msg</i>
+                        <span> Contact</span>
+                    </a>
+                </li>
+                <!-- contact end-->
                 <!-- settings start-->
                 <li class="sidebar-menu-item">
                     <a class="sidebar-menu-button" href="{{ route('backend.setting.edit') }}">

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AboutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\PostController;
@@ -108,6 +109,11 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/restore/{id}', 'restore')->name('restore');
             Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
+        });
+        //backend user route
+        Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function(){
+            Route::get('/edit', 'edit')->name('edit');
+            Route::put('/update', 'update')->name('update');
         });
             //login user
         Route::controller(LoginUserController::class)->prefix('login')->name('login.')->group(function(){
