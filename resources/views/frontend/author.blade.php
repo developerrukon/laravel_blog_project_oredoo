@@ -1,4 +1,4 @@
-@extends('layouts.frontendapp')
+@extends('layouts.frontendMaster')
 @section('title', 'Author Post')
 @section('content')
 

@@ -1,4 +1,4 @@
-@extends('layouts.frontendapp')
+@extends('layouts.frontendMaster')
 @section('title', 'Contact')
 @section('content')
 {{--  <!--section-heading-->

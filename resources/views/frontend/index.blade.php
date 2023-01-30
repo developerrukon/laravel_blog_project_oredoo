@@ -1,4 +1,4 @@
-@extends('layouts.frontendapp')
+@extends('layouts.frontendMaster')
 @section('title', 'Home')
 @section('content')
      <section class="blog blog-home4 d-flex align-items-center justify-content-center">

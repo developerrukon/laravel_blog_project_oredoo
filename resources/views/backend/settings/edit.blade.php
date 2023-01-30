@@ -65,7 +65,10 @@
                             <!-- Email input -->
                             <div class="form-group">
                                 <label class="form-label" for="form4Example1">Site Logo</label>
-                                <input type="file" name="logo" id="form4Example2" class="w-100"/>
+                                <input type="file" name="website_logo" id="form4Example2" class="w-100"/>
+                                <div class="mt-1">
+                                    <img width="80" src="{{ asset('storage/settings/'.$settings->website_logo) }}" alt="">
+                                </div>
                             </div>
 
                             <!-- Message input -->
