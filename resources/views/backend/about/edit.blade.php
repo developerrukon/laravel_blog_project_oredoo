@@ -5,11 +5,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('About Us') }}</li>
                 </ol>
             </nav>
-            <h2 class="m-0">{{ __('About') }}</h2>
+            <h3 class="m-0">{{ __('About') }}</h3>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
                             <div class="form-group">
                                 <label class="form-label" for="form4Example1">{{ __('About Image') }}</label>
                                 <input type="file" name="image" id="form4Example2" class="w-100"/>
-                                <small class="form-text text-muted">please!upload max 2mb & iamge type jpg, jpeg, png, or svg</small>
+                                <small class="form-text text-muted">{{ __('please!upload max 2mb & iamge type jpg, jpeg, png, or svg') }}</small>
                                 @error('image')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror

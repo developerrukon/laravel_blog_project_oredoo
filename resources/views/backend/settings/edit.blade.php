@@ -5,7 +5,7 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Settings') }}</li>
                 </ol>
             </nav>
@@ -17,7 +17,7 @@
             <div class="col-sm-12">
                 <div class="card bg-info">
                     <div class="card-header bg-info">
-                        <h4>Settings</h4>
+                        <h4>{{ __('Settings') }}</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route("backend.setting.update") }}" method="POST" enctype="multipart/form-data">
@@ -25,7 +25,7 @@
                             @csrf
                             <!-- Name input -->
                             <div class="form-group">
-                                <label class="form-label"  for="form4Example1">Site Name</label>
+                                <label class="form-label"  for="form4Example1">{{ __('Site Name') }}</label>
 
                                 <input type="text" name="website_name" placeholder="site name" id="form4Example1" class="form-control" value="{{ $settings->website_name }}"/>
                             </div>
@@ -33,37 +33,37 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="form4Example1">Facebook</label>
+                                        <label class="form-label" for="form4Example1">{{ __('Facebook') }}</label>
                                         <input type="facebook" name='facebook' placeholder="facebook url" id="form4Example1" class="form-control" value="{{ $settings->facebook }}"/>
                                         </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="form4Example1">Twitter</label>
+                                        <label class="form-label" for="form4Example1">{{ __('Twitter') }}</label>
                                         <input type="twitter" name="twitter" placeholder="twitter url" id="form4Example1" class="form-control"value="{{ $settings->twitter }}" />
                                         </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="form4Example1">Instagram</label>
+                                        <label class="form-label" for="form4Example1">{{ __('Instagram') }}</label>
                                         <input type="instagram" name="instagram" placeholder="instagram url" id="form4Example1" class="form-control" value="{{ $settings->instagram }}" />
                                         </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label class="form-label" for="form4Example1">Youtube</label>
+                                        <label class="form-label" for="form4Example1">{{ __('Youtube') }}</label>
                                         <input type="youtube" name="youtube" placeholder="youtube url" id="form4Example1" class="form-control" value="{{ $settings->youtube }}"/>
                                         </div>
                                 </div>
                             </div>
                             <!-- footer input -->
                             <div class="form-group">
-                            <label class="form-label" for="form4Example1">Copyright</label>
+                            <label class="form-label" for="form4Example1">{{ __('Copyright') }}</label>
                             <input type="text"  name="copyright" placeholder="copyright" id="form4Example2" class="form-control" value="{{ $settings->copyright }}"/>
                             </div>
                             <!-- site logo white input -->
                             <div class="form-group">
-                                <label class="form-label" for="form4Example1">Site Logo white</label>
+                                <label class="form-label" for="form4Example1">{{ __('Site Logo white') }}</label>
                                 <input type="file" name="website_logo_white" id="form4Example2" class="w-100"/>
                             </div>
                             <div class="form-group">
@@ -71,7 +71,7 @@
                             </div>
                             <!-- site logo dark input -->
                             <div class="form-group">
-                                <label class="form-label" for="form4Example1">Site Logo dark</label>
+                                <label class="form-label" for="form4Example1">{{ __('Site Logo dark') }}</label>
                                 <input type="file" name="website_logo_dark" id="form4Example2" class="w-100"/>
                             </div>
                             <div class="form-group">
@@ -79,12 +79,12 @@
                             </div>
                             <!-- Message input -->
                             <div class="form-group">
-                                <label class="form-label" for="form4Example3">Site Description</label>
+                                <label class="form-label" for="form4Example3">{{ __('Site Description') }}</label>
                                 <textarea class="form-control" name="description" placeholder="site description" id="form4Example3" rows="4">{{ $settings->description }}</textarea>
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                            <button type="submit" class="btn btn-primary btn-block mb-4">{{ __('Send') }}</button>
                         </form>
                     </div>
                 </div>

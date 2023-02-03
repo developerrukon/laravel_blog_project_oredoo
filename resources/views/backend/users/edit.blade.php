@@ -7,11 +7,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Update User') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">{{ __('Update User') }}</h1>
+            <h3 class="m-0">{{ __('Update User') }}</h3>
         </div>
     </div>
 </div>
@@ -19,7 +19,7 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
         <div class="card">
-            <div class="card-header">{{ __('Update User') }}={{ $user->name }}</div>
+            <h5 class="card-header">{{ __('Update User') }}</h5>
 
             <div class="card-body">
                 <form action="{{ route('backend.users.update', $user->id) }}" method="POST">

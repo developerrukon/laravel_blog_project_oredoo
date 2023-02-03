@@ -34,31 +34,57 @@
                             porro, pariatur voluptatem iste quos maxime aspernatur.</p>
                     </div>
                     <!--form-->
-                    <form action="https://oredoo.assiagroupe.net/Oredoo/assets/php/mail.php" class="form contact_form " method="POST" id="main_contact_form">
-                        <div class="alert alert-success contact_msg" style="display: none" role="alert">
-                            Your message was sent successfully.
-                        </div>
+                    <form action="{{ route('backend.contact.store') }}" method="POST">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Name*" required="required">
+                            <input type="text" name="name" id="name" class="form-control  @error('name') is-invalid @enderror" placeholder="Name*" value="{{ old('name') }}">
+
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Email*" required="required">
+                            <input type="email" name="email" id="email" class="form-control  @error('email') is-invalid @enderror" placeholder="Email*"  value="{{ old('email') }}">
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <input type="text" name="subject" id="subject" class="form-control" placeholder="Subject*" required="required">
+                            <input type="text" name="subject" id="subject" class="form-control  @error('subject') is-invalid @enderror" placeholder="Subject*" value="{{ old('subject') }}">
+                            @error('subject')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-group">
-                            <textarea name="message" id="message" cols="30" rows="5" class="form-control" placeholder="Message*" required="required"></textarea>
+                            <textarea name="description" id="description" cols="30" rows="5" class="form-control  @error('description') is-invalid @enderror" placeholder="Message*">{{ old('description') }}</textarea>
+                            @error('description')
+                            <span class="invalid-feedback" role="alert">
+                                <strong class="text-danger">{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
-                        <button type="submit" name="submit" class="btn-custom">Send Message</button>
+                        <button type="submit" class="btn-custom">Send Message</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
+@endsection
+@section('css')
+<link rel="stylesheet" href="{{ asset('backend/css/sweetalert2.min.css') }} "/>
+@endsection
+@section('js')
+<script src="{{ asset('backend/js/sweetalert2.min.js') }}"></script>
 @endsection

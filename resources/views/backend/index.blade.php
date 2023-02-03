@@ -6,11 +6,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('Dashboard') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">Dashboard</h1>
+            <h3 class="m-0">{{ __('Dashboard') }}</h3>
         </div>
     </div>
 </div>

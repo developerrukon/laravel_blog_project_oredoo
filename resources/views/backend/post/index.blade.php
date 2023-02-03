@@ -6,11 +6,11 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Post</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('Post') }}</li>
                     </ol>
                 </nav>
-                <h1 class="m-0">Post</h1>
+                <h2 class="m-0">{{ __('Post') }}</h2>
             </div>
         </div>
     </div>
@@ -23,11 +23,11 @@
                     <nav>
                         <div class="nav nav-tabs mb-2" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#active"
-                                type="button">Active</button>
+                                type="button">{{ __('Active') }}</button>
                             <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#deactive"
-                                type="button">Deactive</button>
+                                type="button">{{ __('Deactive') }}</button>
                             <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#trash"
-                                type="button">Trash</button>
+                                type="button">{{ __('Trash') }}</button>
                         </div>
                     </nav>
 
@@ -39,16 +39,16 @@
                                 <table class="table table-bordered  table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Image</th>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th>Category</th>
-                                            <th>Post View</th>
-                                            <th>Tags</th>
-                                            <th>Status</th>
-                                            <th>Create-date</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Id') }}</th>
+                                            <th>{{ __('Image') }}</th>
+                                            <th>{{ __('Title') }}</th>
+                                            <th>{{ __('Author') }}</th>
+                                            <th>{{ __('Category') }}</th>
+                                            <th>{{ __('Post Vie') }}w</th>
+                                            <th>{{ __('Tags') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Create-dat') }}e</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -121,7 +121,7 @@
 
                                         @empty
                                             <tr>
-                                                <td colspan="5">Data Not Found!</td>
+                                                <td colspan="5">{{ __('Data Not Found!') }}</td>
                                             </tr>
                                         @endforelse
                                     </tbody>
@@ -145,15 +145,15 @@
                                 <table class="table table-bordered  table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Image</th>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th>Post View</th>
-                                            <th>Tags</th>
-                                            <th>Status</th>
-                                            <th>Create-date</th>
-                                            <th>Action</th>
+                                            <th>{{ __('Id') }}</th>
+                                            <th>{{ __('Image') }}</th>
+                                            <th>{{ __('Title') }}</th>
+                                            <th>{{ __('Author') }}</th>
+                                            <th>{{ __('Post Vie') }}w</th>
+                                            <th>{{ __('Tags') }}</th>
+                                            <th>{{ __('Status') }}</th>
+                                            <th>{{ __('Create-date') }}</th>
+                                            <th>{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -220,11 +220,11 @@
 
                                                         </button>
                                                         <div class="dropdown-menu">
-                                                            <a href="{{ route('backend.post.restore', $trashPost->id)}}" class="btn btn-outline-warning">Restore</a>
+                                                            <a href="{{ route('backend.post.restore', $trashPost->id)}}" class="btn btn-outline-warning">{{ __('Restore') }}</a>
                                                             <form class="d-inline" action="{{ route('backend.post.permanent.delete', $trashPost->id) }}" method="POST">
                                                                 @csrf
                                                                 @method('DELETE')
-                                                                <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Permanent Delete</button>
+                                                                <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Permanent Delete') }}</button>
                                                             </form>
                                                         </div>
                                                       </div>
@@ -235,7 +235,7 @@
 
                                         @empty
                                             <tr>
-                                                <td colspan="5">Data Not Found!</td>
+                                                <td colspan="5">{{ __('Data Not Found!') }}</td>
                                             </tr>
                                         @endforelse
                                     </tbody>

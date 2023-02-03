@@ -9,12 +9,12 @@
         <div class="col">
           <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item"><a href="#">User</a></li>
-              <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+              <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+              <li class="breadcrumb-item"><a href="#">{{ __('User') }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ __('My Profile') }}</li>
             </ol>
           </nav>
-          <h3 class="my-4">My Profile</h3>
+          <h3 class="my-4">{{ __('My Profile') }}</h3>
         </div>
       </div>
 
@@ -36,10 +36,10 @@
                 @if (Route::is('backend.login.user.edit') == false)
                 <a href="{{ route('backend.login.user.edit') }}" type="button" class="btn btn-primary">
                     @if (Route::is('backend.login.user.edit') == true)
-                    <a href="{{ route('backend.login.user.edit') }}" type="button" class="btn btn-primary">Edit Profile</a>
-                    Update Profile
+                    <a href="{{ route('backend.login.user.edit') }}" type="button" class="btn btn-primary">{{ __('Edit Profile') }}</a>
+                    {{ __('Update Profile') }}
                     @else
-                    Edit Profile
+                    {{ __('Edit Profile') }}
                     @endif
 
                 </a>
@@ -176,7 +176,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Full Name</p>
+                    <p class="mb-0">{{ __('Full Name') }}</p>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">{{ auth()->user()->name }}</p>
@@ -185,7 +185,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Email</p>
+                    <p class="mb-0">{{ __('Email') }}</p>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">{{ auth()->user()->email }}</p>
@@ -194,7 +194,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Phone</p>
+                    <p class="mb-0">{{ __('Phone') }}</p>
                   </div>
                   <div class="col-sm-9">
 
@@ -207,7 +207,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Address</p>
+                    <p class="mb-0">{{ __('Address') }}</p>
                   </div>
                   <div class="col-sm-9">
                       @if(auth()->user()->address)

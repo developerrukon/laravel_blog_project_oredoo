@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\LoginUserController;
@@ -68,7 +69,7 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/show/{category}', 'show')->name('show');
 
         });
-        //post routes
+        //--------post routes----------
         Route::controller(PostController::class)->prefix('post')->name('post.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
@@ -80,13 +81,13 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::get('/show/{post}', 'show')->name('show');
         });
-        //tag routes
+        //--------tag routes-------
         Route::controller(TagController::class)->prefix('tag')->name('tag.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
             Route::delete('/delete/{tag}', 'destroy')->name('destroy');
         });
-        // role route permission
+        // ---------role route permission----------
         Route::controller(RolePermissionController::class)->prefix('roles')->name('role.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
@@ -94,10 +95,10 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/edit/{id}', 'edit')->name('edit');
             Route::put('/update/{id}', 'update')->name('update');
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
-            //optional route
+            //-------optional route-------
             Route::post('/create/permission', 'storePermission')->name('permission.store');
         });
-        //backend user route
+        //----------user route----------
         Route::controller(UserController::class)->prefix('users')->name('users.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::get('/create', 'create')->name('create');
@@ -110,19 +111,26 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::delete('/delete/{id}', 'destroy')->name('destroy');
         });
-        //backend user route
+        //----------about route--------
         Route::controller(AboutController::class)->prefix('about')->name('about.')->group(function(){
             Route::get('/edit', 'edit')->name('edit');
             Route::put('/update', 'update')->name('update');
         });
-            //login user
+        // contact route
+        Route::controller(ContactController::class)->prefix('contact')->name('contact.')->group(function(){
+            Route::get('/', 'index')->name('index');
+            Route::post('/message', 'store')->name('store');
+            Route::get('/message-details{id}', 'show')->name('show');
+            Route::delete('/delete/{id}', 'destroy')->name('destroy');
+        });
+        //-----------login user---------
         Route::controller(LoginUserController::class)->prefix('login')->name('login.')->group(function(){
             Route::get('/user-edit', 'edit')->name('user.edit');
             Route::put('/user-update', 'update')->name('user.update');
             Route::get('/user-show', 'show')->name('user.show');
         });
 
-        //login user
+        //-------login user--------
         Route::controller(SettingController::class)->prefix('setting')->name('setting.')->group(function(){
             Route::get('/edit', 'edit')->name('edit');
             Route::put('/update', 'update')->name('update');

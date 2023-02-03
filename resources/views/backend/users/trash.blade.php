@@ -13,11 +13,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Trash Users') }}</li>
                 </ol>
             </nav>
-            <h2 class="m-0">{{ __('Trash Users') }}</h2>
+            <h3 class="m-0">{{ __('Trash Users') }}</h3>
         </div>
     </div>
 </div>
@@ -32,15 +32,15 @@
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
                             <tr>
-                                <th>Id</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Role</th>
-                                <th>Create_At</th>
-                                <th>Action</th>
+                                <th>{{ __('Id') }}</th>
+                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Phone') }}</th>
+                                <th>{{ __('Address') }}</th>
+                                <th>{{ __('Role') }}</th>
+                                <th>{{ __('Create_At') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,11 +66,11 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ route('backend.users.restore', $user->id) }}" class="btn btn-outline-success">Restore</a>
+                                    <a href="{{ route('backend.users.restore', $user->id) }}" class="btn btn-outline-success">{{ __('Restore') }}</a>
                                     <form class="d-inline" method="POST" action="{{ route('backend.users.permanent.delete', $user->id ) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="my-1 mx-1 btn btn-outline-danger permanent_delete">Permanent Delete</button>
+                                        <button type="submit" class="my-1 mx-1 btn btn-outline-danger permanent_delete">{{ __('Permanent Delete') }}</button>
                                     </form>
                                 </td>
                                 </tr>

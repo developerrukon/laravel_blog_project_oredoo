@@ -5,11 +5,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Post Create</li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('Post Create') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">Post Create</h1>
+            <h2 class="m-0">{{ __('Post Create') }}</h2>
         </div>
     </div>
     <form action="{{ route('backend.post.store') }}" method="POST" enctype="multipart/form-data">
@@ -19,14 +19,14 @@
                 <div class="card">
                     <div class="py-3 mx-1">
                         <div class="card-hader text-center">
-                            <h3>Post Create</h3>
+                            <h3>{{ __('Post Create') }}</h3>
                         </div>
                         <div class="card-body">
                                 <!--name input-->
                                 <div class="form-group mb-1">
-                                    <label class="form-label">Post Title<span class="text-danger">*</span></label>
+                                    <label class="form-label">{{ __('Post Title') }}<span class="text-danger">*</span></label>
                                     <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="post title" value="{{ old('title') }}" />
-                                    <small class="form-text text-muted">please.! title max 500 character</small>
+                                    <small class="form-text text-muted">{{ __('please.! title max 500 character') }}</small>
 
                                 </div>
                                 @error('title')
@@ -39,7 +39,7 @@
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.! description max 20k character</small>
+                                    <small class="form-text text-muted">{{ __('please.! description max 20k character') }}</small>
                                     @error('description')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
@@ -63,7 +63,7 @@
                         <div class="card-body">
                                 <!--Choose select-->
                                 <div class="form-group mt-2">
-                                <label class="form-label">Category Select:</label>
+                                <label class="form-label">{{ __('Category Select:') }}</label>
                                 <select name='categories[]' class="form-control categories" multiple='multiple'>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"> {{ $categorie->name }}</option>
@@ -73,33 +73,33 @@
                                 @error('categories')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">choose you prent category.!</small>
+                                <small class="form-text text-muted">{{ __('choose you prent category.!') }}</small>
                                 </div>
                                 <!--Choose select-->
                                 <div class="form-group mt-2">
-                                    <label class="form-label">Status Select:</label>
+                                    <label class="form-label">{{ __('Status Select:') }}</label>
                                     <select name='status' class="form-control">
-                                            <option value="publish">publish</option>
-                                            <option value="draft">draft</option>
+                                            <option value="publish">{{ __('publish') }}</option>
+                                            <option value="draft">{{ __('draft') }}</option>
                                     </select>
                                     @error('status')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">choose you post status!</small>
+                                    <small class="form-text text-muted">{{ __('choose you post status!') }}</small>
                                 </div>
                                 <!--image upload-->
                                 <div class="form-group">
-                                    <label class="form-label">Post Image</label>
+                                    <label class="form-label">{{ __('Post Image') }}</label>
                                     <input type="file" name="image" />
                                     @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg</small>
+                                    <small class="form-text text-muted">{{ __('please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg') }}</small>
 
                                 </div>
                                 <!--submit button-->
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create Post<i class="material-icons">add</i></button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Create Post') }}<i class="material-icons">add</i></button>
                                 </div>
 
                         </div>

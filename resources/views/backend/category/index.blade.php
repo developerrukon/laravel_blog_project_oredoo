@@ -6,11 +6,11 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Category</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('Category') }}</li>
                     </ol>
                 </nav>
-                <h1 class="m-0">Category</h1>
+                <h1 class="m-0">{{ __('Category') }}</h1>
             </div>
         </div>
     </div>
@@ -24,11 +24,9 @@
                     <nav>
                         <div class="nav nav-tabs mb-2" id="nav-tab" role="tablist">
                             <button class="nav-link active" id="nav-home-tab" data-toggle="tab" data-target="#active"
-                                type="button">Active</button>
-                            <button class="nav-link" id="nav-profile-tab" data-toggle="tab" data-target="#deactive"
-                                type="button">Deactive</button>
+                                type="button">{{ __('Active') }}</button>
                             <button class="nav-link" id="nav-contact-tab" data-toggle="tab" data-target="#trash"
-                                type="button">Trash</button>
+                                type="button">{{ __('Trash') }}</button>
                         </div>
                     </nav>
                     {{--  toggle button  start--}}
@@ -38,12 +36,12 @@
                             <table class="table table-bordered  table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Slug</th>
-                                        <th>Post Count</th>
-                                        <th>Action</th>
+                                        <th>{{ __('Id') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Slug') }}</th>
+                                        <th>{{ __('Post Count') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -62,13 +60,20 @@
                                             <td>{{ Str::limit($categorie->slug, 30, '...') }}</td>
                                             <td>{{ $categorie->posts_count }}</td>
                                             <td>
-                                                <a href="{{ route('backend.category.show', $categorie->id) }}" class="btn btn-outline-primary">View</a>
-                                                <a href="{{ route('backend.category.edit', $categorie->id) }}" class="btn btn-outline-success my-1 mx-1">Edit</a>
-                                                <form class="d-inline" action="{{ route('backend.category.destroy', $categorie->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Delete</button>
-                                                </form>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('backend.category.show', $categorie->id) }}" class="btn btn-outline-primary">View</a>
+                                                        <a href="{{ route('backend.category.edit', $categorie->id) }}" class="btn btn-outline-success my-1 mx-1">Edit</a>
+                                                        <form class="d-inline" action="{{ route('backend.category.destroy', $categorie->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    </div>
+                                                  </div>
                                             </td>
                                         </tr>
                                         <!--sub Category start-->
@@ -90,14 +95,22 @@
                                             <td>{{ $subCategory->slug }}</td>
                                             <td>{{ $subCategory->posts_count }}</td>
                                             <td>
-                                                <a href="{{ route('backend.category.show', $subCategory->id) }}" class="btn btn-outline-primary">View</a>
-                                                <a href="{{ route('backend.category.edit', $subCategory->id) }}" class="btn btn-outline-success my-1 mx-1">Edit</a>
-                                                <form class="d-inline"
-                                                    action="{{ route('backend.category.destroy', $subCategory->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">Delete</button>
-                                                </form>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('backend.category.show', $subCategory->id) }}" class="btn btn-outline-primary">{{ __('View') }}</a>
+                                                        <a href="{{ route('backend.category.edit', $subCategory->id) }}" class="btn btn-outline-success my-1 mx-1">{{ __('Edit') }}</a>
+                                                        <form class="d-inline"
+                                                            action="{{ route('backend.category.destroy', $subCategory->id) }}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    </div>
+                                                  </div>
+
                                             </td>
                                         </tr>
                                         @endforeach
@@ -113,22 +126,18 @@
                             </div>
                         </div>
                         <!--active category end-->
-                        <!--deactive category start-->
-                        <div class="tab-pane " id="deactive">
-                            Deactive
-                        </div>
-                        <!--deactive category end-->
+
                         <!--trash category start-->
                         <div class="tab-pane " id="trash">
                             <table class="table table-bordered  table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Slug</th>
-                                        <th>Post Count</th>
-                                        <th>Action</th>
+                                        <th>{{ __('Id') }}</th>
+                                        <th>{{ __('Image') }}</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Slug') }}</th>
+                                        <th>{{ __('Post Count') }}</th>
+                                        <th>{{ __('Action') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -147,12 +156,20 @@
                                             <td>{{ $trashCategorie->slug }}</td>
                                             <td>0</td>
                                             <td>
-                                                <a href="{{ route('backend.category.restore', $trashCategorie->id) }}" class="my-1 mx-1 btn btn-outline-success">Restore</a>
-                                                <form class="d-inline" method="POST" action="{{ route('backend.category.permanent.delete', $trashCategorie->id ) }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="button" class="my-1 mx-1 btn btn-outline-danger permanent_delete">Permanent Delete</button>
-                                                </form>
+                                                <div class="btn-group">
+                                                    <button class="btn btn-info btn-lg dropdown-toggle" type="button" data-toggle="dropdown">
+
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('backend.category.restore', $trashCategorie->id) }}" class="my-1 mx-1 btn btn-outline-success">Restore</a>
+                                                        <form class="d-inline" method="POST" action="{{ route('backend.category.permanent.delete', $trashCategorie->id ) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" class="my-1 mx-1 btn btn-outline-danger permanent_delete">{{ __('Permanent Delete') }}</button>
+                                                        </form>
+                                                    </div>
+                                                  </div>
+
                                             </td>
                                         </tr>
                                         <?php $no++ ?>
@@ -176,7 +193,7 @@
             <div class="card">
                 <div class="py-3 mx-1">
                     <div class="card-hader text-center">
-                        <h3>Create Category</h3>
+                        <h3>{{ __('Create Category') }}</h3>
                     </div>
                     <div class="card-body">
                         <!--Form start-->
@@ -184,7 +201,7 @@
                             @csrf
                             <!--name input-->
                             <div class="form-group mb-1">
-                                <label class="form-label">Catagory Name:<span class="text-danger">*</span></label>
+                                <label class="form-label">{{ __('Catagory Name:') }}<span class="text-danger">*</span></label>
                                 <input type="text" name="name"
                                     class="form-control @error('name') is-invalid @enderror" placeholder="category name"
                                     value="{{ old('name') }}" />
@@ -192,43 +209,43 @@
                             @error('name')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
-                            <small class="form-text text-muted">please.! name max 100 character</small>
+                            <small class="form-text text-muted">{{ __('please.! name max 100 character') }}</small>
                             <!--Choose select-->
                             <div class="form-group mt-2">
-                                <label class="form-label">Parent Category:</label>
+                                <label class="form-label">{{ __('Parent Category:') }}</label>
                                 <select name='parent' class="form-control search" value="{{ old('parent') }}">
-                                    <option selected disabled>Choose</option>
+                                    <option selected disabled>{{ __('Choose') }}</option>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"> {{ $categorie->name }}</option>
                                     @endforeach
 
 
                                 </select>
-                                <small class="form-text text-muted">choose you prent category.!</small>
+                                <small class="form-text text-muted">{{ __('choose you prent category.!') }}</small>
                             </div>
                             <!--description input-->
                             <div class="form-group">
-                                <label class="form-label">Description:</label>
+                                <label class="form-label">{{ __('Description') }}:</label>
                                 <textarea name="description" class="form-control" rows="5" placeholder="Description">{{ old('description') }}</textarea>
                                 @error('description')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">please.! description max 500 character</small>
+                                <small class="form-text text-muted">{{ __('please.! description max 500 character') }}</small>
                             </div>
                             <!--image upload-->
                             <div class="form-group">
-                                <label class="form-label">Catagory Image</label>
+                                <label class="form-label">{{ __('Catagory Image') }}</label>
                                 <input type="file" name="image" />
                                 @error('image')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">please.!upload 1mb image and iamge type jpg,jpeg or
-                                    png.</small>
+                                <small class="form-text text-muted">{{ __('please.!upload 1mb image and iamge type jpg,jpeg or
+                                    png.') }}</small>
 
                             </div>
                             <!--submit button-->
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary"> Create<i
+                                <button type="submit" class="btn btn-primary"> {{ __('Create') }}<i
                                         class="material-icons">add</i></button>
                             </div>
                         </form>

@@ -9,7 +9,7 @@
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Post Edit') }}</li>
                 </ol>
             </nav>
-            <h1 class="m-0">{{ __('Post Edit') }}</h1>
+            <h2 class="m-0">{{ __('Post Edit') }}</h2>
         </div>
     </div>
 
@@ -26,14 +26,14 @@
                         <div class="card-body">
                                 <!--name input-->
                                 <div class="form-group mb-1">
-                                    <label class="form-label">Post Title<span class="text-danger">*</span></label>
+                                    <label class="form-label">{{ __('Post Title') }}<span class="text-danger">{{ __('*') }}</span></label>
                                     {{ $post->id }}
                                     <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="enter name" value="{{ $post->title }}" />
                                 </div>
                                 @error('title')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">please! name max 200 character</small>
+                                <small class="form-text text-muted">{{ __('please! name max 200 character') }}</small>
                                 <!-- description input -->
                                 <div class="form-group">
                                     <label class="form-label">Post Body:</label>
@@ -41,7 +41,7 @@
                                     @error('description')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please.! description max 20k character</small>
+                                    <small class="form-text text-muted">{{ __('please.! description max 20k character') }}</small>
                                 </div>
                                 <div class="form-group">
                                     @php
@@ -70,7 +70,7 @@
                         <div class="card-body">
                                 <!--Choose select-->
                                 <div class="form-group mt-2">
-                                <label class="form-label">Category Select:</label>
+                                <label class="form-label">{{ __('Category Select:') }}</label>
                                 <select name='categories[]' class="form-control categories" multiple='multiple'>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"
@@ -82,19 +82,19 @@
                                 @error('categories')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
-                                <small class="form-text text-muted">choose you prent category.!</small>
+                                <small class="form-text text-muted">{{ __('choose you prent category.!') }}</small>
                                 </div>
                                 <!--Choose select-->
                                 <div class="form-group mt-2">
-                                    <label class="form-label">Status Select:</label>
+                                    <label class="form-label">{{ __('Status Select:') }}</label>
                                     <select name='status' class="form-control">
-                                            <option value="publish" {{ $post->status == 'publish' ? 'selected' : '' }}>publish</option>
-                                            <option value="draft" {{ $post->status == 'draft' ? 'selected' : '' }}>draft</option>
+                                            <option value="publish" {{ $post->status == 'publish' ? 'selected' : '' }}>{{ __('publish') }}</option>
+                                            <option value="draft" {{ $post->status == 'draft' ? 'selected' : '' }}>{{ __('draft') }}</option>
                                     </select>
                                     @error('status')
                                     <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">choose you post status!</small>
+                                    <small class="form-text text-muted">{{ __('choose you post status!') }}</small>
                                 </div>
                                 <!--image upload-->
                                 <div class="form-group">
@@ -103,7 +103,7 @@
                                     @error('image')
                                         <div class="text-danger">{{ $message }}</div>
                                     @enderror
-                                    <small class="form-text text-muted">please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg</small>
+                                    <small class="form-text text-muted">{{ __('please!upload max 2mb & image size mix width 1100 px hight 600 px & iamge type jpg, jpeg, png,gif or svg') }}</small>
                                     <div>
                                         <img src="{{ asset('storage/post/'.$post->image) }}" alt="" width="80">
                                     </div>
@@ -111,7 +111,7 @@
                                 </div>
                                 <!--submit button-->
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Create Post<i class="material-icons">add</i></button>
+                                    <button type="submit" class="btn btn-primary">{{ __('Create Post') }}<i class="material-icons">add</i></button>
                                 </div>
 
                         </div>

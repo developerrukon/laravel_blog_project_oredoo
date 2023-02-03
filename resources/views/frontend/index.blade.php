@@ -140,7 +140,7 @@
                                      @foreach ($popularPosts as $key => $popularPost)
                                     <li class="small-post">
                                         <div class="small-post-image">
-                                            <a href="post-single.html">
+                                            <a href="{{ route('frontend.post.singlePost', $post->slug) }}">
                                                 <img src="{{ asset('storage/post/'.$popularPost->image) }}" alt="{{ $popularPost->title }}">
                                                 <small class="nb">{{ +$key }}</small>
                                             </a>

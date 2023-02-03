@@ -6,11 +6,11 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ __('View Post') }}</li>
                     </ol>
                 </nav>
-                <h1 class="m-0">{{ __('View Post') }}</h1>
+                <h2 class="m-0">{{ __('View Post') }}</h2>
             </div>
         </div>
     </div>
@@ -23,31 +23,31 @@
                     <table class="table table-bordered  table-hover">
                         <tbody>
                             <tr>
-                                <th>Id</th>
-                                <th>:</th>
+                                <td>{{ __('Id') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->id }}</td>
                             </tr>
                             <tr>
-                                <th>Post Image</th>
-                                <th>:</th>
+                                <td>{{ __('Post Image') }}</td>
+                                <td>:</td>
                                 <td>
                                     <img width="200" src="{{ asset('storage/post/' . $post->image) }}" alt="{{ $post->title }}">
                                 </td>
                             </tr>
                             <tr>
-                                <th>Post Title</th>
-                                <th>:</th>
+                                <td>{{ __('Post Title') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->title }}</td>
                             </tr>
                             <tr>
-                                <th>Description</th>
-                                <th>:</th>
+                                <td>{{ __('Description') }}</td>
+                                <td>:</td>
                                 <td>
                                     {!! $post->description !!}
                                 </td>
                             </tr>
                             <tr>
-                                <td>Post Category</td>
+                                <td>{{ __('Post Category') }}</td>
                                 <td>:</td>
                                 <td>
                                     @foreach ($post->categories as $category)
@@ -57,7 +57,7 @@
 
                             </tr>
                             <tr>
-                                <td>Tags</td>
+                                <td>{{ __('Tags') }}</td>
                                 <td>:</td>
                                 <td>
                                     @php
@@ -77,38 +77,33 @@
 
                             </tr>
                             <tr>
-                                <th>Post Status</th>
-                                <th>:</th>
+                                <td>{{ __('Post Status') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->status }}</td>
                             </tr>
                             <tr>
-                                <th>Post View</th>
-                                <th>:</th>
+                                <td>{{ __('Post View') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->post_view }}</td>
                             </tr>
                             <tr>
-                                <th>Update-date</th>
-                                <th>:</th>
+                                <td>{{ __('Update-date') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->created_at->diffForHumans() }}</td>
                             </tr>
-                            <tr>
-                                <th>Update-date</th>
-                                <th>:</th>
-                                <td>{{ $post->updated_at->diffForHumans() }}</td>
 
-                            </tr>
                             <tr>
-                                <th>Author</th>
-                                <th>:</th>
+                                <td>{{ __('Author') }}</td>
+                                <td>:</td>
                                 <td>{{ $post->user->name }}</td>
 
                             </tr>
                             <tr>
-                                <td>Action</td>
+                                <td>{{ __('Action') }}</td>
                                 <td>:</td>
                                 <td>
                                     <a href="{{ route('backend.post.edit', $post->id) }}"
-                                        class="btn btn-info my-1 mx-1">Edit</a>
+                                        class="btn btn-info my-1 mx-1">{{ __('Edit') }}</a>
                                 </td>
 
                             </tr>

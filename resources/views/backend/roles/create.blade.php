@@ -6,8 +6,8 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Create role</li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ __('Create role') }}</li>
                     </ol>
                 </nav>
                 <h1 class="m-0">{{ __('Create Role & Permission') }}</h1>
@@ -18,13 +18,13 @@
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>Permission</h2>
+                    <h2>{{ __('Permission') }}</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('backend.role.permission.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label>Permission Name</label>
+                            <label>{{ __('Permission Name') }}</label>
                             <input type="text" class="form-control" name="name" placeholder="permission name">
 
                             @error('name')
@@ -34,7 +34,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
                     </form>
                 </div>
             </div>
@@ -46,13 +46,13 @@
             <div class="card">
                 <div class="card-header">
 
-                    <h2>Create Role</h2>
+                    <h2>{{ __('Create Role') }}</h2>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('backend.role.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label>Role Name</label>
+                            <label>{{ __('Role Name') }}</label>
                             <input type="text" class="form-control" name="name" placeholder="role name" value="{{ old('role_name') }}">
                             @error('name')
                             <span>

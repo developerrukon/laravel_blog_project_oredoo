@@ -6,7 +6,7 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ __('Update role') }}</li>
                     </ol>
                 </nav>
@@ -44,7 +44,7 @@
                                 </label>
                             @endforeach
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">{{ {__('Update')} }}</button>
                         </div>
                     </form>
                 </div>

@@ -14,7 +14,7 @@
             <div class="flex">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ __('All Role') }}</li>
                     </ol>
                 </nav>
@@ -32,11 +32,11 @@
                         <table id="dataTable" class="text-center">
                             <thead class="bg-light text-capitalize">
                                 <tr>
-                                    <th width='5%'>Sl</th>
-                                    <th width='10%'>Name</th>
-                                    <th width='60%'>Permissions</th>
-                                    <th width='10%'>Created At</th>
-                                    <th width='15%'>Action</th>
+                                    <th width='5%'>{{ __('Sl') }}</th>
+                                    <th width='10%'>{{ __('Name') }}</th>
+                                    <th width='60%'>{{ __('Permissions') }}</th>
+                                    <th width='10%'>{{ __('Created At') }}</th>
+                                    <th width='15%'>{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

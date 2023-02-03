@@ -9,10 +9,11 @@
         <div class="col">
           <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
             <ol class="breadcrumb mb-0">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">User</li>
+              <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ __('User') }}</li>
             </ol>
           </nav>
+          <h3 class="my-4">{{ __('User') }}</h3>
         </div>
       </div>
 
@@ -20,18 +21,14 @@
         <div class="col-lg-4">
           <div class="card mb-4">
             <div class="card-body text-center">
-                @if (auth()->user()->image == true)
-                <img src="{{ asset('storage/users/'.$user->image) }}" alt="avatar"
 
+
+                @if ($user->image)
+                <img src="{{ asset('storage/users/'.$user->image) }}" alt="{{ $user->name }}">
                 @else
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-
+                <img src="{{ Avatar::create($user->name)->setDimension(150)->setFontSize(35)->toBase64() }}" alt="{{ $user->name }}">
                 @endif
-                class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">{{ auth()->user()->name }}</h5>
-              @foreach ($user->roles as $role)
-              <span class="badge badge-info mr-1">{{ $role->name }}</span>
-            @endforeach
+                <h5 class="my-3">{{ auth()->user()->name }}</h5>
               <p class="text-muted mb-1">{{ $user->email }}</p>
               <div class="d-flex justify-content-center mb-2">
                     <a href="{{ route('backend.users.edit', $user->id) }}" type="button" class="btn btn-primary">Edit Profile</a>
@@ -44,7 +41,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Full Name</p>
+                    <p class="mb-0">{{ __('Full Name') }}</p>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">{{ $user->name }}</p>
@@ -53,7 +50,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Email</p>
+                    <p class="mb-0">{{ __('Email') }}</p>
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0">{{ $user->email }}</p>
@@ -62,7 +59,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Phone</p>
+                    <p class="mb-0">{{ __('Phone') }}</p>
                   </div>
                   <div class="col-sm-9">
 
@@ -75,7 +72,7 @@
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
-                    <p class="mb-0">Address</p>
+                    <p class="mb-0">{{ __('Address') }}</p>
                   </div>
                   <div class="col-sm-9">
                       @if($user->address)
@@ -88,35 +85,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card mb-4 mb-md-0">
-                  <div class="card-body">
-                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                    </p>
-                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                    <div class="progress rounded" style="height: 5px;">
-                      <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                    <div class="progress rounded" style="height: 5px;">
-                      <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                    <div class="progress rounded" style="height: 5px;">
-                      <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                    <div class="progress rounded" style="height: 5px;">
-                      <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                    <div class="progress rounded mb-2" style="height: 5px;">
-                      <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66"
-                        aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
+
                 </div>
               </div>
             </div>

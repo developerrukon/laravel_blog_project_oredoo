@@ -27,19 +27,19 @@
                 <div class="col-md-6 ">
                     <div class="authors-single">
                         <div class="authors-single-image">
-                            <a href="author.html">
+                            <a href="{{ route('frontend.author.post', $post->user_id) }}">
                                 @if ($post->user->image)
                                 <img src="{{ asset('storage/users/'.$post->user->image) }}" alt="{{ $post->user->name }}">
 
                                 @else
-                                <img src="{{ Avatar::create($post->user->name)->setDimension(150)->setFontSize(35)->toBase64() }}" alt="{{ $post->user->name }}">
+                                <img src="{{ Avatar::create($post->user->name)->setShape('square') }}" alt="{{ $post->user->name                                                                                            }}">
 
                                 @endif
                             </a>
                         </div>
-                        <div class="authors-single-content ">
+                        <div class="authors-single-content">
                             <div class="left">
-                                <h6> <a href="author.html">{{ $post->user->name }}</a></h6>
+                                <h6> <a href="{{ route('frontend.author.post', $post->user_id) }}">{{ $post->user->name }}</a></h6>
                                 <p >22 articles</p>
                             </div>
                             <div class="right">
@@ -81,7 +81,7 @@
     </div>
 </div>
 
-
+@endsection
 @section('css')
     <style>
         .page-item {

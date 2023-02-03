@@ -1,12 +1,12 @@
 <div class="mdk-drawer  js-mdk-drawer" id="default-drawer" data-align="start">
     <div class="mdk-drawer__content">
         <div class="sidebar sidebar-light sidebar-left sidebar-p-t" data-perfect-scrollbar>
-            <div class="sidebar-heading">Menu</div>
+            <div class="sidebar-heading">{{ __('Menu') }}</div>
             <ul class="sidebar-menu">
                 <li class="sidebar-menu-item {{ Route::is('backend.index') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.index') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">dvr</i>
-                        <span class="sidebar-menu-text">Dashboards</span>
+                        <span class="sidebar-menu-text">{{ __('Dashboards') }}</span>
                     </a>
                 </li>
                 <!-- post section start-->
@@ -14,28 +14,28 @@
                     class="sidebar-menu-item {{ Route::is('backend.category*') || Route::is('backend.post*') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#post_menu">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">library_add</i>
-                        <span class="sidebar-menu-text">Post & Category</span>
+                        <span class="sidebar-menu-text">{{ __('Post & Category') }}</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="post_menu">
                         <li class="sidebar-menu-item {{ Route::is('backend.post.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.post.index') }}">
-                                <span class="sidebar-menu-text">All Post</span>
+                                <span class="sidebar-menu-text">{{ __('All Post') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item {{ Route::is('backend.post.create') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.post.create') }}">
-                                <span class="sidebar-menu-text">Create Post</span>
+                                <span class="sidebar-menu-text">{{ __('Create Post') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item {{ Route::is('backend.category.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.category.index') }}">
-                                <span class="sidebar-menu-text">Category</span>
+                                <span class="sidebar-menu-text">{{ __('Category') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item ">
                             <a class="sidebar-menu-button" href="{{ route('backend.tag.index') }}">
-                                <span class="sidebar-menu-text">Tags</span>
+                                <span class="sidebar-menu-text">{{ __('Tags') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -45,23 +45,23 @@
                 <li class="sidebar-menu-item {{ Route::is('backend.users.*') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#users">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">pets</i>
-                        <span class="sidebar-menu-text">Users</span>
+                        <span class="sidebar-menu-text">{{ __('Users') }}</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="users">
                         <li class="sidebar-menu-item {{ Route::is('backend.users.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.index') }}">
-                                <span class="sidebar-menu-text">All Users</span>
+                                <span class="sidebar-menu-text">{{ __('All Users') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item {{ Route::is('backend.users.create') ? 'active' : '' }} ">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.create') }}">
-                                <span class="sidebar-menu-text">Create User</span>
+                                <span class="sidebar-menu-text">{{ __('Create User') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item {{ Route::is('backend.users.trash') ? 'active' : '' }} ">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.trash') }}">
-                                <span class="sidebar-menu-text">Trash User</span>
+                                <span class="sidebar-menu-text">{{ __('Trash User') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -72,18 +72,18 @@
                 <li class="sidebar-menu-item {{ Route::is('backend.role.*') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#role_permission">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">assignment_ind</i>
-                        <span class="sidebar-menu-text"> Role & Permission</span>
+                        <span class="sidebar-menu-text"> {{ __('Role & Permission') }}</span>
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="role_permission">
                         <li class="sidebar-menu-item {{ Route::is('backend.role.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.index') }}">
-                                <span class="sidebar-menu-text">All Roles</span>
+                                <span class="sidebar-menu-text">{{ __('All Roles') }}</span>
                             </a>
                         </li>
                         <li class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.create') }}">
-                                <span class="sidebar-menu-text">Create Role</span>
+                                <span class="sidebar-menu-text">{{ __('Create Role') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -91,7 +91,7 @@
                 <!-- users permission section end-->
 
                 <!-- about start-->
-                <li class="sidebar-menu-item ">
+                <li class="sidebar-menu-item {{ Route::is('backend.about.edit') ? 'active' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.about.edit') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">insert_comment</i>
                         <span> About Us</span>
@@ -99,15 +99,15 @@
                 </li>
                 <!-- about end-->
                 <!-- contact start-->
-                <li class="sidebar-menu-item">
-                    <a class="sidebar-menu-button" href="{{ route('backend.about.edit') }}">
+                <li class="sidebar-menu-item {{ Route::is('backend.contact.index') ? 'active' : '' }}">
+                    <a class="sidebar-menu-button" href="{{ route('backend.contact.index') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">perm_phone_msg</i>
-                        <span> Contact</span>
+                        <span> Message</span>
                     </a>
                 </li>
                 <!-- contact end-->
                 <!-- settings start-->
-                <li class="sidebar-menu-item">
+                <li class="sidebar-menu-item {{ Route::is('backend.setting.edit') ? 'active' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.setting.edit') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">settings</i>
                         <span> Settins</span>

@@ -13,11 +13,11 @@
         <div class="flex">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">{{ __('Home') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ __('Active Users') }}</li>
                 </ol>
             </nav>
-            <h2 class="m-0">{{ __('Active Users') }}</h2>
+            <h3 class="m-0">{{ __('Active Users') }}</h3>
         </div>
     </div>
 </div>
@@ -32,15 +32,15 @@
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
                             <tr>
-                                <th>Id</th>
-                                <th>Image</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Role</th>
-                                <th>Create_At</th>
-                                <th>Action</th>
+                                <th>{{ __('Id') }}</th>
+                                <th>{{ __('Image') }}</th>
+                                <th>{{ __('Name') }}</th>
+                                <th>{{ __('Email') }}</th>
+                                <th>{{ __('Phone') }}</th>
+                                <th>{{ __('Address') }}</th>
+                                <th>{{ __('Role') }}</th>
+                                <th>{{ __('Create_At') }}</th>
+                                <th>{{ __('Action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,8 +66,8 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ route('backend.users.show', $user->id) }}" class="btn btn-outline-info">View</a>
-                                    <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">Edit</a>
+                                    <a href="{{ route('backend.users.show', $user->id) }}" class="btn btn-outline-info">{{ __('View') }}</a>
+                                    <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">{{ __('Edit') }}</a>
                                     <form class="d-inline" method="POST" action="{{ route('backend.users.destroy', $user->id) }}">
                                         @csrf
                                         @method('DELETE')
