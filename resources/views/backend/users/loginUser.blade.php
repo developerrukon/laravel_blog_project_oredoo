@@ -31,6 +31,9 @@
                 @endif
 
               <h5 class="my-3">{{ auth()->user()->name }}</h5>
+              @foreach (auth()->user()->roles as $role)
+              <span class="badge bg-info text-light">{{ $role->name }}</span>
+             @endforeach
               <p class="text-muted mb-1">{{ auth()->user()->email }}</p>
               <div class="d-flex justify-content-center mb-2">
                 @if (Route::is('backend.login.user.edit') == false)

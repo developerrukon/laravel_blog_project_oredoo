@@ -6,8 +6,8 @@
                     <button type="button" class="close">
                         <i class="far fa-times"></i>
                     </button>
-                    <form class="search-form" action="" method="GET">
-                        <input type="search" value="" placeholder="What are you looking for?">
+                    <form class="search-form" action="{{ route('frontend.post.search') }}" method="GET">
+                        <input type="search" name="search" placeholder="What are you looking for?">
                         <button type="submit" class="search-btn"> search</button>
                     </form>
                 </div>

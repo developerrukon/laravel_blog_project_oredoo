@@ -59,8 +59,30 @@ class FrontendController extends Controller
 
         return view('frontend.contact');
     }
+    public function tag($slug){
+        $tag = Tag::where('tag_slug', $slug)->first();
+        $posts = Post::get();
+        return view('frontend.tag', compact('tag', 'posts'));
+    }
 
-
+    public function search(Request $request){
+        $request->validate([
+            'search' => 'required',
+        ]);
+        $search_txt = $request->search;
+        $posts = Post::with('categories')->orderBy('id', 'desc')
+        ->where('title', 'like', '%'.$search_txt.'%')
+        ->where('description', 'like', '%'.$search_txt.'%')->paginate(8);
+        $popularPosts = Post::with('categories')->orderBy('post_view', 'desc')->select('id','user_id','title','slug','image','post_view','created_at')->where('status', 'publish')->get()->take(5);
+        $categorys = Category::all();
+        $tags = Tag::all();
+        return view('frontend.search', [
+            'posts' => $posts,
+            'popularPosts' => $popularPosts,
+            'categorys' => $categorys,
+            'tags' => $tags,
+        ]);
+        $categories = Category::all();}
 
 
 

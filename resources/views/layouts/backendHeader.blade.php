@@ -85,7 +85,7 @@
                                     class="material-icons">dvr</i> Dashboard</a>
                             <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
                                     class="material-icons">account_circle</i> My profile</a>
-                            <a class="dropdown-item" href="{{ route('backend.login.user.show') }}"><i
+                            <a class="dropdown-item" href="{{ route('backend.login.user.edit') }}"><i
                                     class="material-icons">edit</i> Edit account</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"

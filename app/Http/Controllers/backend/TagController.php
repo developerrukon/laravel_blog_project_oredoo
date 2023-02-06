@@ -23,6 +23,7 @@ class TagController extends Controller
 
         $tag = Tag::create([
             'tag_name'=>$request->tag_name,
+            'tag_slug'=>$request->tag_name,
         ]);
         if($tag){
             return back()->with('success', "Tag Create Successful!");

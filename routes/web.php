@@ -31,6 +31,8 @@ use App\Http\Controllers\frontend\GoogleController;
     Route::get('/author-list',  'author_list')->name('author.list');
     Route::get('/about-us',  'about')->name('about');
     Route::get('/contact',  'contact')->name('contact');
+    Route::get('/post-tag/{slug}',  'tag')->name('post.tag');
+    Route::get('/post-search',  'search')->name('post.search');
     //post controller
     Route::controller(FrontendPostController::class)->group(function(){
         Route::get('/category/{slug}', 'archive')->name('category.archive');

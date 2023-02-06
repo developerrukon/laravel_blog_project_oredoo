@@ -140,14 +140,14 @@
                                      @foreach ($popularPosts as $key => $popularPost)
                                     <li class="small-post">
                                         <div class="small-post-image">
-                                            <a href="{{ route('frontend.post.singlePost', $post->slug) }}">
+                                            <a href="{{ route('frontend.post.singlePost', $popularPost->slug) }}">
                                                 <img src="{{ asset('storage/post/'.$popularPost->image) }}" alt="{{ $popularPost->title }}">
                                                 <small class="nb">{{ +$key }}</small>
                                             </a>
                                         </div>
                                         <div class="small-post-content">
                                             <p>
-                                                <a href="{{ route('frontend.post.singlePost', $post->slug) }}">{{ Str::limit($popularPost->title, 40, '...') }}</a>
+                                                <a href="{{ route('frontend.post.singlePost', $popularPost->slug) }}">{{ Str::limit($popularPost->title, 40, '...') }}</a>
                                             </p>
                                             <small> <span class="slash"></span>{{ $popularPost->created_at->format('d/m/Y') }}</small>
                                         </div>
@@ -214,7 +214,7 @@
 
                                         @foreach ( $tags as $tag)
                                         <li>
-                                            <a href="">{{ $tag->tag_name }}</a>
+                                            <a href="{{ route('frontend.post.tag',$tag->tag_slug) }}">{{ $tag->tag_name }}</a>
                                         </li>
                                         @endforeach
                                     </ul>
