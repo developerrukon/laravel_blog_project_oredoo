@@ -82,8 +82,8 @@ class FrontendController extends Controller
             'categorys' => $categorys,
             'tags' => $tags,
         ]);
-        $categories = Category::all();}
-
+        
+        }
 
 
 }

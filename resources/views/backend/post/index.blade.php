@@ -34,7 +34,6 @@
                     <div class="tab-content" id="nav-tabContent">
                         <!--active Post start-->
                         <div class="tab-pane  show active" id="active">
-
                             <div class="pagination justify-content-center">
                                 <table class="table table-bordered  table-hover">
                                     <thead>

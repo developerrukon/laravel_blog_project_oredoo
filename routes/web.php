@@ -87,6 +87,8 @@ use App\Http\Controllers\frontend\GoogleController;
         Route::controller(TagController::class)->prefix('tag')->name('tag.')->group(function(){
             Route::get('/', 'index')->name('index');
             Route::post('/store', 'store')->name('store');
+            Route::get('/edit/{tag}', 'edit')->name('edit');
+            Route::post('/update/{tag}', 'update')->name('update');
             Route::delete('/delete/{tag}', 'destroy')->name('destroy');
         });
         // ---------role route permission----------

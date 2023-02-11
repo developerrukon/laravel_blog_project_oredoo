@@ -149,7 +149,6 @@ class PostController extends Controller
         'description' => $request->description,
         'image' => $image_name,
         'status' => $request->status,
-        // 'slider' => $request->is_slider,
     ]);
     $post->categories()->sync($request->categories);
     return redirect(route('backend.post.index'))->with('success', 'Post Update Successful!');
@@ -161,26 +160,31 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+//delete post
     public function destroy(Post $post)
     {
-        $post->categories();
         $post->delete();
         return back()->with('success', 'Delete Post Successful.!');
     }
-    public function restore(Post $post)
-    {;
-        $post = Post::onlyTrashed()->categories()->attach()->find($post);
+//restore post
+    public function restore($post)
+    {
+        $post = Post::onlyTrashed()->find($post);
         $post->restore();
         return back()->with('success', 'Post Restore Successful.!');
     }
-    public function permanentDelete(Post $post)
+//permanent delete post
+    public function permanentDelete($post)
     {
-        return 'permanent delete';
-        // $data = Post::onlyTrashed()->findOrFail($post);
-        // if($data->image){
-        //     Storage::delete('posts/'.$data->image);
-        // };
-        // $data->forceDelete();
-        // return back()->with('success', 'Delete Category Successful.!');
+        $data = Post::onlyTrashed()->findOrFail($post);
+        if($data->image){
+            $image_delete = Storage::delete('post/'.$data->image);
+            if($image_delete){
+                $data->categories()->detach();
+                $data->forceDelete();
+                return back()->with('success', 'Delete Category Successful.!');
+            }
+        };
+
     }
 }

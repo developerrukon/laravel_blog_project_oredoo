@@ -64,6 +64,8 @@
                                     $post_tags = explode(',',$post->tags);
 
                                    @endphp
+                                    @if ($post_tags)
+
                                    @foreach ($post_tags as $tag_id)
                                        @php
                                            $tag_table = App\Models\Tag::where('id', $tag_id)->get();
@@ -76,6 +78,9 @@
                                        @endforeach
                                    @endforeach
 
+                                    @else
+                                    No Tags Founds!
+                                    @endif
 
                                 </ul>
                             </div>
