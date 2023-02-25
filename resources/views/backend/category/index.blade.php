@@ -15,6 +15,7 @@
         </div>
     </div>
 
+    @can('category_show')
     <div class="row">
         <!--all category -->
         <div class="col-sm-8">
@@ -67,11 +68,13 @@
                                                     <div class="dropdown-menu">
                                                         <a href="{{ route('backend.category.show', $categorie->id) }}" class="btn btn-outline-primary">View</a>
                                                         <a href="{{ route('backend.category.edit', $categorie->id) }}" class="btn btn-outline-success my-1 mx-1">Edit</a>
+                                                        @can('category_delete')
                                                         <form class="d-inline" action="{{ route('backend.category.destroy', $categorie->id) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Delete') }}</button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                   </div>
                                             </td>
@@ -100,14 +103,21 @@
 
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                        @can('category_show')
                                                         <a href="{{ route('backend.category.show', $subCategory->id) }}" class="btn btn-outline-primary">{{ __('View') }}</a>
+                                                        @endcan
+                                                        @can('category_edit')
                                                         <a href="{{ route('backend.category.edit', $subCategory->id) }}" class="btn btn-outline-success my-1 mx-1">{{ __('Edit') }}</a>
+
+                                                        @endcan
+                                                        @can('category_delete')
                                                         <form class="d-inline"
-                                                            action="{{ route('backend.category.destroy', $subCategory->id) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Delete') }}</button>
-                                                        </form>
+                                                        action="{{ route('backend.category.destroy', $subCategory->id) }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="'submit" class="my-1 mx-1 btn btn-outline-danger">{{ __('Delete') }}</button>
+                                                    </form>
+                                                        @endcan
                                                     </div>
                                                   </div>
 
@@ -161,12 +171,17 @@
 
                                                     </button>
                                                     <div class="dropdown-menu">
+                                                        @can('category_delete')
                                                         <a href="{{ route('backend.category.restore', $trashCategorie->id) }}" class="my-1 mx-1 btn btn-outline-success">Restore</a>
+
+                                                        @endcan
+                                                        @can('category_delete')
                                                         <form class="d-inline" method="POST" action="{{ route('backend.category.permanent.delete', $trashCategorie->id ) }}">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" class="my-1 mx-1 btn btn-outline-danger permanent_delete">{{ __('Permanent Delete') }}</button>
                                                         </form>
+                                                        @endcan
                                                     </div>
                                                   </div>
 
@@ -257,6 +272,7 @@
         <!--category create section end-->
 
     </div>
+    @endcan
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>

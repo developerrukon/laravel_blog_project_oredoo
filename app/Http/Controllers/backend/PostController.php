@@ -23,9 +23,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('categories', 'user')->orderBy('id', 'desc')->paginate(15);
+        $posts = Post::with('categories','tags', 'user')->orderBy('id', 'desc')->paginate(15);
+        $draft_post = Post::with('categories','tags', 'user')->where('status', 'draft')->orderBy('id', 'desc')->paginate(15);
         $allTrashPost = Post::onlyTrashed('categories')->orderBy('id', 'desc')->paginate(15);
-        return view('backend.post.index', compact('posts', 'allTrashPost'));
+        return view('backend.post.index', compact('posts','draft_post', 'allTrashPost'));
     }
 
     /**
@@ -62,23 +63,20 @@ class PostController extends Controller
             $image_name = Str::random(6).'.'.$img->extension();
             $img_upload = Image::make($img)->crop(1100,600)->save(public_path('storage/post/'.$image_name), 90);
         }
-
-        $tag_id = implode(',', $request->tags);
         if($img_upload){
             $post = Post::create([
                 'user_id' => Auth::user()->id,
                 'title' => $request->title,
                 'slug' => Str::slug($request->title),
-                'tags' => $tag_id,
                 'description' => $request->description,
                 'image' => $image_name,
                 'status' => $request->status,
             ]);
             if($post){
                 $post->categories()->attach($request->categories);
+                $post->tags()->attach($request->tags);
                 return back()->with('success', 'Post Create Successful.!');
             }
-
 
         }else{
             return back()->with('error', "Image Not Uploaded!");
@@ -94,7 +92,7 @@ class PostController extends Controller
     public function show($post)
     {
 
-        $post = Post::where('id', $post)->firstOrFail();
+        $post = Post::where('status', 'publish')->find($post);
         return view('backend.post.show', compact('post'));
     }
 
@@ -140,17 +138,16 @@ class PostController extends Controller
     }else{
         $image_name = $post->image;
     }
-    $tag_id = implode(',', $request->tags);
     $post->update([
         'user_id' => Auth::user()->id,
         'title' => $request->title,
         'slug' => Str::slug($request->title),
-        'tags' => $tag_id,
         'description' => $request->description,
         'image' => $image_name,
         'status' => $request->status,
     ]);
     $post->categories()->sync($request->categories);
+    $post->tags()->sync($request->tags);
     return redirect(route('backend.post.index'))->with('success', 'Post Update Successful!');
 }
 
@@ -176,15 +173,36 @@ class PostController extends Controller
 //permanent delete post
     public function permanentDelete($post)
     {
+
         $data = Post::onlyTrashed()->findOrFail($post);
         if($data->image){
             $image_delete = Storage::delete('post/'.$data->image);
             if($image_delete){
                 $data->categories()->detach();
+                $data->tags()->detach();
                 $data->forceDelete();
                 return back()->with('success', 'Delete Category Successful.!');
             }
         };
 
     }
+    //permanent delete post
+    public function status($post)
+    {
+
+    $post = Post::findOrFail($post);
+        if($post){
+            if($post->status == 'publish'){
+                $post->update([
+                    'status' => 'draft',
+                ]);
+            }else{
+                $post->update([
+                    'status' => 'publish',
+                ]);
+            }
+        }
+        return back()->with('success', "Status Change Successful!");
+    }
+
 }

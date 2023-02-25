@@ -19,7 +19,10 @@
                         <div class="newslettre">
                             <div class="newslettre-info">
                                 <h3>About Us</h3>
+                                @if ($setting)
                                 <p>{{ $setting->description }}.</p>
+                                @endif
+
                             </div>
 
                         </div>

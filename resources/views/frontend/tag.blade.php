@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-heading-2-title">
-                            <h1>{{ $tag->tag_name }}</h1>
-                            <p class="links"><a href="{{ route('frontend.index') }}">Home <i class="las la-angle-right"></i></a> {{ $tag->tag_name }}</p>
+                            <h1>{{ $tag_post->tag_name }}</h1>
+                            <p class="links"><a href="{{ route('frontend.index') }}">Home <i class="las la-angle-right"></i></a> {{ $tag_post->tag_name }}</p>
                         </div>
                     </div>
                 </div>
@@ -23,23 +23,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    @php
-                    $post_tags = explode(',',$posts->tags);
-
-                   @endphp
-                   @foreach ($post_tags as $tag_id)
-                       @php
-                           $tag_table = App\Models\Tag::where('id', $tag_id)->get();
-                       @endphp
-                       @foreach ($tag_table as $tag)
-                       <li>
-                        <a href="blog-layout-2.html">{{ $tag->tag_name }}</a>
-                        </li>
-
-                       @endforeach
-                   @endforeach
+                    <li>
+                    <a href="blog-layout-2.html">{{ $tag_post->tag_name }}</a>
+                    </li>
                     <!--post start-->
-                    @foreach ($catPost->posts as $post)
+                    @foreach ($tag_post->posts as $post)
                     <div class="post-list post-list-style2">
                         <div class="post-list-image">
                             <a href="{{ route('frontend.post.singlePost', $post->slug) }}">
@@ -83,7 +71,7 @@
             </div>
                     <!--pagination-->
         <div class="my-4">
-            {{ $catPost->posts->links() }}
+            {{ $tag_post->posts->links() }}
         </div>
         </div>
     </section>

@@ -16,6 +16,7 @@
     </div>
 
 <!--category create form start-->
+@can('category_edit')
 <div class="row  justify-content-center">
     <div class="col-sm-6">
         <div class="card">
@@ -86,6 +87,8 @@
         </div>
     </div>
 </div>
+
+@endcan
 
         <!--category create section end-->
 @endsection

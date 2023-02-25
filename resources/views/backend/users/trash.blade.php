@@ -21,7 +21,7 @@
         </div>
     </div>
 </div>
-
+@can('user_show')
 <div class="row">
     <!-- data table start -->
     <div class="col-12 mt-5">
@@ -40,7 +40,9 @@
                                 <th>{{ __('Address') }}</th>
                                 <th>{{ __('Role') }}</th>
                                 <th>{{ __('Create_At') }}</th>
-                                <th>{{ __('Action') }}</th>
+                                @can('user_delete')
+
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
@@ -66,12 +68,14 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
+                                    @can('user_delete')
                                     <a href="{{ route('backend.users.restore', $user->id) }}" class="btn btn-outline-success">{{ __('Restore') }}</a>
                                     <form class="d-inline" method="POST" action="{{ route('backend.users.permanent.delete', $user->id ) }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="my-1 mx-1 btn btn-outline-danger permanent_delete">{{ __('Permanent Delete') }}</button>
                                     </form>
+                                    @endcan
                                 </td>
                                 </tr>
                             @endforeach
@@ -82,6 +86,7 @@
         </div>
     </div>
 </div>
+@endcan
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>

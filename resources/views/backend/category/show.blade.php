@@ -15,6 +15,7 @@
     </div>
 </div>
 
+@can('category_show')
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
@@ -74,6 +75,7 @@
         </div>
     </div>
 </div>
+@endcan
 <h2>Category Related Post</h2>
 <div class="card-columns">
     @foreach ($category->posts as $post)

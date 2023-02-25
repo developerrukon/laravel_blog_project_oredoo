@@ -18,7 +18,7 @@ class RolePermissionController extends Controller
 //==========roles  permission create========
     public function create()
     {
-        $permissions = Permission::orderBy('id', 'desc')->get(['id', 'name']);
+        $permissions = Permission::orderBy('name')->get(['id', 'name']);
         return view('backend.roles.create', compact('permissions'));
     }
 // ========store role=======
@@ -63,7 +63,7 @@ class RolePermissionController extends Controller
     public function edit($id)
     {
         $role = Role::findById($id);
-        $permissions = Permission::all();
+        $permissions = Permission::orderBy('name')->get();
         return view('backend.roles.edit', compact('role', 'permissions'));
     }
     //======update role====

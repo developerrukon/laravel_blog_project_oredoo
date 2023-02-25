@@ -60,22 +60,11 @@
                             <div class="tags">
                                 <p>Tags:</p>
                                 <ul class="list-inline">
-                                    @php
-                                    $post_tags = explode(',',$post->tags);
-
-                                   @endphp
-                                    @if ($post_tags)
-
-                                   @foreach ($post_tags as $tag_id)
-                                       @php
-                                           $tag_table = App\Models\Tag::where('id', $tag_id)->get();
-                                       @endphp
-                                       @foreach ($tag_table as $tag)
+                                    @if ($post->tags)
+                                   @foreach ($post->tags as $tag)
                                        <li>
                                         <a href="blog-layout-2.html">{{ $tag->tag_name }}</a>
                                         </li>
-
-                                       @endforeach
                                    @endforeach
 
                                     @else

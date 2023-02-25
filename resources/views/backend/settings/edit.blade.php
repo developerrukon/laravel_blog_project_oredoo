@@ -12,6 +12,7 @@
             <h2 class="m-0">{{ __('Settings') }}</h2>
         </div>
     </div>
+    @can('settings_show ')
     <div class="d-flex justify-content-center">
         <div class="row">
             <div class="col-sm-12">
@@ -92,6 +93,8 @@
 
         </div>
     </div>
+
+    @endcan
 
 
 @endsection

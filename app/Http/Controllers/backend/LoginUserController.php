@@ -22,7 +22,7 @@ class LoginUserController extends Controller
     public function show()
     {
         $userId = auth()->user()->id;
-        $posts = Post::where('user_id', $userId)->get();
+        $posts = Post::where('user_id', $userId)->paginate(6);
         return view('backend.users.loginUser', compact('posts'));
     }
 

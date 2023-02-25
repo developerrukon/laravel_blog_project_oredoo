@@ -16,10 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();
-        $user_count = count($users);
         return view('backend.users.index', [
             'users' => $users,
-            'user_count' => $user_count,
         ]);
     }
 //====create user========
@@ -127,7 +125,6 @@ class UserController extends Controller
     //==== permanentDelete users========
     public function permanentDelete($id)
     {
-
         $data = User::onlyTrashed()->find($id);
         if($data->image){
             Storage::delete('user/'.$data->image);

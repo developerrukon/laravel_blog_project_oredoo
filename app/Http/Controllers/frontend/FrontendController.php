@@ -59,12 +59,13 @@ class FrontendController extends Controller
 
         return view('frontend.contact');
     }
+        //-------tag-------
     public function tag($slug){
-        $tag = Tag::where('tag_slug', $slug)->first();
-        $posts = Post::get();
-        return view('frontend.tag', compact('tag', 'posts'));
+        $tag_post = Tag::where('tag_slug', $slug)->firstOrFail();
+        $tag_post->setRelation('posts', $tag_post->posts()->paginate(9));
+        return view('frontend.tag', compact('tag_post'));
     }
-
+    //-------search-------
     public function search(Request $request){
         $request->validate([
             'search' => 'required',
@@ -82,7 +83,7 @@ class FrontendController extends Controller
             'categorys' => $categorys,
             'tags' => $tags,
         ]);
-        
+
         }
 
 

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->longText('description')->nullable();
             $table->string('post_view')->default(0);
-            $table->string('tag')->nullable();
             $table->string('status')->default('publish');
             $table->timestamps();
             $table->softDeletes();

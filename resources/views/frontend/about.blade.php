@@ -28,7 +28,9 @@
                     </div>
 
                     <div class="description">
+                        @if ($about)
                         {!! $about->description !!}
+                        @endif
                         <a href="{{ route('frontend.contact') }}" class="btn-custom">Contact us</a>
                     </div>
                 </div>

@@ -243,6 +243,9 @@
              </a>
               @endforeach
             </div>
+            <div class="pagination justify-content-center">
+                {{ $posts->links() }}
+            </div>
           </div>
         @endif
       </div>

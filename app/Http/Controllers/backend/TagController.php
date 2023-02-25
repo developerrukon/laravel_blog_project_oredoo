@@ -11,8 +11,9 @@ class TagController extends Controller
 {
     //all tags
    public function index(){
-    $tags = Tag::paginate(10);
-    return view('backend.tag.index', compact('tags'));
+    $tags = Tag::withCount('posts')->paginate(10);
+    $trash_tag = Tag::withCount('posts')->onlyTrashed()->paginate(10);
+    return view('backend.tag.index', compact('tags', 'trash_tag'));
    }
    // add tags
    public function store(Request $request){
@@ -35,9 +36,10 @@ class TagController extends Controller
     }
     // edit tags
    public function edit($tag){
+    $tags = Tag::withCount('posts')->paginate(10);
     $edit_tag = Tag::find($tag);
-    $tags = Tag::paginate(10);
-    return view('backend.tag.index', compact('tags', 'edit_tag'));
+    $trash_tag = Tag::withCount('posts')->onlyTrashed()->paginate(10);
+    return view('backend.tag.index', compact('tags', 'edit_tag', 'trash_tag'));
 
     }
     //update tag
@@ -68,4 +70,18 @@ class TagController extends Controller
             return back()->with('error', "Tag Not Deleted!");
         }
        }
+        // restore tags
+      public function restore($id){
+        $tag = Tag::onlyTrashed()->findOrFail($id);
+        $tag->restore();
+        return back()->with('success', 'Tag Restore Successful!');
+       }
+               // restore tags
+      public function permanentDelete($id){
+        $tag = Tag::onlyTrashed()->findOrFail($id);
+        $tag->posts()->detach();
+        $tag->forceDelete();
+        return back()->with('success', 'Tag Restore Successful!');
+       }
+
 }

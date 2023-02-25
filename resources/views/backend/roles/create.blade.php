@@ -15,74 +15,76 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{ __('Permission') }}</h2>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('backend.role.permission.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label>{{ __('Permission Name') }}</label>
-                            <input type="text" class="form-control" name="name" placeholder="permission name">
+@can('role_show')
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ __('Permission') }}</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('backend.role.permission.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>{{ __('Permission Name') }}</label>
+                        <input type="text" class="form-control" name="name" placeholder="permission name">
 
-                            @error('name')
-                            <span>
-                                <strong class="text-danger">{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
+                        @error('name')
+                        <span>
+                            <strong class="text-danger">{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
 
-                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                    </form>
-                </div>
+                    <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 {{--  role and permission  --}}
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
 
-                    <h2>{{ __('Create Role') }}</h2>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('backend.role.store') }}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label>{{ __('Role Name') }}</label>
-                            <input type="text" class="form-control" name="name" placeholder="role name" value="{{ old('role_name') }}">
-                            @error('name')
-                            <span>
-                                <strong class="text-danger">{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-check">
-                            <label class="bg-light m">
-                                <input type="checkbox" value="" id="checkAll">
-                                {{ __('All') }}
-                            </label>
-                            <hr />
+                <h2>{{ __('Create Role') }}</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('backend.role.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label>{{ __('Role Name') }}</label>
+                        <input type="text" class="form-control" name="name" placeholder="role name" value="{{ old('role_name') }}">
+                        @error('name')
+                        <span>
+                            <strong class="text-danger">{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-check">
+                        <label class="bg-light m">
+                            <input type="checkbox" value="" id="checkAll">
+                            {{ __('All') }}
+                        </label>
+                        <hr />
 
-                        </div>
-                        @foreach ($permissions as $permission)
-                            <label class="col-sm-2 bg-light py-2 mx-2 border">
-                                {{ $permission->name }}
-                                <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"/>
-                            </label>
-                        @endforeach
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    @foreach ($permissions as $permission)
+                        <label class="col-sm-2 bg-light py-2 mx-2 border">
+                            {{ $permission->name }}
+                            <input type="checkbox" name="permissions[]" value="{{ $permission->id }}"/>
+                        </label>
+                    @endforeach
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
+@endcan
 
 @endsection
 

@@ -9,8 +9,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-heading-2-title text-left">
-                            <h2>Search resultats for : branding</h2>
-                            <p class="desc">{{ count($posts) }} Articles were found for keyword  <strong>branding</strong></p>
+                            <h2>Search resultats for Post</h2>
+                            <p class="desc">{{ count($posts) }} Articles were found for keyword Post</strong></p>
                         </div>
                     </div>
                 </div>

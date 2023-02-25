@@ -5,7 +5,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.jqueryui.min.css">
-<link rel="stylesheet" href="{{ asset('backend/css/select2.min.css') }} "/>
 @endsection
 @section('contact')
 <div class="container-fluid page__heading-container">
@@ -27,7 +26,7 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-body">
-                <h3 class="header-title">{{ __('Total Users : ') }}{{ $user_count }}</h3>
+                <h3 class="header-title">{{ __('Total Users : ') }}{{ count($users) }}</h3>
                 <div class="data-tables">
                     <table id="dataTable" class="text-center">
                         <thead class="bg-light text-capitalize">
@@ -40,13 +39,16 @@
                                 <th>{{ __('Address') }}</th>
                                 <th>{{ __('Role') }}</th>
                                 <th>{{ __('Create_At') }}</th>
+                                @can('edit')
                                 <th>{{ __('Action') }}</th>
+
+                                @endcan
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($users as $sl => $user)
                             <tr>
-                                <td>{{ $user->id }}</td>
+                                <td>{{ $sl+1 }}</td>
                                 <td>
                                     @if ($user->image)
                                     <img width="30" class="rounded-circle" src="{{ asset('storage/users/'.$user->image) }}" alt="{{ $user->image }}">
@@ -66,13 +68,20 @@
                                 </td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>
-                                    <a href="{{ route('backend.users.show', $user->id) }}" class="btn btn-outline-info">{{ __('View') }}</a>
+                                    @can('user_show')
+
+                                    @endcan
+                                    @can('user_edit')
                                     <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-outline-success">{{ __('Edit') }}</a>
+
+                                    @endcan
+                                    @can('user_delete')
                                     <form class="d-inline" method="POST" action="{{ route('backend.users.destroy', $user->id) }}">
                                         @csrf
                                         @method('DELETE')
                                           <input type="submit" class="btn btn-outline-danger" value="Delete">
                                     </form>
+                                    @endcan
                                 </td>
                                 </tr>
                             @endforeach
@@ -86,7 +95,6 @@
 @endsection
 
 @section('js')
-<script src="{{ asset('backend/js/select2.min.js') }}"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>

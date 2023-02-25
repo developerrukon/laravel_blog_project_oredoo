@@ -18,30 +18,39 @@
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="post_menu">
+                        @can('post_show')
                         <li class="sidebar-menu-item {{ Route::is('backend.post.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.post.index') }}">
                                 <span class="sidebar-menu-text">{{ __('All Post') }}</span>
                             </a>
                         </li>
-                        <li class="sidebar-menu-item {{ Route::is('backend.post.create') ? 'active' : '' }}">
+                        @endcan
+                        @can('post_create')
+                         <li class="sidebar-menu-item {{ Route::is('backend.post.create') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.post.create') }}">
                                 <span class="sidebar-menu-text">{{ __('Create Post') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('category_show')
                         <li class="sidebar-menu-item {{ Route::is('backend.category.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.category.index') }}">
                                 <span class="sidebar-menu-text">{{ __('Category') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('tag_show')
                         <li class="sidebar-menu-item ">
                             <a class="sidebar-menu-button" href="{{ route('backend.tag.index') }}">
                                 <span class="sidebar-menu-text">{{ __('Tags') }}</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
                 <!-- post section  end-->
                 <!-- all users start-->
+                @can('user_show')
                 <li class="sidebar-menu-item {{ Route::is('backend.users.*') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#users">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">pets</i>
@@ -49,26 +58,35 @@
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="users">
+                        @can('user_show')
                         <li class="sidebar-menu-item {{ Route::is('backend.users.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.index') }}">
                                 <span class="sidebar-menu-text">{{ __('All Users') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('user_create')
                         <li class="sidebar-menu-item {{ Route::is('backend.users.create') ? 'active' : '' }} ">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.create') }}">
                                 <span class="sidebar-menu-text">{{ __('Create User') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('user_show')
                         <li class="sidebar-menu-item {{ Route::is('backend.users.trash') ? 'active' : '' }} ">
                             <a class="sidebar-menu-button" href="{{ route('backend.users.trash') }}">
                                 <span class="sidebar-menu-text">{{ __('Trash User') }}</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
+
                 <!-- all users end-->
 
                 <!-- role and Permission section start-->
+                @can('role_show')
                 <li class="sidebar-menu-item {{ Route::is('backend.role.*') ? 'active open' : '' }}">
                     <a class="sidebar-menu-button" data-toggle="collapse" href="#role_permission">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">assignment_ind</i>
@@ -76,43 +94,54 @@
                         <span class="ml-auto sidebar-menu-toggle-icon"></span>
                     </a>
                     <ul class="sidebar-submenu collapse show " id="role_permission">
+                        @can('role_show')
                         <li class="sidebar-menu-item {{ Route::is('backend.role.index') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.index') }}">
                                 <span class="sidebar-menu-text">{{ __('All Roles') }}</span>
                             </a>
                         </li>
+                        @endcan
+                        @can('role_create')
                         <li class="sidebar-menu-item {{ Route::is('backend.role.create') ? 'active' : '' }}">
                             <a class="sidebar-menu-button" href="{{ route('backend.role.create') }}">
                                 <span class="sidebar-menu-text">{{ __('Create Role') }}</span>
                             </a>
                         </li>
+                        @endcan
                     </ul>
                 </li>
+                @endcan
                 <!-- users permission section end-->
 
                 <!-- about start-->
+                @can('about_show')
                 <li class="sidebar-menu-item {{ Route::is('backend.about.edit') ? 'active' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.about.edit') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">insert_comment</i>
                         <span> About Us</span>
                     </a>
                 </li>
+                @endcan
                 <!-- about end-->
                 <!-- contact start-->
+                @can('message_show')
                 <li class="sidebar-menu-item {{ Route::is('backend.contact.index') ? 'active' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.contact.index') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">perm_phone_msg</i>
                         <span> Message</span>
                     </a>
                 </li>
+                @endcan
                 <!-- contact end-->
                 <!-- settings start-->
+                @can('setting_show')
                 <li class="sidebar-menu-item {{ Route::is('backend.setting.edit') ? 'active' : '' }}">
                     <a class="sidebar-menu-button" href="{{ route('backend.setting.edit') }}">
                         <i class="sidebar-menu-icon sidebar-menu-icon--left material-icons">settings</i>
                         <span> Settins</span>
                     </a>
                 </li>
+                @endcan
                 <!-- settings end-->
             </ul>
             <div class="d-flex align-items-center sidebar-p-a border-bottom sidebar-account">

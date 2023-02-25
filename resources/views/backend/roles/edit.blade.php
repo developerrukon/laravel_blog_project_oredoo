@@ -14,44 +14,46 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h2>{{ __('Update role') }}</h2>
-                </div>
-                <div class="card-body">
-                    <form action="{{ route('backend.role.update', $role->id) }}" method="POST">
-                        @method('PUT')
-                        @csrf
-                        <div class="form-group">
-                            <label>Role Name</label>
-                            <input type="text" class="form-control" name="name" value="{{ $role->name }}">
-                        </div>
-                        {{--  //all checkbox input  --}}
-                        <div class="form-check">
-                            <label class="bg-light m">
-                            <input type="checkbox" value="" id="checkAll">
-                                {{ __('All Permissions') }}
+@can('role_edit')
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h2>{{ __('Update role') }}</h2>
+            </div>
+            <div class="card-body">
+                <form action="{{ route('backend.role.update', $role->id) }}" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <div class="form-group">
+                        <label>Role Name</label>
+                        <input type="text" class="form-control" name="name" value="{{ $role->name }}">
+                    </div>
+                    {{--  //all checkbox input  --}}
+                    <div class="form-check">
+                        <label class="bg-light m">
+                        <input type="checkbox" value="" id="checkAll">
+                            {{ __('All Permissions') }}
+                        </label>
+                        <hr/>
+                    {{--  //checkbox input  --}}
+                    </div>
+                        @foreach ($permissions as $permission)
+                            <label class="col-sm-2 bg-light py-2 mx-2 border">
+                                {{ $permission->name }}
+                                <input type="checkbox" name="permissions[]" {{ $role->hasPermissionTo($permission->name) ? 'checked': ''}} value="{{ $permission->id }}" />
                             </label>
-                            <hr/>
-                        {{--  //checkbox input  --}}
-                        </div>
-                            @foreach ($permissions as $permission)
-                                <label class="col-sm-2 bg-light py-2 mx-2 border">
-                                    {{ $permission->name }}
-                                    <input type="checkbox" name="permissions[]" {{ $role->hasPermissionTo($permission->name) ? 'checked': ''}} value="{{ $permission->id }}" />
-                                </label>
-                            @endforeach
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary">{{ {__('Update')} }}</button>
-                        </div>
-                    </form>
-                </div>
+                        @endforeach
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">{{ __('Update') }}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
+@endcan
 @endsection
 @section('js')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>

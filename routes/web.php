@@ -82,6 +82,7 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/restore/{id}', 'restore')->name('restore');
             Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
             Route::get('/show/{post}', 'show')->name('show');
+            Route::get('/status/{post}', 'status')->name('status');
         });
         //--------tag routes-------
         Route::controller(TagController::class)->prefix('tag')->name('tag.')->group(function(){
@@ -90,6 +91,8 @@ use App\Http\Controllers\frontend\GoogleController;
             Route::get('/edit/{tag}', 'edit')->name('edit');
             Route::post('/update/{tag}', 'update')->name('update');
             Route::delete('/delete/{tag}', 'destroy')->name('destroy');
+            Route::get('/restore/{id}', 'restore')->name('restore');
+            Route::delete('/permanent-delete/{id}', 'permanentDelete')->name('permanent.delete');
         });
         // ---------role route permission----------
         Route::controller(RolePermissionController::class)->prefix('roles')->name('role.')->group(function(){
